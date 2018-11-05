@@ -1,0 +1,43 @@
+!PrefabAsset
+Id: 65bd5b89-9fdc-4474-b4e8-8b8c95208ba8
+SerializedVersion: {Xenko: 3.1.0.1}
+Tags: []
+Hierarchy:
+    RootParts:
+        - ref!! 47d3a1c3-5c78-49ce-88e2-9ed27440dd97
+    Parts:
+        -   Entity:
+                Id: 47d3a1c3-5c78-49ce-88e2-9ed27440dd97
+                Name: Star
+                Components:
+                    09798c4cef576c2c1b389f1d04d36201: !TransformComponent
+                        Id: 9befc5c2-9d6a-49a5-8029-e0ce1653b538
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    a31ffb71644d56fbb3b17671b6c342ed: !ModelComponent
+                        Id: d0b61ba8-cfc8-4068-a7ad-92ee04563c4d
+                        Model: 4151917b-0bc6-4d60-b9ba-1bd181fbb7d3:Models/StarModel
+                        RenderGroup: Group1
+                        IsShadowCaster: false
+                        Materials: {}
+                    78a810f71a0bf70c9f3fb0703564c4e1: !Xenko_GameOff2018.Star,Xenko_GameOff2018.Game
+                        Id: 8fe01859-4fc8-49d9-8cd4-fd8535de22ef
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Hit: false
+                        Active: false
+                        Moveable: true
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Radius: 0.0
+                        Deceleration: 0.0
+                        RandomGenerator: null

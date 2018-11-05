@@ -1,0 +1,77 @@
+!SceneAsset
+Id: 43b3db9d-4faa-4a2d-b995-ec0f03b2c79a
+SerializedVersion: {Xenko: 3.1.0.1}
+Tags: []
+ChildrenIds: []
+Offset: {X: 0.0, Y: 0.0, Z: 0.0}
+Hierarchy:
+    RootParts:
+        - ref!! b3f89712-cdca-4046-8f7f-9c51f3173bb6
+        - ref!! 7cdf87fb-80ad-4849-ba76-a4d7593498e8
+        - ref!! d092c8ce-5f3a-4609-bcb6-8763e2e264f6
+    Parts:
+        -   Entity:
+                Id: 7cdf87fb-80ad-4849-ba76-a4d7593498e8
+                Name: Directional light
+                Components:
+                    e6adcfcd3908b294a3e78dc71de25a8b: !TransformComponent
+                        Id: 48d9f4b8-533a-4e11-ab80-a08ab52ae1fd
+                        Position: {X: 0.0, Y: 0.0, Z: 500.0}
+                        Rotation: {X: 0.3213938, Y: 0.3213938, Z: -0.116977759, W: 0.8830222}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    0705e7aa5cd6e43a64060dcd2bc7addb: !LightComponent
+                        Id: 257fdccb-2c9e-49ae-8fc8-58530681ed08
+                        Type: !LightDirectional
+                            Color: !ColorRgbProvider
+                                Value: {R: 1.0, G: 1.0, B: 1.0}
+                            Shadow:
+                                Enabled: true
+                                Filter: !LightShadowMapFilterTypePcf
+                                    FilterSize: Filter5x5
+                                Size: Large
+                                DepthRange: {}
+                                PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic {}
+                                ComputeTransmittance: false
+                                BiasParameters: {}
+                        Intensity: 0.1
+        -   Entity:
+                Id: b3f89712-cdca-4046-8f7f-9c51f3173bb6
+                Name: Camera
+                Components:
+                    68a91898aa3dc630c8688a27b7db4d89: !TransformComponent
+                        Id: af09fc9c-7555-4ec9-b3ae-ef3526bd52e8
+                        Position: {X: 0.0, Y: 0.0, Z: 600.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    4af44de5ab87920f9cfb23f1adbed565: !CameraComponent
+                        Id: d027e8f0-a3bf-4f7a-90be-f87e3becad84
+                        Name: Main
+                        Projection: Perspective
+                        Slot: a97208ce-c8a6-490b-8eb7-945239500426
+        -   Entity:
+                Id: d092c8ce-5f3a-4609-bcb6-8763e2e264f6
+                Name: Skybox
+                Components:
+                    396b95231c93acff24682a56154f0f41: !TransformComponent
+                        Id: 2da83ed1-3962-42bf-99f9-75a4e49fabce
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    f29e31883ba1dc13b30575a57e6ec00a: !BackgroundComponent
+                        Id: bfb4765d-026a-4fe2-abd1-a57624d9e228
+                        Texture: 4077f9ab-aafe-4fce-8fa6-3616e65d9db4:Textures/Stars from scratch
+                        Intensity: 0.03
+                        Is2D: true
+                    ace37a1f5b204d88a5921c04eca61bec: !LightComponent
+                        Id: 7793e2bc-11d7-4136-ab28-f97f2bf939f9
+                        Type: !LightSkybox
+                            Skybox: 2f2f474d-eb5b-48f9-aef0-0170a818647d:Skybox
+                        Intensity: 0.25
+                    1e2e7f4805f448b09c1c2ff88cefc940: !Xenko_GameOff2018.SceneControl,Xenko_GameOff2018.Game
+                        Id: 0bfcf1d8-fe86-45bd-9362-a4def8c5b99a
+                    2d5b69f20f2167c61ac525506978418b: !Xenko_GameOff2018.StarControl,Xenko_GameOff2018.Game
+                        Id: adc27cfc-838d-4a65-a013-5acfcf3b3784
+                        Priority: 5

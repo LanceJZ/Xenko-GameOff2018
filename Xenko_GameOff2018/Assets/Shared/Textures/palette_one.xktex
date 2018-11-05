@@ -1,0 +1,7 @@
+!Texture
+Id: dbcf0bd6-7651-4e79-bf3d-2343c07aac24
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Textures/palette_one.png
+Type: !ColorTextureType
+    ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}

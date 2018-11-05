@@ -1,0 +1,7 @@
+!SkyboxAsset
+Id: 2f2f474d-eb5b-48f9-aef0-0170a818647d
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+CubeMap: 4077f9ab-aafe-4fce-8fa6-3616e65d9db4:Textures/Stars from scratch
+IsSpecularOnly: true
+SpecularCubeMapSize: 1024

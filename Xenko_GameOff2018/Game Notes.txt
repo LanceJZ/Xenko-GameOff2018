@@ -1,0 +1,8 @@
+Ore collection from asteroids.
+As level of player goes up they can tell what ore the asteroid contains.
+Bases build ships that attack player.
+Super base build ships that attacks player's home base.
+When players home gets distroyed Game Over.
+Player uses ore to repair or build up home base.
+After all the enemy bases are cleared, the player goes up against the super base.
+Player gets some exp from mining most from fighting.

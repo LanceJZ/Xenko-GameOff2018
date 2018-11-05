@@ -1,0 +1,10 @@
+!Texture
+Id: 4077f9ab-aafe-4fce-8fa6-3616e65d9db4
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Textures/Stars from scratch.png
+IsCompressed: false
+Type: !ColorTextureType
+    ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}
+GenerateMipmaps: false
+IsStreamable: false

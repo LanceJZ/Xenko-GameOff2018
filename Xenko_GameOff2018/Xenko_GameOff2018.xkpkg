@@ -1,0 +1,61 @@
+!Package
+Id: 5324535e-6388-4537-b8c8-c800f7e8bd77
+SerializedVersion: {Assets: 0.0.4}
+Meta:
+    Name: Xenko_GameOff2018
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: Xenko_GameOff2018
+    Dependencies:
+        -   Name: Xenko
+            Version: 3.0.0.6
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: Xenko_GameOff2018.Game/Effects
+        ResourceFolders:
+            - Resources
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: ed32a69a-c85d-4086-8049-00ef0ebb4cf8
+                Location: Xenko_GameOff2018.Game/Xenko_GameOff2018.Game.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        ResourceFolders: []
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 4a559612-bc65-4dcc-8dda-a4118a7c8cb6
+                Location: Xenko_GameOff2018.Windows/Xenko_GameOff2018.Windows.csproj
+                Type: Executable
+    -   Name: Android
+        Platform: Android
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Android
+        ResourceFolders: []
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 6f273ca3-a714-412b-9f3d-7ab9d8bc6d7e
+                Location: Xenko_GameOff2018.Android/Xenko_GameOff2018.Android.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets:
+    - 135c830a-fc68-4101-915c-6a7d4745a93a:Prefabs/EnemyBasePF
+    - 4151917b-0bc6-4d60-b9ba-1bd181fbb7d3:Models/StarModel
+    - 65bd5b89-9fdc-4474-b4e8-8b8c95208ba8:Prefabs/StarPF
+    - 6eb2e7c9-78a2-4d78-9d89-863d35292f6f:Prefabs/AsteroidPF
+    - a26f3aee-e3d5-40ba-8e35-44e2592b54fb:Prefabs/PlayerPF
+    - a64094c6-9f74-4385-b84b-f1d50e3a610e:Models/PlayerModel
+    - c12a503b-65f6-4c68-a0a4-849297ed5fd4:Models/EnemyBase

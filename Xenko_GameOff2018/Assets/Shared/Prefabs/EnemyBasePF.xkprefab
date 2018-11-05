@@ -1,0 +1,41 @@
+!PrefabAsset
+Id: 135c830a-fc68-4101-915c-6a7d4745a93a
+SerializedVersion: {Xenko: 3.1.0.1}
+Tags: []
+Hierarchy:
+    RootParts:
+        - ref!! 7a67cf00-3389-49e0-8dab-0a82589d1987
+    Parts:
+        -   Entity:
+                Id: 7a67cf00-3389-49e0-8dab-0a82589d1987
+                Name: EnemyBase
+                Components:
+                    96dead036a6cf0a0876a8bbece149136: !TransformComponent
+                        Id: 53a6217b-44b2-407f-8744-928a699f549e
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    0c62054b5e34daa6dee8901019027e81: !ModelComponent
+                        Id: 8e4369f4-ed08-4979-a899-319d0c89b391
+                        Model: c12a503b-65f6-4c68-a0a4-849297ed5fd4:Models/EnemyBase
+                        Materials: {}
+                    b54d819927d6002422f878b869a6e138: !Xenko_GameOff2018.EnemyBase,Xenko_GameOff2018.Game
+                        Id: d7ae9260-f9d9-4c2b-ae8e-cbe569301ea3
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Hit: false
+                        Active: false
+                        Moveable: true
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Radius: 0.0
+                        Deceleration: 0.0
+                        RandomGenerator: null

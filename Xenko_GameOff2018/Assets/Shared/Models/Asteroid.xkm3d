@@ -1,0 +1,15 @@
+!Model
+Id: 0b71ae46-4d52-4d5a-a960-acf94d36ccde
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Models/Asteroid.obj
+Skeleton: null
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    4b6be0005e911e4bdb41cc8c6cadc903:
+        Name: DefaultMaterial
+        MaterialInstance:
+            Material: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
+Modifiers: {}
+~SourceHashes:
+    6f324b787204b06d81c66567324a2ec6~../../Models/Asteroid.obj: f3afa158e26b4e0b33be296b5333b569
