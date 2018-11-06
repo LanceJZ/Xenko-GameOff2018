@@ -56,6 +56,8 @@ RootAssets:
     - 4151917b-0bc6-4d60-b9ba-1bd181fbb7d3:Models/StarModel
     - 65bd5b89-9fdc-4474-b4e8-8b8c95208ba8:Prefabs/StarPF
     - 6eb2e7c9-78a2-4d78-9d89-863d35292f6f:Prefabs/AsteroidPF
+    - 996e640a-db5e-4bd6-8d79-617d9ba4c467:Prefabs/EnemyDronePF
     - a26f3aee-e3d5-40ba-8e35-44e2592b54fb:Prefabs/PlayerPF
     - a64094c6-9f74-4385-b84b-f1d50e3a610e:Models/PlayerModel
+    - b4a7b6ba-53dc-4cfe-acfd-b6b30b38827c:Prefabs/ChunkBasePF
     - c12a503b-65f6-4c68-a0a4-849297ed5fd4:Models/EnemyBase

@@ -41,7 +41,7 @@ Hierarchy:
                 Components:
                     68a91898aa3dc630c8688a27b7db4d89: !TransformComponent
                         Id: af09fc9c-7555-4ec9-b3ae-ef3526bd52e8
-                        Position: {X: 0.0, Y: 0.0, Z: 600.0}
+                        Position: {X: 0.0, Y: 0.0, Z: 650.0}
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
@@ -72,6 +72,9 @@ Hierarchy:
                         Intensity: 0.25
                     1e2e7f4805f448b09c1c2ff88cefc940: !Xenko_GameOff2018.SceneControl,Xenko_GameOff2018.Game
                         Id: 0bfcf1d8-fe86-45bd-9362-a4def8c5b99a
+                        PlayerRefAccess: null
+                        EnemyBaseRefAccess: null
+                        AsteroidRefAccess: null
                     2d5b69f20f2167c61ac525506978418b: !Xenko_GameOff2018.StarControl,Xenko_GameOff2018.Game
                         Id: adc27cfc-838d-4a65-a013-5acfcf3b3784
                         Priority: 5

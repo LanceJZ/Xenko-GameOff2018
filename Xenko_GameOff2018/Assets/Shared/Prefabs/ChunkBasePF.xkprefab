@@ -1,0 +1,25 @@
+!PrefabAsset
+Id: b4a7b6ba-53dc-4cfe-acfd-b6b30b38827c
+SerializedVersion: {Xenko: 3.1.0.1}
+Tags: []
+Hierarchy:
+    RootParts:
+        - ref!! bb07c5b0-25b7-46d5-a0b0-b718911efa03
+    Parts:
+        -   Entity:
+                Id: bb07c5b0-25b7-46d5-a0b0-b718911efa03
+                Name: ChunkBase
+                Components:
+                    228f6dea6087cb1f2c66909570cede3d: !TransformComponent
+                        Id: f62c828a-4280-436b-9418-15eaecab8bc1
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    abef4d5d49fb482e4ba0a453967f3d64: !ModelComponent
+                        Id: d8e9e872-e753-49ae-ab91-1ad13fd41101
+                        Model: d33f6778-d007-4abb-bdfd-080542b2b990:Models/ChunkBase
+                        Materials:
+                            861a62c3a2776158b98486ea9099238d~0: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
+                    9a3f9f2a5c6028973205ace35bb98df1: !Xenko_GameOff2018.Chunk,Xenko_GameOff2018.Game
+                        Id: 6d894dcf-992c-4330-9dcf-3c8f3b8c34db

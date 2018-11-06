@@ -15,6 +15,7 @@ namespace Xenko_GameOff2018
 {
     public class Player : PO
     {
+        float ThrustAmount = 1.666f;
         bool ThrustOn;
         public Entity TheCamera;
 
@@ -23,10 +24,12 @@ namespace Xenko_GameOff2018
             base.Start();
 
 
-            Position = new Vector3(0, 0, -50);
+            Position = new Vector3(0, 0, 0);
 
             Deceleration = 0.01f;
+            MaxVelocity = 500;
             Active = true;
+            SetModel();
         }
 
         public override void Update()
@@ -34,7 +37,7 @@ namespace Xenko_GameOff2018
             base.Update();
 
             if (CheckForEdge())
-                DriftedOffEdge();
+                MoveToOppisiteEdge();
 
             GetInput();
 
@@ -46,21 +49,6 @@ namespace Xenko_GameOff2018
                 TheCamera.Transform.Position.X = Position.X;
                 TheCamera.Transform.Position.Y = Position.Y;
             }
-        }
-
-        void DriftedOffEdge()
-        {
-            if (Position.X > Edge.X)
-                Position.X = -Edge.X;
-
-            if (Position.X < -Edge.X)
-                Position.X = Edge.X;
-
-            if (Position.Y > Edge.Y)
-                Position.Y = -Edge.Y;
-
-            if (Position.Y < -Edge.Y)
-                Position.Y = Edge.Y;
         }
 
         void GetInput()
@@ -110,19 +98,14 @@ namespace Xenko_GameOff2018
             //    ThrustSI.IsLooping = true;
             //}
 
-            float maxPerSecond = 500;
-            float thrustAmount = 0.375f;
-
-            if (Math.Abs(Velocity.X) + Math.Abs(Velocity.Y) < maxPerSecond)
+            if (Accelerate(ThrustAmount))
             {
-                Acceleration = SetVelocity(Rotation.Z, thrustAmount);
+                ThrustOn = true;
             }
             else
             {
                 ThrustOff();
             }
-
-            ThrustOn = true;
 
             //if (FlameTimer.Expired)
             //{
@@ -133,15 +116,12 @@ namespace Xenko_GameOff2018
 
         void ThrustOff()
         {
-            float Deceration = 0.025f;
-            Acceleration = -Velocity * Deceration;
-
-            //FlameM.Enabled = false;
-            //ThrustSI.IsLooping = false;
+            Acceleration = -Velocity * Deceleration;
 
             if (ThrustOn)
             {
                 //ThrustSI.IsLooping = false;
+                //FlameM.Enabled = false;
                 //ThrustSI.Stop();
                 ThrustOn = false;
             }

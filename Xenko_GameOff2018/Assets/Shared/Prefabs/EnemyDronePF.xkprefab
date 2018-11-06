@@ -1,0 +1,43 @@
+!PrefabAsset
+Id: 996e640a-db5e-4bd6-8d79-617d9ba4c467
+SerializedVersion: {Xenko: 3.1.0.1}
+Tags: []
+Hierarchy:
+    RootParts:
+        - ref!! f6d0ccce-b8fe-4082-9b4a-4f564466a2bf
+    Parts:
+        -   Entity:
+                Id: f6d0ccce-b8fe-4082-9b4a-4f564466a2bf
+                Name: EnemyDrone
+                Components:
+                    0eb615b2f4c6220ca00f5447bd49b23d: !TransformComponent
+                        Id: 8a4bf870-27d6-4cc8-8d1a-1c737cdcd986
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    a14963243f887245b77a4e5a43d86d9a: !ModelComponent
+                        Id: 648c84cf-2b32-4b64-97b1-9ff80ff4a9af
+                        Model: a5ebd9e4-8e5a-41c9-b4a9-d5e124a9551d:Models/EnemyDrone
+                        Materials:
+                            857e9d7154e0aed38da88cb0aee1e5da~0: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
+                    aa138b9efab628053dbb296e73cff950: !Xenko_GameOff2018.EnemyDrone,Xenko_GameOff2018.Game
+                        Id: 3b6faa58-2ad4-4f6c-b985-796ae9d71f4c
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Hit: false
+                        Active: false
+                        Moveable: true
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Radius: 0.0
+                        Deceleration: 0.0
+                        MaxVelocity: 0.0
+                        RandomGenerator: null

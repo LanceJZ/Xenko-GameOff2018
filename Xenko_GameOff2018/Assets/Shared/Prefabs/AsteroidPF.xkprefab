@@ -38,4 +38,5 @@ Hierarchy:
                         Points: 0
                         Radius: 0.0
                         Deceleration: 0.0
+                        MaxVelocity: 0.0
                         RandomGenerator: null

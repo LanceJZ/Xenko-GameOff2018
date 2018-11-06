@@ -1,0 +1,15 @@
+!Model
+Id: a5ebd9e4-8e5a-41c9-b4a9-d5e124a9551d
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Models/EnemyDrone.obj
+Skeleton: null
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    d3ca40c922d701867b68a4fcd8744a29:
+        Name: DefaultMaterial
+        MaterialInstance:
+            Material: null
+Modifiers: {}
+~SourceHashes:
+    3a3b27fc8556045d71b951a7b0d01487~../../Models/EnemyDrone.obj: cf0e2d26019a2b9fbe54b351c5c3b226

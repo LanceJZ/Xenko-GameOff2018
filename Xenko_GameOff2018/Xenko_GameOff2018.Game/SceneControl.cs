@@ -13,40 +13,77 @@ using Xenko.Audio;
 
 namespace Xenko_GameOff2018
 {
+    public enum GameState
+    {
+        Over,
+        InPlay,
+        HighScore,
+        Attract
+    };
+
     public class SceneControl : SyncScript
     {
+        public Player PlayerRefAccess { get => PlayerRef; }
+        public List<EnemyBase> EnemyBaseRefAccess { get => EnemyBaseRefs; }
+        public List<Asteroid> AsteroidRefAccess { get => AsteroidRefs; }
+        public GameState TheGameMode { get => GameMode; }
+
+        GameState GameMode = GameState.Over;
         Prefab PlayerPF;
         Prefab EnemyBasePF;
+        Prefab AsteroidPF;
         Player PlayerRef;
+        List<EnemyBase> EnemyBaseRefs;
+        List<Asteroid> AsteroidRefs;
 
         public override void Start()
         {
+            EnemyBaseRefs = new List<EnemyBase>();
+            AsteroidRefs = new List<Asteroid>();
+
             PlayerPF = Content.Load<Prefab>("Prefabs/PlayerPF");
-            Entity playerE = PlayerPF.Instantiate().First();
-            PlayerRef = playerE.Get<Player>();
-            SceneSystem.SceneInstance.RootScene.Entities.Add(playerE);
+            PlayerRef = SetupEntity(PlayerPF).Get<Player>();
 
             EnemyBasePF = Content.Load<Prefab>("Prefabs/EnemyBasePF");
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 4; i++)
             {
-                Entity enemyBaseE = EnemyBasePF.Instantiate().First();
-                SceneSystem.SceneInstance.RootScene.Entities.Add(enemyBaseE);
+                SpawnBase();
             }
 
-            Prefab StarPF = Content.Load<Prefab>("Prefabs/StarPF");
+            AsteroidPF = Content.Load<Prefab>("Prefabs/AsteroidPF");
 
-            for (int i = 0; i < 300; i++)
+            for (int i = 0; i < 4; i++)
             {
-                Entity starE = StarPF.Instantiate().First();
-                SceneSystem.SceneInstance.RootScene.Entities.Add(starE);
+                SpawnAsteroid();
             }
-
         }
 
         public override void Update()
         {
 
+        }
+
+        public Entity SetupEntity(Prefab prefab)
+        {
+            Entity entity = prefab.Instantiate().First();
+            SceneSystem.SceneInstance.RootScene.Entities.Add(entity);
+
+            return entity;
+        }
+
+        void SpawnBase()
+        {
+            Entity enemyBaseE = SetupEntity(EnemyBasePF);
+            enemyBaseE.Get<EnemyBase>().Setup(this);
+            EnemyBaseRefs.Add(enemyBaseE.Get<EnemyBase>());
+        }
+
+        void SpawnAsteroid()
+        {
+            Entity asteroidE = SetupEntity(AsteroidPF);
+            asteroidE.Get<Asteroid>().Setup(this);
+            AsteroidRefs.Add(asteroidE.Get<Asteroid>());
         }
     }
 }

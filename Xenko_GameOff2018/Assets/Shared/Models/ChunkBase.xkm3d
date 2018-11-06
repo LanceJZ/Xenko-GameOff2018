@@ -1,0 +1,15 @@
+!Model
+Id: d33f6778-d007-4abb-bdfd-080542b2b990
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Models/ChunkBase.obj
+Skeleton: null
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    c2796e37011a24daa68ab70cdf003006:
+        Name: DefaultMaterial
+        MaterialInstance:
+            Material: null
+Modifiers: {}
+~SourceHashes:
+    8ccad0e287842ced912698ec140c913a~../../Models/ChunkBase.obj: e2fd544b33f427567d1df5c5ed4b254c

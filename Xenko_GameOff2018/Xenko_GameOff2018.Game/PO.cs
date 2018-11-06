@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Xenko.Core.Mathematics;
 using Xenko.Input;
 using Xenko.Engine;
@@ -19,6 +20,7 @@ namespace Xenko_GameOff2018
         public int Points { get => points; set => points = value; }
         public float Radius { get => radius; set => radius = value; }
         public float Deceleration { get => deceleration; set => deceleration = value; }
+        public float MaxVelocity { get => maxVelocity; set => maxVelocity = value; }
         public Random RandomGenerator { get => RandomNumbers; set => RandomNumbers = value; }
 
         bool hit;
@@ -29,6 +31,7 @@ namespace Xenko_GameOff2018
         int points;
         float radius;
         float deceleration = 0;
+        float maxVelocity;
 
         public ModelComponent Model;
         public Vector3 Position = Vector3.Zero;
@@ -118,13 +121,13 @@ namespace Xenko_GameOff2018
             return Vector;
         }
 
-        public void LoadModel()
+        public void SetModel()
         {
             Model = this.Entity.Get<ModelComponent>();
             Model.Enabled = false;
         }
 
-        public void LoadModelChild()
+        public void SetModelChild()
         {
             Model = this.Entity.GetChild(0).Get<ModelComponent>();
             Model.Enabled = false;
@@ -190,6 +193,31 @@ namespace Xenko_GameOff2018
             return false;
         }
 
+        public void MoveToOppisiteEdge()
+        {
+            if (Position.X > Edge.X)
+                Position.X = -Edge.X;
+
+            if (Position.X < -Edge.X)
+                Position.X = Edge.X;
+
+            if (Position.Y > Edge.Y)
+                Position.Y = -Edge.Y;
+
+            if (Position.Y < -Edge.Y)
+                Position.Y = Edge.Y;
+        }
+
+        public bool Accelerate(float amount)
+        {
+            if (Math.Abs(Velocity.X) + Math.Abs(Velocity.Y) < maxVelocity)
+            {
+                Acceleration = SetVelocity(Rotation.Z, amount);
+                return true;
+            }
+
+            return false;
+        }
         /// <summary>
         /// Get a random float between min and max
         /// </summary>
@@ -283,10 +311,10 @@ namespace Xenko_GameOff2018
             return new Vector3(Edge.Y, RandomMinMax(-Edge.X * 0.9f, Edge.X * 0.9f), 0);
         }
 
-        public float AimAtTarget(Vector3 origin, Vector3 target, float facingAngle, float magnitude)
+        public float AimAtTarget(Vector3 target, float facingAngle, float magnitude)
         {
             float turnVelocity = 0;
-            float targetAngle = AngleFromVectors(origin, target);
+            float targetAngle = AngleFromVectors(Position, target);
             float targetLessFacing = targetAngle - facingAngle;
             float facingLessTarget = facingAngle - targetAngle;
 

@@ -16,6 +16,12 @@ namespace Xenko_GameOff2018
 
         public override void Start()
         {
+            Prefab StarPF = Content.Load<Prefab>("Prefabs/StarPF");
+
+            for (int i = 0; i < 300; i++)
+            {
+                SceneSystem.SceneInstance.RootScene.Entities.Add(StarPF.Instantiate().First());
+            }
         }
 
         public override void Update()
