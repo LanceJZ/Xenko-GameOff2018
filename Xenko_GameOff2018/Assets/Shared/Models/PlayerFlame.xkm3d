@@ -1,0 +1,15 @@
+!Model
+Id: 6ef05b62-8007-44e7-8099-cddf0ed8dccd
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Models/PlayerFlame.obj
+Skeleton: null
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    74d8885be7d9434c087d3d83b47d5f5f:
+        Name: DefaultMaterial
+        MaterialInstance:
+            Material: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
+Modifiers: {}
+~SourceHashes:
+    c9c61c0ca7ea01c349f1cd6904c5ee4c~../../Models/PlayerFlame.obj: c3766824e8cc2ea00d73ab9f22896e3f

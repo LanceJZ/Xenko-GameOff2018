@@ -21,8 +21,8 @@ Hierarchy:
                         Model: a5ebd9e4-8e5a-41c9-b4a9-d5e124a9551d:Models/EnemyDrone
                         Materials:
                             857e9d7154e0aed38da88cb0aee1e5da~0: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
-                    aa138b9efab628053dbb296e73cff950: !Xenko_GameOff2018.EnemyDrone,Xenko_GameOff2018.Game
-                        Id: 3b6faa58-2ad4-4f6c-b985-796ae9d71f4c
+                    ad5ae329dbe9c31741ef73b3b6fda7a1: !Xenko_GameOff2018.EnemyDrone,Xenko_GameOff2018.Game
+                        Id: c967fb65-7af7-4328-937b-91fee73c6b7d
                         Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -40,4 +40,3 @@ Hierarchy:
                         Radius: 0.0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
-                        RandomGenerator: null

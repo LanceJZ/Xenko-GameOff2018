@@ -22,13 +22,13 @@ Hierarchy:
                         RenderGroup: Group1
                         IsShadowCaster: false
                         Materials: {}
-                    78a810f71a0bf70c9f3fb0703564c4e1: !Xenko_GameOff2018.Star,Xenko_GameOff2018.Game
-                        Id: 8fe01859-4fc8-49d9-8cd4-fd8535de22ef
+                    d2217fa55490ebe43e7835ef2011fc37: !Xenko_GameOff2018.Star,Xenko_GameOff2018.Game
+                        Id: 2d2b9130-b569-4eec-a6e1-e2d702971967
                         Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
                         RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -41,4 +41,3 @@ Hierarchy:
                         Radius: 0.0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
-                        RandomGenerator: null

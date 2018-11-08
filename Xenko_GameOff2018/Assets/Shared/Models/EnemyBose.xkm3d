@@ -1,0 +1,15 @@
+!Model
+Id: 34f29fc2-6470-416e-ad4e-93ea56bd266a
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Models/EnemyBose.obj
+Skeleton: null
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    c0935aa7657879a84052ab5d5099f9e3:
+        Name: DefaultMaterial
+        MaterialInstance:
+            Material: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
+Modifiers: {}
+~SourceHashes:
+    52b105e6755411c2b0cdb5ebbee0ea41~../../Models/EnemyBose.obj: a5de8d7fd21566e6c378b85ad49095e0

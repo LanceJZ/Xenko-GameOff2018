@@ -1,0 +1,24 @@
+!PrefabAsset
+Id: 423c826b-f8be-423e-9757-e86c9456d13b
+SerializedVersion: {Xenko: 3.1.0.1}
+Tags: []
+Hierarchy:
+    RootParts:
+        - ref!! 3bb693a0-7f0c-4b34-9422-359a505e6de2
+    Parts:
+        -   Entity:
+                Id: 3bb693a0-7f0c-4b34-9422-359a505e6de2
+                Name: EnemyBose
+                Components:
+                    15cee896560fd9f010c8d9ca6929a985: !TransformComponent
+                        Id: 93fb369c-2be2-494c-b918-c4f5e2fc75a2
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    608cf36f37ab06ac25fb2335ceaaae82: !ModelComponent
+                        Id: 644c7be1-504b-499f-8806-670a7bbd16eb
+                        Model: 34f29fc2-6470-416e-ad4e-93ea56bd266a:Models/EnemyBose
+                        Materials: {}
+                    b0d37e408fa24b1074cddfa1b0d44301: !Xenko_GameOff2018.EnemyBoss,Xenko_GameOff2018.Game
+                        Id: ce5037c3-4916-4c26-b9ea-9ac01a028e92

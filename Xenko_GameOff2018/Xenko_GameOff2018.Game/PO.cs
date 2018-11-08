@@ -21,7 +21,7 @@ namespace Xenko_GameOff2018
         public float Radius { get => radius; set => radius = value; }
         public float Deceleration { get => deceleration; set => deceleration = value; }
         public float MaxVelocity { get => maxVelocity; set => maxVelocity = value; }
-        public Random RandomGenerator { get => RandomNumbers; set => RandomNumbers = value; }
+        public static Random RandomGenerator { get => RandomNumbers; set => RandomNumbers = value; }
 
         bool hit;
         bool active;
@@ -42,7 +42,7 @@ namespace Xenko_GameOff2018
         public Vector3 RotationVelocity = Vector3.Zero;
         public Vector3 RotationAcceleration = Vector3.Zero;
 
-        protected static Vector2 Edge = new Vector2(1500, 1500);
+        protected static Vector2 Edge = new Vector2(2000, 2000);
         static Random RandomNumbers;
 
         public override void Start()
@@ -124,13 +124,11 @@ namespace Xenko_GameOff2018
         public void SetModel()
         {
             Model = this.Entity.Get<ModelComponent>();
-            Model.Enabled = false;
         }
 
         public void SetModelChild()
         {
             Model = this.Entity.GetChild(0).Get<ModelComponent>();
-            Model.Enabled = false;
         }
 
         public void UpdateActive(bool active)
@@ -164,7 +162,7 @@ namespace Xenko_GameOff2018
             return false;
         }
 
-        public bool CheckForEdge()
+        public bool HitEdge()
         {
             if (Position.X > Edge.X)
             {

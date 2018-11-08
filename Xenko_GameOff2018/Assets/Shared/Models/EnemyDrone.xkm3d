@@ -9,7 +9,7 @@ Materials:
     d3ca40c922d701867b68a4fcd8744a29:
         Name: DefaultMaterial
         MaterialInstance:
-            Material: null
+            Material: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
 Modifiers: {}
 ~SourceHashes:
     3a3b27fc8556045d71b951a7b0d01487~../../Models/EnemyDrone.obj: cf0e2d26019a2b9fbe54b351c5c3b226

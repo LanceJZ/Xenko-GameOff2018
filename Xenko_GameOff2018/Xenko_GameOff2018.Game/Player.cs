@@ -15,6 +15,11 @@ namespace Xenko_GameOff2018
 {
     public class Player : PO
     {
+        ModelComponent FlameRModel;
+        ModelComponent FlameLModel;
+        Timer BlinkTimerR;
+        Timer BlinkTimerL;
+
         float ThrustAmount = 1.666f;
         bool ThrustOn;
         public Entity TheCamera;
@@ -23,12 +28,28 @@ namespace Xenko_GameOff2018
         {
             base.Start();
 
-
+            Radius = 40;
             Position = new Vector3(0, 0, 0);
 
             Deceleration = 0.01f;
             MaxVelocity = 500;
             Active = true;
+
+            Entity blinkTimerRE = new Entity { new Timer() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(blinkTimerRE);
+            BlinkTimerR = blinkTimerRE.Get<Timer>();
+            BlinkTimerR.Reset(0.1f);
+
+            Entity blinkTimerLE = new Entity { new Timer() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(blinkTimerLE);
+            BlinkTimerL = blinkTimerLE.Get<Timer>();
+            BlinkTimerL.Reset(0.1f);
+
+            FlameRModel = this.Entity.FindChild("PlayerFlameR").Get<ModelComponent>();
+            FlameRModel.Enabled = false;
+            FlameLModel = this.Entity.FindChild("PlayerFlameL").Get<ModelComponent>();
+            FlameLModel.Enabled = false;
+
             SetModel();
         }
 
@@ -36,7 +57,7 @@ namespace Xenko_GameOff2018
         {
             base.Update();
 
-            if (CheckForEdge())
+            if (HitEdge())
                 MoveToOppisiteEdge();
 
             GetInput();
@@ -58,13 +79,22 @@ namespace Xenko_GameOff2018
             if (Input.IsKeyDown(Keys.Left))
             {
                 RotationVelocity.Z = turnSpeed;
+
+                BlinkRFlame();
+                FlameLModel.Enabled = false;
             }
             else if (Input.IsKeyDown(Keys.Right))
             {
                 RotationVelocity.Z = -turnSpeed;
+
+                BlinkLFlame();
+                FlameRModel.Enabled = false;
             }
             else
+            {
                 RotationVelocity.Z = 0;
+                FlamesOff();
+            }
 
             if (Input.IsKeyDown(Keys.Up))
             {
@@ -107,11 +137,26 @@ namespace Xenko_GameOff2018
                 ThrustOff();
             }
 
-            //if (FlameTimer.Expired)
-            //{
-            //    FlameTimer.Reset();
-            //    FlameM.Enabled = !FlameM.Enabled;
-            //}
+            BlinkRFlame();
+            BlinkLFlame();
+        }
+
+        void BlinkRFlame()
+        {
+            if (BlinkTimerR.Expired)
+            {
+                BlinkTimerR.Reset(RandomMinMax(0.015f, 0.075f));
+                FlameRModel.Enabled = !FlameRModel.Enabled;
+            }
+        }
+
+        void BlinkLFlame()
+        {
+            if (BlinkTimerL.Expired)
+            {
+                BlinkTimerL.Reset(RandomMinMax(0.005f, 0.075f));
+                FlameLModel.Enabled = !FlameLModel.Enabled;
+            }
         }
 
         void ThrustOff()
@@ -121,10 +166,16 @@ namespace Xenko_GameOff2018
             if (ThrustOn)
             {
                 //ThrustSI.IsLooping = false;
-                //FlameM.Enabled = false;
                 //ThrustSI.Stop();
+                FlamesOff();
                 ThrustOn = false;
             }
+        }
+
+        void FlamesOff()
+        {
+            FlameRModel.Enabled = false;
+            FlameLModel.Enabled = false;
         }
     }
 }

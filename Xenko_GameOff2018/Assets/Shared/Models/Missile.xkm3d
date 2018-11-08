@@ -1,0 +1,15 @@
+!Model
+Id: b17c8a2d-5a86-4ffa-a580-ccfd6bcf187c
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Models/Missile.obj
+Skeleton: null
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    cd19fc2414245f2e3220668b886161ee:
+        Name: DefaultMaterial
+        MaterialInstance:
+            Material: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
+Modifiers: {}
+~SourceHashes:
+    6dec02802c2b0f52d59821727d148948~../../Models/Missile.obj: 263115626be529d2b3ccde5fbf402ce6

@@ -21,11 +21,13 @@ namespace Xenko_GameOff2018
         List<Asteroid> AsteroidRefs;
         List<EnemyDrone> DroneRefs;
         Prefab DronePF;
+        int OreCount;
 
         public override void Start()
         {
             base.Start();
 
+            Radius = 100;
             DroneRefs = new List<EnemyDrone>();
 
             int spawn = RandomGenerator.Next(3);
@@ -81,6 +83,11 @@ namespace Xenko_GameOff2018
             SceneRef = scene;
             PlayerRef = scene.PlayerRefAccess;
             AsteroidRefs = scene.AsteroidRefAccess;
+        }
+
+        public void AddChunk(OreType type)
+        {
+            OreCount++;
         }
 
         void SpawnDrone()

@@ -1,0 +1,24 @@
+!PrefabAsset
+Id: 7b5c1dcf-eaee-4ba1-abed-2edd16f5b698
+SerializedVersion: {Xenko: 3.1.0.1}
+Tags: []
+Hierarchy:
+    RootParts:
+        - ref!! def870f6-8e20-4e50-9492-6606a523740b
+    Parts:
+        -   Entity:
+                Id: def870f6-8e20-4e50-9492-6606a523740b
+                Name: Missile
+                Components:
+                    65fa779ef3d935f8c792ed264e26d44a: !TransformComponent
+                        Id: 9d00dd9e-ed77-449f-8304-75390cf75ee1
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    22d7c0013d6695855586ee6ec0352695: !ModelComponent
+                        Id: bafe0a44-1e66-45f4-8aac-7742c9f4f344
+                        Model: b17c8a2d-5a86-4ffa-a580-ccfd6bcf187c:Models/Missile
+                        Materials: {}
+                    85bef93aaef5bf0808864a0b4a422987: !Xenko_GameOff2018.Missile,Xenko_GameOff2018.Game
+                        Id: 6c62be99-054f-4a4e-b8dd-c3b79e980c9c

@@ -20,8 +20,8 @@ Hierarchy:
                         Id: 52d76ad7-6c1e-4903-ba65-853f4d356b3e
                         Model: 0b71ae46-4d52-4d5a-a960-acf94d36ccde:Models/Asteroid
                         Materials: {}
-                    40783e3c845c04e9421049fe054d05a5: !Xenko_GameOff2018.Asteroid,Xenko_GameOff2018.Game
-                        Id: 5fba9c46-bc59-415e-8a81-6b0a4ca07bee
+                    f1014db04e282cb8e65c676ee17958cc: !Xenko_GameOff2018.Asteroid,Xenko_GameOff2018.Game
+                        Id: 1057b755-e907-48ef-8b93-fe3d6fe8f8a6
                         Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -39,4 +39,3 @@ Hierarchy:
                         Radius: 0.0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
-                        RandomGenerator: null

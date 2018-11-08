@@ -21,5 +21,5 @@ Hierarchy:
                         Model: d33f6778-d007-4abb-bdfd-080542b2b990:Models/ChunkBase
                         Materials:
                             861a62c3a2776158b98486ea9099238d~0: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
-                    9a3f9f2a5c6028973205ace35bb98df1: !Xenko_GameOff2018.Chunk,Xenko_GameOff2018.Game
-                        Id: 6d894dcf-992c-4330-9dcf-3c8f3b8c34db
+                    e03541265be9fcbed3af3a4a43585231: !Xenko_GameOff2018.Chunk,Xenko_GameOff2018.Game
+                        Id: 70f40a0a-8c68-48d0-82e7-5031704f2419

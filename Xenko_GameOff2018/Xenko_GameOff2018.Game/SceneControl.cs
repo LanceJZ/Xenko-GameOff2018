@@ -10,6 +10,7 @@ using Xenko.Games.Time;
 using Xenko.Graphics;
 using Xenko.Rendering;
 using Xenko.Audio;
+using System.Diagnostics.Contracts;
 
 namespace Xenko_GameOff2018
 {
@@ -19,6 +20,17 @@ namespace Xenko_GameOff2018
         InPlay,
         HighScore,
         Attract
+    };
+
+    public enum OreType
+    {
+        Iron,
+        Nickel,
+        Iridium,
+        Palladium,
+        Platinum,
+        Gold,
+        Magnesium,
     };
 
     public class SceneControl : SyncScript
@@ -66,9 +78,9 @@ namespace Xenko_GameOff2018
 
         public Entity SetupEntity(Prefab prefab)
         {
+            Contract.Ensures(Contract.Result<Entity>() != null);
             Entity entity = prefab.Instantiate().First();
             SceneSystem.SceneInstance.RootScene.Entities.Add(entity);
-
             return entity;
         }
 
