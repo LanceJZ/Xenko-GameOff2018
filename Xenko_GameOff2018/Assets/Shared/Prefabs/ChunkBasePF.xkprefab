@@ -23,3 +23,20 @@ Hierarchy:
                             861a62c3a2776158b98486ea9099238d~0: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
                     e03541265be9fcbed3af3a4a43585231: !Xenko_GameOff2018.Chunk,Xenko_GameOff2018.Game
                         Id: 70f40a0a-8c68-48d0-82e7-5031704f2419
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Hit: false
+                        Active: false
+                        Moveable: true
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Radius: 0.0
+                        Deceleration: 0.0
+                        MaxVelocity: 0.0

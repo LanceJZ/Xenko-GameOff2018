@@ -26,6 +26,9 @@ namespace Xenko_GameOff2018
         {
             base.Start();
 
+            ChunkPF = Content.Load<Prefab>("Prefabs/ChunkBasePF");
+            ChunkRefs = new List<Chunk>();
+
             Radius = 49;
             Position.X = RandomMinMax(-Edge.X, Edge.X);
             Position.Y = RandomMinMax(-Edge.Y, Edge.Y);
@@ -81,9 +84,11 @@ namespace Xenko_GameOff2018
             if (RandomMinMax(0, MaxHardness) > Hardness)
             {
                 Entity chunkE = SceneRef.SetupEntity(ChunkPF);
-                chunkE.Get<Chunk>().Position = Position;
+                Chunk chunkS = chunkE.Get<Chunk>();
+                chunkS.Position = (Position + ((Vector3.Normalize(Velocity) * 55)) * -1);
+                chunkS.Velocity = Velocity * 0.25f;
                 ChunkRefs.Add(chunkE.Get<Chunk>());
-                return chunkE.Get<Chunk>();
+                return chunkS;
             }
 
             return null;

@@ -14,8 +14,8 @@
     <XenkoProjectType>Executable</XenkoProjectType>
     <XenkoPlatform>Windows</XenkoPlatform>
     <XenkoBuildProfile>Windows</XenkoBuildProfile>
-    <AssemblyVersion>1.154.8.0</AssemblyVersion>
-    <FileVersion>1108.312.11.0315</FileVersion>
+    <AssemblyVersion>1.183.10.0</AssemblyVersion>
+    <FileVersion>1110.314.11.0246</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

@@ -20,7 +20,7 @@ namespace Xenko_GameOff2018
         Timer BlinkTimerR;
         Timer BlinkTimerL;
 
-        float ThrustAmount = 1.666f;
+        float ThrustAmount = 3.666f;
         bool ThrustOn;
         public Entity TheCamera;
 
