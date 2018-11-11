@@ -1,0 +1,15 @@
+!Model
+Id: d1c9246e-fbc6-4869-a82f-2a58affbe5de
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Models/EnemyBase-1.obj
+Skeleton: null
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    4d7e5bb9a2ff8f2a90c516c3529b5d84:
+        Name: DefaultMaterial
+        MaterialInstance:
+            Material: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
+Modifiers: {}
+~SourceHashes:
+    a80f96c3c03d0533b394262a707a7de4~../../Models/EnemyBase-1.obj: 809cb1631083090400c8c9a9015173e5

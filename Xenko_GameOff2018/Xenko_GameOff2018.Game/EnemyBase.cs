@@ -20,6 +20,7 @@ namespace Xenko_GameOff2018
         Player PlayerRef;
         List<Asteroid> AsteroidRefs;
         List<EnemyDrone> DroneRefs;
+        EnemyBaseGun[] EnemyGuns = new EnemyBaseGun[8];
         Prefab DronePF;
         int OreCount;
 
@@ -29,6 +30,12 @@ namespace Xenko_GameOff2018
 
             Radius = 100;
             DroneRefs = new List<EnemyDrone>();
+
+            for (int i = 1; i < 9; i++)
+            {
+                EnemyGuns[i] = Entity.FindChild("EnemyBaseTurrut-" + i).Get<EnemyBaseGun>();
+                EnemyGuns[i].Setup(SceneRef);
+            }
 
             int spawn = RandomGenerator.Next(3);
             Vector2 outterBuffer = new Vector2(400, 350);
@@ -75,7 +82,7 @@ namespace Xenko_GameOff2018
         {
             base.Update();
 
-
+            CheckCollusion();
         }
 
         public void Setup(SceneControl scene)
@@ -90,11 +97,37 @@ namespace Xenko_GameOff2018
             OreCount++;
         }
 
+        public void CheckHit()
+        {
+            foreach(EnemyBaseGun gun in EnemyGuns)
+            {
+                foreach (PlayerShot shot in PlayerRef.ShotsRef)
+                {
+                    if (gun.CirclesIntersect(shot.Position, shot.Radius))
+                    {
+                        gun.Active = false;
+                    }
+                }
+            }
+        }
+
+        void CheckCollusion()
+        {
+            foreach (PlayerShot shot in PlayerRef.ShotsRef)
+            {
+                if (CirclesIntersect(shot.Position, shot.Radius))
+                {
+                    CheckHit();
+                }
+            }
+        }
+
         void SpawnDrone()
         {
             Entity droneE = SceneRef.SetupEntity(DronePF);
-            droneE.Get<EnemyDrone>().Setup(SceneRef, this);
-            DroneRefs.Add(droneE.Get<EnemyDrone>());
+            EnemyDrone droneS = droneE.Get<EnemyDrone>();
+            droneS.Setup(SceneRef, this);
+            DroneRefs.Add(droneS);
         }
     }
 }

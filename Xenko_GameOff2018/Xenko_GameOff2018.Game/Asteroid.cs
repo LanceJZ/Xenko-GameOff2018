@@ -14,6 +14,8 @@ namespace Xenko_GameOff2018
 {
     public class Asteroid : PO
     {
+        public List<Chunk> Chunks { get => ChunkRefs; }
+
         Prefab ChunkPF;
         Player PlayerRef;
         List<EnemyBase> EnemyBaseRefs;
@@ -85,7 +87,7 @@ namespace Xenko_GameOff2018
             {
                 Entity chunkE = SceneRef.SetupEntity(ChunkPF);
                 Chunk chunkS = chunkE.Get<Chunk>();
-                chunkS.Position = (Position + ((Vector3.Normalize(Velocity) * 55)) * -1);
+                chunkS.Position = (Position + ((Vector3.Normalize(Velocity) * 60)) * -1);
                 chunkS.Velocity = Velocity * 0.25f;
                 ChunkRefs.Add(chunkE.Get<Chunk>());
                 return chunkS;

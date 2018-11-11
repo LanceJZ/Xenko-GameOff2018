@@ -1,0 +1,15 @@
+!Model
+Id: e2e4784c-79e6-4384-a035-cca7130ffaac
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Models/PlayerShot.obj
+Skeleton: null
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    c3b75457d7b412aeafea80a328a25433:
+        Name: DefaultMaterial
+        MaterialInstance:
+            Material: 2b35c558-9b30-4bbc-ab67-6b44c2112290:Materials/Palette_One_Mat
+Modifiers: {}
+~SourceHashes:
+    801861bc74f46d3f244a0d5f2f5f8873~../../Models/PlayerShot.obj: d9f50df97e1426dccbd7b5e2d2377acb

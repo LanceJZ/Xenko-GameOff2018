@@ -15,10 +15,13 @@ namespace Xenko_GameOff2018
 {
     public class Player : PO
     {
+        public List<PlayerShot> ShotsRef { get => Shots; }
+
         ModelComponent FlameRModel;
         ModelComponent FlameLModel;
         Timer BlinkTimerR;
         Timer BlinkTimerL;
+        List<PlayerShot> Shots;
 
         float ThrustAmount = 3.666f;
         bool ThrustOn;
@@ -30,6 +33,8 @@ namespace Xenko_GameOff2018
 
             Radius = 40;
             Position = new Vector3(0, 0, 0);
+
+            Shots = new List<PlayerShot>();
 
             Deceleration = 0.01f;
             MaxVelocity = 500;

@@ -7,6 +7,54 @@ Hierarchy:
         - ref!! 7a67cf00-3389-49e0-8dab-0a82589d1987
     Parts:
         -   Entity:
+                Id: 0e90f240-362b-43c4-a62d-a9ff07b80d3d
+                Name: EnemyBaseTurrut-5
+                Components:
+                    ffa91840f91361e2a287c920aaf131e1: !TransformComponent
+                        Id: 55e3f45f-dff3-4fed-bcde-17904d5d67fe
+                        Position: {X: -45.0, Y: -24.0, Z: -2.5}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b44946fdabce0ca318bcf10dc48bef0f: !ModelComponent
+                        Id: 5f11e90e-f2eb-4bed-8996-9ab6395dc928
+                        Model: d1c9246e-fbc6-4869-a82f-2a58affbe5de:Models/EnemyBase-1
+                        Materials: {}
+                    9d7e2a3efd4873120c4aa0cafa51512a: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
+                        Id: c8687c11-c1e9-4202-ad63-aedc143a26f0
+        -   Entity:
+                Id: 42685ae2-f2df-4c87-a6c1-efea8e6ea302
+                Name: EnemyBaseTurrut-7
+                Components:
+                    ffa91840f91361e2a287c920aaf131e1: !TransformComponent
+                        Id: 2e861f20-15d4-4ebb-b150-d81bf56ab0d5
+                        Position: {X: -24.0, Y: 44.0, Z: -2.5}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b44946fdabce0ca318bcf10dc48bef0f: !ModelComponent
+                        Id: 5f217a73-60c1-4bba-aa05-9645155e6287
+                        Model: d1c9246e-fbc6-4869-a82f-2a58affbe5de:Models/EnemyBase-1
+                        Materials: {}
+                    1cbc75022978ee990244b62d58a19b24: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
+                        Id: 84e91e71-90a6-4b33-a358-82c3144f4dd4
+        -   Entity:
+                Id: 6384969b-d6f7-4875-b73f-d0f4801b8df0
+                Name: EnemyBaseTurrut-8
+                Components:
+                    ffa91840f91361e2a287c920aaf131e1: !TransformComponent
+                        Id: f21db257-1800-41a5-9b2c-7ab55d70ceb1
+                        Position: {X: 24.0, Y: 44.0, Z: -2.5}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b44946fdabce0ca318bcf10dc48bef0f: !ModelComponent
+                        Id: 9273c8e1-0800-4d95-82cb-6415a2148a30
+                        Model: d1c9246e-fbc6-4869-a82f-2a58affbe5de:Models/EnemyBase-1
+                        Materials: {}
+                    e8fcf664bb6376279fdd659a3e841a1a: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
+                        Id: 32b4c963-18d6-4649-bfa4-707f657dd6ae
+        -   Entity:
                 Id: 7a67cf00-3389-49e0-8dab-0a82589d1987
                 Name: EnemyBase
                 Components:
@@ -15,10 +63,18 @@ Hierarchy:
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: {}
+                        Children:
+                            9b3e863c5316cc69727a427049bf0e0f: ref!! a8161d11-d88d-43cd-9f75-d51cb47dbb58
+                            a910e9762e251e82f3ccb7dfc5b914a7: ref!! f21db257-1800-41a5-9b2c-7ab55d70ceb1
+                            a28828586b19e9d4d29a2585f8a54653: ref!! 6e360311-3634-4810-9bc7-5e0dd0dc602b
+                            c240bda8bded256a81357599d5b81f91: ref!! 2e861f20-15d4-4ebb-b150-d81bf56ab0d5
+                            887f8b1b7eaa08d2788ef7e383065c56: ref!! 9f9fd08b-4dc6-4889-b75f-b18e6c30b861
+                            7b8b853dad4497de61f820b30eef3496: ref!! bee1e1cb-dc61-4ef0-a1d3-e2ca3e9eec85
+                            f9608fbdf58f537912c6baab97e39b10: ref!! 313ba3ef-e77f-4658-ab8b-8917feff0c5f
+                            ef346d7f2694b1c72a636ca8e527c500: ref!! 55e3f45f-dff3-4fed-bcde-17904d5d67fe
                     0c62054b5e34daa6dee8901019027e81: !ModelComponent
                         Id: 8e4369f4-ed08-4979-a899-319d0c89b391
-                        Model: c12a503b-65f6-4c68-a0a4-849297ed5fd4:Models/EnemyBase
+                        Model: 11de8003-7712-4b2c-a070-4585b9be5829:Models/EnemyBase-0
                         Materials: {}
                     6a675ee29bef4945d2a23302fc51646b: !Xenko_GameOff2018.EnemyBase,Xenko_GameOff2018.Game
                         Id: bea9faaf-6723-4bad-8449-e2306b48ddb1
@@ -40,3 +96,83 @@ Hierarchy:
                         Deceleration: 0.0
                         MaxVelocity: 0.0
                         EnemyDroneAccess: null
+        -   Entity:
+                Id: 9612a258-d8fb-4f47-a871-c362ee3507b8
+                Name: EnemyBaseTurrut-1
+                Components:
+                    ffa91840f91361e2a287c920aaf131e1: !TransformComponent
+                        Id: a8161d11-d88d-43cd-9f75-d51cb47dbb58
+                        Position: {X: 45.0, Y: 24.0, Z: -2.5}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b44946fdabce0ca318bcf10dc48bef0f: !ModelComponent
+                        Id: d6640e2c-2192-447f-9cca-511314fb1998
+                        Model: d1c9246e-fbc6-4869-a82f-2a58affbe5de:Models/EnemyBase-1
+                        Materials: {}
+                    76f4ed0e231d3126eeb0c50090b34abc: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
+                        Id: 2b8d40fb-79d5-499e-933a-e326ea4ae806
+        -   Entity:
+                Id: a880dcd9-06c5-4266-ba85-f96898026b44
+                Name: EnemyBaseTurrut-2
+                Components:
+                    ffa91840f91361e2a287c920aaf131e1: !TransformComponent
+                        Id: 313ba3ef-e77f-4658-ab8b-8917feff0c5f
+                        Position: {X: 45.0, Y: -24.0, Z: -2.5}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b44946fdabce0ca318bcf10dc48bef0f: !ModelComponent
+                        Id: d68d9e5e-cc46-46ba-9762-75036e311d6e
+                        Model: d1c9246e-fbc6-4869-a82f-2a58affbe5de:Models/EnemyBase-1
+                        Materials: {}
+                    2774ddfce9b75b9907a036ea30050521: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
+                        Id: 66fcb8b1-5020-41a0-ad1c-23dec6e460a2
+        -   Entity:
+                Id: ab0243fe-f87e-4343-9dc2-0ed9be0514b2
+                Name: EnemyBaseTurrut-4
+                Components:
+                    ffa91840f91361e2a287c920aaf131e1: !TransformComponent
+                        Id: 9f9fd08b-4dc6-4889-b75f-b18e6c30b861
+                        Position: {X: -24.0, Y: -44.0, Z: -2.5}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b44946fdabce0ca318bcf10dc48bef0f: !ModelComponent
+                        Id: 79d231a3-e4d1-41ad-87ce-6261921d184c
+                        Model: d1c9246e-fbc6-4869-a82f-2a58affbe5de:Models/EnemyBase-1
+                        Materials: {}
+                    cef47ee89ba3e455ca0b80bec959ac76: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
+                        Id: ae0b0b64-6c1b-488f-aa87-1c17ef6fc922
+        -   Entity:
+                Id: b97a9c11-2e6c-4e11-b141-76edbbc5967b
+                Name: EnemyBaseTurrut-6
+                Components:
+                    ffa91840f91361e2a287c920aaf131e1: !TransformComponent
+                        Id: bee1e1cb-dc61-4ef0-a1d3-e2ca3e9eec85
+                        Position: {X: -45.0, Y: 24.0, Z: -2.5}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b44946fdabce0ca318bcf10dc48bef0f: !ModelComponent
+                        Id: 7797ee35-d7cc-4a6a-9787-93e5bf892c00
+                        Model: d1c9246e-fbc6-4869-a82f-2a58affbe5de:Models/EnemyBase-1
+                        Materials: {}
+                    03c2e79e0802b5f72061965cc83d7d78: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
+                        Id: 8a953225-3b39-4165-869b-f3e1a4799ce0
+        -   Entity:
+                Id: fe573f98-db79-4d3a-bbe9-0f2dad12c316
+                Name: EnemyBaseTurrut-3
+                Components:
+                    ffa91840f91361e2a287c920aaf131e1: !TransformComponent
+                        Id: 6e360311-3634-4810-9bc7-5e0dd0dc602b
+                        Position: {X: 24.0, Y: -44.0, Z: -2.5}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b44946fdabce0ca318bcf10dc48bef0f: !ModelComponent
+                        Id: 0094b275-b612-4ed5-a1cd-afc8dc4442c2
+                        Model: d1c9246e-fbc6-4869-a82f-2a58affbe5de:Models/EnemyBase-1
+                        Materials: {}
+                    fa903ab58b3e3e708613059d71badc64: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
+                        Id: 5ad293a3-1875-4d2a-94a8-582eb717b453

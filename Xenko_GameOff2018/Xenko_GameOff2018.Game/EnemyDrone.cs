@@ -94,6 +94,12 @@ namespace Xenko_GameOff2018
 
         void ReturnToBase()
         {
+            if (FromBaseRef.Active == false)
+                FromBaseRef = FindNearbyBase();
+
+            if (FromBaseRef == null)
+                return;
+
             RotationVelocity.Z = AimAtTarget(FromBaseRef.Position, Rotation.Z, MathUtil.Pi);
 
             if (Vector3.Distance(Position, FromBaseRef.Position) > 300)
@@ -101,7 +107,7 @@ namespace Xenko_GameOff2018
             else
                 MaxVelocity = 50;
 
-            if (Vector3.Distance(FromBaseRef.Position, Position) < 30)
+            if (Vector3.Distance(FromBaseRef.Position, Position) < 80)
             {
                 if (ChunkRef != null)
                 {
@@ -114,8 +120,8 @@ namespace Xenko_GameOff2018
 
         void RetrieveOre()
         {
-            RotationVelocity.Z = AimAtTarget(ChunkRef.Position, Rotation.Z, MathUtil.PiOverFour);
-            MaxVelocity = 75;
+            RotationVelocity.Z = AimAtTarget(ChunkRef.Position, Rotation.Z, MathUtil.Pi);
+            MaxVelocity = 5;
         }
 
         void Mine()
@@ -220,14 +226,15 @@ namespace Xenko_GameOff2018
 
                     Launch();
                 }
-            }
 
-            if (ChunkRef != null)
-            {
-                if (CirclesIntersect(ChunkRef.Position, ChunkRef.Radius))
+                foreach (Chunk chunk in rock.Chunks)
                 {
-                    ChunkRef.Active = false;
-                    InState = AIState.ReturnToBase;
+                    if (CirclesIntersect(chunk.Position, chunk.Radius))
+                    {
+                        ChunkRef = chunk;
+                        ChunkRef.Active = false;
+                        InState = AIState.ReturnToBase;
+                    }
                 }
             }
         }
@@ -265,6 +272,25 @@ namespace Xenko_GameOff2018
             }
 
             return nearRock;
+        }
+
+        EnemyBase FindNearbyBase()
+        {
+            float distance = -1;
+            EnemyBase nearBase = null;
+
+            foreach (EnemyBase enemyBase in EnemyBaseRefs)
+            {
+                float baseDist = Vector3.Distance(enemyBase.Position, Position);
+
+                if (baseDist < distance || distance < 0)
+                {
+                    distance = baseDist;
+                    nearBase = enemyBase;
+                }
+            }
+
+            return nearBase;
         }
     }
 }
