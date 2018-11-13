@@ -53,11 +53,12 @@ Bundles: []
 TemplateFolders: []
 RootAssets:
     - 135c830a-fc68-4101-915c-6a7d4745a93a:Prefabs/EnemyBasePF
+    - 26e55c46-e585-4783-92e5-fc1f97380276:Prefabs/PlayerShotPF
     - 4151917b-0bc6-4d60-b9ba-1bd181fbb7d3:Models/StarModel
     - 423c826b-f8be-423e-9757-e86c9456d13b:Prefabs/EnemyBossPF
     - 65bd5b89-9fdc-4474-b4e8-8b8c95208ba8:Prefabs/StarPF
     - 6eb2e7c9-78a2-4d78-9d89-863d35292f6f:Prefabs/AsteroidPF
-    - 7b5c1dcf-eaee-4ba1-abed-2edd16f5b698:Prefabs/MissilePrefab
+    - 7b5c1dcf-eaee-4ba1-abed-2edd16f5b698:Prefabs/MissilePF
     - 996e640a-db5e-4bd6-8d79-617d9ba4c467:Prefabs/EnemyDronePF
     - a26f3aee-e3d5-40ba-8e35-44e2592b54fb:Prefabs/PlayerPF
     - a64094c6-9f74-4385-b84b-f1d50e3a610e:Models/PlayerModel

@@ -20,6 +20,7 @@ namespace Xenko_GameOff2018
         Wait,
         Mine,
         RetrieveOre,
+        GoToWaypoint,
         ReturnToBase
     }
 
@@ -48,10 +49,10 @@ namespace Xenko_GameOff2018
             MineTimer.Reset(2);
 
             InState = AIState.Search;
-            Radius = 11;
+            TheRadius = 11;
             MaxVelocity = 0;
             Deceleration = 0.125f;
-            Active = true;
+            IsActive = true;
         }
 
         public override void Update()
@@ -69,13 +70,15 @@ namespace Xenko_GameOff2018
                 case AIState.RetrieveOre:
                     RetrieveOre();
                     break;
+                case AIState.GoToWaypoint:
+                    GotoWaypoint();
+                    break;
                 case AIState.ReturnToBase:
                     ReturnToBase();
                     break;
             }
 
-            if (!Accelerate(Thrust))
-                Acceleration = -Velocity * Deceleration;
+            Accelerate(Thrust);
 
             if (HitEdge())
                 MoveToOppisiteEdge();
@@ -90,6 +93,15 @@ namespace Xenko_GameOff2018
             AsteroidRefs = scene.AsteroidRefAccess;
             FromBaseRef = fromBase;
             Launch();
+        }
+
+        void GotoWaypoint()
+        {
+            RotationVelocity.Z = AimAtTarget(Waypoint, Rotation.Z, MathUtil.Pi);
+            MaxVelocity = 20;
+
+            if (Vector3.Distance(Waypoint, Position) < 50)
+                 InState = AIState.ReturnToBase;
         }
 
         void ReturnToBase()
@@ -107,7 +119,7 @@ namespace Xenko_GameOff2018
             else
                 MaxVelocity = 50;
 
-            if (Vector3.Distance(FromBaseRef.Position, Position) < 80)
+            if (Vector3.Distance(FromBaseRef.Position, Position) < 70)
             {
                 if (ChunkRef != null)
                 {
@@ -219,12 +231,7 @@ namespace Xenko_GameOff2018
             {
                 if (CirclesIntersect(rock.Position, rock.Radius))
                 {
-                    if (ChunkRef != null)
-                    {
-                        ChunkRef.Active = true;
-                    }
-
-                    Launch();
+                    Destroy();
                 }
 
                 foreach (Chunk chunk in rock.Chunks)
@@ -232,11 +239,35 @@ namespace Xenko_GameOff2018
                     if (CirclesIntersect(chunk.Position, chunk.Radius))
                     {
                         ChunkRef = chunk;
-                        ChunkRef.Active = false;
-                        InState = AIState.ReturnToBase;
+                        ChunkRef.Disable();
+                        InState = AIState.GoToWaypoint;
                     }
                 }
             }
+
+            foreach (PlayerShot shot in PlayerRef.ShotsRef)
+            {
+                if (shot.Active)
+                {
+                    if (CirclesIntersect(shot.Position, shot.Radius))
+                    {
+                        Destroy();
+                        shot.Disable();
+                        break;
+                    }
+                }
+            }
+        }
+
+        void Destroy()
+        {
+            if (ChunkRef != null)
+            {
+                ChunkRef.Enable();
+                ChunkRef = null;
+            }
+
+            Launch();
         }
 
         void Launch()
@@ -246,6 +277,7 @@ namespace Xenko_GameOff2018
             Position.X = FromBaseRef.Position.X;
             Position.Y = FromBaseRef.Position.Y;
             NearAsteroid = null;
+            InState = AIState.Search;
         }
 
         void SetHeading(Vector3 waypoint, Vector3 stayback)

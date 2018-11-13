@@ -55,6 +55,7 @@ namespace Xenko_GameOff2018
 
             PlayerPF = Content.Load<Prefab>("Prefabs/PlayerPF");
             PlayerRef = SetupEntity(PlayerPF).Get<Player>();
+            PlayerRef.Setup(this);
 
             EnemyBasePF = Content.Load<Prefab>("Prefabs/EnemyBasePF");
 

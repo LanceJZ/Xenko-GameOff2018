@@ -18,26 +18,47 @@ namespace Xenko_GameOff2018
         List<Asteroid> AsteroidRefs;
         List<EnemyBase> EnemyBaseRefs;
         Player PlayerRef;
+        Timer LifeTimer;
 
         public override void Start()
         {
             base.Start();
 
-            RotationVelocity = new Vector3(6.666f, 0, 0);
+            RotationVelocity = new Vector3(13.666f, 0, 0);
+
+            SetModel();
         }
 
         public override void Update()
         {
             base.Update();
 
+            if (HitEdge())
+                MoveToOppisiteEdge();
+
+            if (LifeTimer.Expired)
+            {
+                Disable();
+            }
+
+            CheckCollision();
         }
 
         public void Fire(Vector3 position, Vector3 velocity, float rotation)
         {
-            Active = true;
+            IsActive = true;
             Position = position;
             Velocity = velocity;
             Rotation.Z = rotation;
+
+            if (LifeTimer == null)
+            {
+                Entity lifeTimerE = new Entity { new Timer() };
+                SceneSystem.SceneInstance.RootScene.Entities.Add(lifeTimerE);
+                LifeTimer = lifeTimerE.Get<Timer>();
+            }
+
+            LifeTimer.Reset(2);
         }
 
         public void Setup(SceneControl scene)
@@ -47,11 +68,19 @@ namespace Xenko_GameOff2018
             PlayerRef = scene.PlayerRefAccess;
         }
 
+        public void Disable()
+        {
+            IsActive = false;
+        }
+
         void CheckCollision()
         {
             foreach (Asteroid rock in AsteroidRefs)
             {
-
+                if (CirclesIntersect(rock.Position, rock.Radius))
+                {
+                    Disable();
+                }
             }
         }
     }

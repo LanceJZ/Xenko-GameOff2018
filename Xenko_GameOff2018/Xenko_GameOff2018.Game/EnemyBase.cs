@@ -28,12 +28,13 @@ namespace Xenko_GameOff2018
         {
             base.Start();
 
-            Radius = 100;
+            TheRadius = 50;
             DroneRefs = new List<EnemyDrone>();
 
-            for (int i = 1; i < 9; i++)
+            for (int i = 0; i < 8; i++)
             {
-                EnemyGuns[i] = Entity.FindChild("EnemyBaseTurrut-" + i).Get<EnemyBaseGun>();
+                string gun = "EnemyBaseTurret-" + 0 + (i + 1);
+                EnemyGuns[i] = Entity.FindChild(gun).Get<EnemyBaseGun>();
                 EnemyGuns[i].Setup(SceneRef);
             }
 
@@ -70,8 +71,8 @@ namespace Xenko_GameOff2018
                     break;
             }
 
-            Position.Z = 50;
-            Active = true;
+            Position.Z = 60;
+            IsActive = true;
 
             DronePF = Content.Load<Prefab>("Prefabs/EnemyDronePF");
 
@@ -101,11 +102,18 @@ namespace Xenko_GameOff2018
         {
             foreach(EnemyBaseGun gun in EnemyGuns)
             {
-                foreach (PlayerShot shot in PlayerRef.ShotsRef)
+                if (gun.Active)
                 {
-                    if (gun.CirclesIntersect(shot.Position, shot.Radius))
+                    foreach (PlayerShot shot in PlayerRef.ShotsRef)
                     {
-                        gun.Active = false;
+                        if (shot.Active)
+                        {
+                            if (shot.CirclesIntersect(gun.Position + Position, gun.Radius))
+                            {
+                                gun.Disable();
+                                shot.Disable();
+                            }
+                        }
                     }
                 }
             }

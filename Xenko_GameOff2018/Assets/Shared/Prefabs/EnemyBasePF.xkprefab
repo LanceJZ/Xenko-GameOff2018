@@ -8,7 +8,7 @@ Hierarchy:
     Parts:
         -   Entity:
                 Id: 0e90f240-362b-43c4-a62d-a9ff07b80d3d
-                Name: EnemyBaseTurrut-5
+                Name: EnemyBaseTurret-05
                 Components:
                     ffa91840f91361e2a287c920aaf131e1: !TransformComponent
                         Id: 55e3f45f-dff3-4fed-bcde-17904d5d67fe
@@ -22,9 +22,22 @@ Hierarchy:
                         Materials: {}
                     9d7e2a3efd4873120c4aa0cafa51512a: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: c8687c11-c1e9-4202-ad63-aedc143a26f0
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Deceleration: 0.0
+                        MaxVelocity: 0.0
         -   Entity:
                 Id: 42685ae2-f2df-4c87-a6c1-efea8e6ea302
-                Name: EnemyBaseTurrut-7
+                Name: EnemyBaseTurret-07
                 Components:
                     ffa91840f91361e2a287c920aaf131e1: !TransformComponent
                         Id: 2e861f20-15d4-4ebb-b150-d81bf56ab0d5
@@ -38,9 +51,22 @@ Hierarchy:
                         Materials: {}
                     1cbc75022978ee990244b62d58a19b24: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 84e91e71-90a6-4b33-a358-82c3144f4dd4
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Deceleration: 0.0
+                        MaxVelocity: 0.0
         -   Entity:
                 Id: 6384969b-d6f7-4875-b73f-d0f4801b8df0
-                Name: EnemyBaseTurrut-8
+                Name: EnemyBaseTurret-08
                 Components:
                     ffa91840f91361e2a287c920aaf131e1: !TransformComponent
                         Id: f21db257-1800-41a5-9b2c-7ab55d70ceb1
@@ -54,6 +80,19 @@ Hierarchy:
                         Materials: {}
                     e8fcf664bb6376279fdd659a3e841a1a: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 32b4c963-18d6-4649-bfa4-707f657dd6ae
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Deceleration: 0.0
+                        MaxVelocity: 0.0
         -   Entity:
                 Id: 7a67cf00-3389-49e0-8dab-0a82589d1987
                 Name: EnemyBase
@@ -86,19 +125,15 @@ Hierarchy:
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
                         RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Hit: false
-                        Active: false
-                        Moveable: true
                         Paused: false
                         GameOver: false
                         Points: 0
-                        Radius: 0.0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
                         EnemyDroneAccess: null
         -   Entity:
                 Id: 9612a258-d8fb-4f47-a871-c362ee3507b8
-                Name: EnemyBaseTurrut-1
+                Name: EnemyBaseTurret-01
                 Components:
                     ffa91840f91361e2a287c920aaf131e1: !TransformComponent
                         Id: a8161d11-d88d-43cd-9f75-d51cb47dbb58
@@ -112,9 +147,22 @@ Hierarchy:
                         Materials: {}
                     76f4ed0e231d3126eeb0c50090b34abc: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 2b8d40fb-79d5-499e-933a-e326ea4ae806
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Deceleration: 0.0
+                        MaxVelocity: 0.0
         -   Entity:
                 Id: a880dcd9-06c5-4266-ba85-f96898026b44
-                Name: EnemyBaseTurrut-2
+                Name: EnemyBaseTurret-02
                 Components:
                     ffa91840f91361e2a287c920aaf131e1: !TransformComponent
                         Id: 313ba3ef-e77f-4658-ab8b-8917feff0c5f
@@ -128,9 +176,22 @@ Hierarchy:
                         Materials: {}
                     2774ddfce9b75b9907a036ea30050521: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 66fcb8b1-5020-41a0-ad1c-23dec6e460a2
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Deceleration: 0.0
+                        MaxVelocity: 0.0
         -   Entity:
                 Id: ab0243fe-f87e-4343-9dc2-0ed9be0514b2
-                Name: EnemyBaseTurrut-4
+                Name: EnemyBaseTurret-04
                 Components:
                     ffa91840f91361e2a287c920aaf131e1: !TransformComponent
                         Id: 9f9fd08b-4dc6-4889-b75f-b18e6c30b861
@@ -144,9 +205,22 @@ Hierarchy:
                         Materials: {}
                     cef47ee89ba3e455ca0b80bec959ac76: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: ae0b0b64-6c1b-488f-aa87-1c17ef6fc922
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Deceleration: 0.0
+                        MaxVelocity: 0.0
         -   Entity:
                 Id: b97a9c11-2e6c-4e11-b141-76edbbc5967b
-                Name: EnemyBaseTurrut-6
+                Name: EnemyBaseTurret-06
                 Components:
                     ffa91840f91361e2a287c920aaf131e1: !TransformComponent
                         Id: bee1e1cb-dc61-4ef0-a1d3-e2ca3e9eec85
@@ -160,9 +234,22 @@ Hierarchy:
                         Materials: {}
                     03c2e79e0802b5f72061965cc83d7d78: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 8a953225-3b39-4165-869b-f3e1a4799ce0
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Deceleration: 0.0
+                        MaxVelocity: 0.0
         -   Entity:
                 Id: fe573f98-db79-4d3a-bbe9-0f2dad12c316
-                Name: EnemyBaseTurrut-3
+                Name: EnemyBaseTurret-03
                 Components:
                     ffa91840f91361e2a287c920aaf131e1: !TransformComponent
                         Id: 6e360311-3634-4810-9bc7-5e0dd0dc602b
@@ -176,3 +263,16 @@ Hierarchy:
                         Materials: {}
                     fa903ab58b3e3e708613059d71badc64: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 5ad293a3-1875-4d2a-94a8-582eb717b453
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Deceleration: 0.0
+                        MaxVelocity: 0.0

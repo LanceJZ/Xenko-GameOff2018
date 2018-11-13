@@ -12,25 +12,25 @@ namespace Xenko_GameOff2018
 {
     public class PO : SyncScript
     {
-        public bool Hit { get => hit; set => hit = value; }
-        public bool Active { get => active; set => active = value; }
-        public bool Moveable { get => moveable; set => moveable = value; }
+        public bool Hit { get => IsHit; }
+        public bool Active { get => IsActive; }
+        public bool Moveable { get => IsMoveable; }
         public bool Paused { get => pause; set => pause = value; }
         public bool GameOver { get => gameOver; set => gameOver = value; }
         public int Points { get => points; set => points = value; }
-        public float Radius { get => radius; set => radius = value; }
+        public float Radius { get => TheRadius; }
         public float Deceleration { get => deceleration; set => deceleration = value; }
         public float MaxVelocity { get => maxVelocity; set => maxVelocity = value; }
         public static Random RandomGenerator { get => RandomNumbers; set => RandomNumbers = value; }
 
-        bool hit;
-        bool active;
-        bool moveable = true;
+        protected bool IsHit;
+        protected bool IsActive;
+        protected bool IsMoveable = true;
+        protected float TheRadius;
         bool pause;
         bool gameOver;
         int points;
-        float radius;
-        float deceleration = 0;
+        float deceleration = 0.001f;
         float maxVelocity;
 
         public ModelComponent Model;
@@ -64,14 +64,10 @@ namespace Xenko_GameOff2018
                     //Calculate movement this frame according to velocity and acceleration.
                     float elapsed = (float)Game.UpdateTime.Elapsed.TotalSeconds;
 
-                    if (Acceleration == Vector3.Zero)
-                    {
-                        Acceleration = -Velocity * Deceleration;
-                    }
-
                     Velocity += Acceleration;
                     Position += Velocity * elapsed;
                     Rotation = Rotate(Rotation + RotationVelocity * elapsed);
+                    Acceleration = -Velocity * Deceleration;
 
                     UpdatePR();
                 }
@@ -133,10 +129,10 @@ namespace Xenko_GameOff2018
 
         public void UpdateActive(bool active)
         {
-            Active = active;
+            IsActive = active;
 
             if (Model != null)
-                Model.Enabled = Active;
+                Model.Enabled = IsActive;
         }
 
         public void UpdatePR()

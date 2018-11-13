@@ -31,7 +31,7 @@ namespace Xenko_GameOff2018
             ChunkPF = Content.Load<Prefab>("Prefabs/ChunkBasePF");
             ChunkRefs = new List<Chunk>();
 
-            Radius = 49;
+            TheRadius = 49;
             Position.X = RandomMinMax(-Edge.X, Edge.X);
             Position.Y = RandomMinMax(-Edge.Y, Edge.Y);
             Position.Z = 0;
@@ -63,7 +63,7 @@ namespace Xenko_GameOff2018
 
             Velocity = new Vector3(vX, vY, 0);
 
-            Active = true;
+            IsActive = true;
 
         }
 

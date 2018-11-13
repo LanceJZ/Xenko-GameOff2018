@@ -21,6 +21,8 @@ namespace Xenko_GameOff2018
         ModelComponent FlameLModel;
         Timer BlinkTimerR;
         Timer BlinkTimerL;
+        SceneControl SceneRef;
+        Prefab ShotPF;
         List<PlayerShot> Shots;
 
         float ThrustAmount = 3.666f;
@@ -31,14 +33,16 @@ namespace Xenko_GameOff2018
         {
             base.Start();
 
-            Radius = 40;
+            ShotPF = Content.Load<Prefab>("Prefabs/PlayerShotPF");
+
+            TheRadius = 40;
             Position = new Vector3(0, 0, 0);
 
             Shots = new List<PlayerShot>();
 
             Deceleration = 0.01f;
             MaxVelocity = 500;
-            Active = true;
+            IsActive = true;
 
             Entity blinkTimerRE = new Entity { new Timer() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(blinkTimerRE);
@@ -75,6 +79,11 @@ namespace Xenko_GameOff2018
                 TheCamera.Transform.Position.X = Position.X;
                 TheCamera.Transform.Position.Y = Position.Y;
             }
+        }
+
+        public void Setup(SceneControl scene)
+        {
+            SceneRef = scene;
         }
 
         void GetInput()
@@ -121,8 +130,38 @@ namespace Xenko_GameOff2018
 
             if (Input.IsKeyPressed(Keys.LeftCtrl) || Input.IsKeyPressed(Keys.Space))
             {
-                //FireShot();
+                FireShot();
             }
+        }
+
+        void FireShot()
+        {
+            bool found = false;
+            PlayerShot thisShot = null;
+            float speed = 450;
+
+            foreach (PlayerShot shot in Shots)
+            {
+                if (!shot.Active)
+                {
+                    thisShot = shot;
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found)
+            {
+                thisShot = SceneRef.SetupEntity(ShotPF).Get<PlayerShot>();
+                Shots.Add(thisShot);
+                thisShot.Setup(SceneRef);
+            }
+
+            thisShot.Fire(Position + VelocityFromRadian(Radius - 20, Rotation.Z),
+                VelocityFromRadian(speed, Rotation.Z) + Velocity * 0.25f, Rotation.Z);
+
+            //FireSI.Stop();
+            //FireSI.Play();
         }
 
         void Thrust()
@@ -166,7 +205,6 @@ namespace Xenko_GameOff2018
 
         void ThrustOff()
         {
-            Acceleration = -Velocity * Deceleration;
 
             if (ThrustOn)
             {

@@ -32,7 +32,7 @@ namespace Xenko_GameOff2018
 
             RotationVelocity = new Vector3(x, y, z);
 
-            Active = true;
+            IsActive = true;
         }
 
         public override void Update()
