@@ -19,14 +19,21 @@ namespace Xenko_GameOff2018
 
         ModelComponent FlameRModel;
         ModelComponent FlameLModel;
+        Timer MineTimer;
+        Timer UnloadTimer;
         Timer BlinkTimerR;
         Timer BlinkTimerL;
+        List<Chunk> ChunkRefs;
+        List<Asteroid> AsteroidRefs;
+        Asteroid NearAsteroid;
         SceneControl SceneRef;
         Prefab ShotPF;
         List<PlayerShot> Shots;
 
         float ThrustAmount = 3.666f;
         bool ThrustOn;
+        bool InDock;
+
         public Entity TheCamera;
 
         public override void Start()
@@ -39,10 +46,20 @@ namespace Xenko_GameOff2018
             Position = new Vector3(0, 0, 0);
 
             Shots = new List<PlayerShot>();
+            ChunkRefs = new List<Chunk>();
 
             Deceleration = 0.01f;
             MaxVelocity = 500;
             IsActive = true;
+
+            Entity mineTimerE = new Entity { new Timer() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(mineTimerE);
+            MineTimer = mineTimerE.Get<Timer>();
+            MineTimer.Reset(2);
+
+            Entity unloadTimerE = new Entity { new Timer() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(unloadTimerE);
+            UnloadTimer = unloadTimerE.Get<Timer>();
 
             Entity blinkTimerRE = new Entity { new Timer() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(blinkTimerRE);
@@ -79,40 +96,64 @@ namespace Xenko_GameOff2018
                 TheCamera.Transform.Position.X = Position.X;
                 TheCamera.Transform.Position.Y = Position.Y;
             }
+
+            CheckCollusion();
         }
 
         public void Setup(SceneControl scene)
         {
             SceneRef = scene;
+            AsteroidRefs = scene.AsteroidRefAccess;
+        }
+
+        public void PickupOre(Chunk chunk)
+        {
+            if (ChunkRefs.Count > 4)
+                return;
+
+            ChunkRefs.Add(chunk);
+            chunk.Disable();
         }
 
         void GetInput()
         {
             float turnSpeed = 4.75f;
 
-            if (Input.IsKeyDown(Keys.Left))
+            if (!InDock)
             {
-                RotationVelocity.Z = turnSpeed;
+                if (Input.IsKeyDown(Keys.Left))
+                {
+                    RotationVelocity.Z = turnSpeed;
 
-                BlinkRFlame();
-                FlameLModel.Enabled = false;
-            }
-            else if (Input.IsKeyDown(Keys.Right))
-            {
-                RotationVelocity.Z = -turnSpeed;
+                    BlinkRFlame();
+                    FlameLModel.Enabled = false;
+                }
+                else if (Input.IsKeyDown(Keys.Right))
+                {
+                    RotationVelocity.Z = -turnSpeed;
 
-                BlinkLFlame();
-                FlameRModel.Enabled = false;
-            }
-            else
-            {
-                RotationVelocity.Z = 0;
-                FlamesOff();
+                    BlinkLFlame();
+                    FlameRModel.Enabled = false;
+                }
+                else
+                {
+                    RotationVelocity.Z = 0;
+                    FlamesOff();
+                }
             }
 
             if (Input.IsKeyDown(Keys.Up))
             {
                 Thrust();
+
+                if (InDock)
+                {
+                    if (UnloadTimer.Expired)
+                    {
+                        Position.X = SceneRef.PlayerBaseRefAccess.Radius + Radius + 1;
+                        InDock = false;
+                    }
+                }
             }
             else
             {
@@ -132,19 +173,46 @@ namespace Xenko_GameOff2018
             {
                 FireShot();
             }
+
+            if (Input.IsKeyDown(Keys.LeftShift))
+            {
+                MineOre();
+            }
+        }
+
+        void MineOre()
+        {
+            if (MineTimer.Expired)
+            {
+                MineTimer.Reset();
+
+                NearAsteroid = null;
+
+                foreach(Asteroid rock in AsteroidRefs)
+                {
+                    if (Vector3.Distance(Position, rock.Position) < 100)
+                    {
+                        NearAsteroid = rock;
+                        break;
+                    }
+                }
+
+                if (NearAsteroid != null)
+                    NearAsteroid.MineAttempt();
+            }
         }
 
         void FireShot()
         {
             bool found = false;
-            PlayerShot thisShot = null;
+            PlayerShot theShot = null;
             float speed = 450;
 
             foreach (PlayerShot shot in Shots)
             {
                 if (!shot.Active)
                 {
-                    thisShot = shot;
+                    theShot = shot;
                     found = true;
                     break;
                 }
@@ -152,13 +220,14 @@ namespace Xenko_GameOff2018
 
             if(!found)
             {
-                thisShot = SceneRef.SetupEntity(ShotPF).Get<PlayerShot>();
-                Shots.Add(thisShot);
-                thisShot.Setup(SceneRef);
+                theShot = SceneRef.SetupEntity(ShotPF).Get<PlayerShot>();
+                Shots.Add(theShot);
+                theShot.Setup(SceneRef);
             }
 
-            thisShot.Fire(Position + VelocityFromRadian(Radius - 20, Rotation.Z),
+            theShot.Fire(Position + VelocityFromRadian(Radius - 20, Rotation.Z),
                 VelocityFromRadian(speed, Rotation.Z) + Velocity * 0.25f, Rotation.Z);
+            theShot.UpdatePR();
 
             //FireSI.Stop();
             //FireSI.Play();
@@ -172,13 +241,16 @@ namespace Xenko_GameOff2018
             //    ThrustSI.IsLooping = true;
             //}
 
-            if (Accelerate(ThrustAmount))
+            if (!InDock)
             {
-                ThrustOn = true;
-            }
-            else
-            {
-                ThrustOff();
+                if (Accelerate(ThrustAmount))
+                {
+                    ThrustOn = true;
+                }
+                else
+                {
+                    ThrustOff();
+                }
             }
 
             BlinkRFlame();
@@ -219,6 +291,38 @@ namespace Xenko_GameOff2018
         {
             FlameRModel.Enabled = false;
             FlameLModel.Enabled = false;
+        }
+
+        void Docked()
+        {
+            InDock = true;
+
+            foreach (Chunk chunk in ChunkRefs)
+            {
+                SceneRef.PlayerBaseRefAccess.UnloadOre(chunk.ThisOreType);
+                chunk.IsInTransit = false;
+            }
+
+            UnloadTimer.Reset(RandomMinMax(1 + (ChunkRefs.Count / 2), ChunkRefs.Count + 1));
+
+            ChunkRefs.Clear();
+
+            RotationVelocity.Z = 0;
+            Rotation.Z = 0;
+            Position = Vector3.Zero;
+            Velocity = Vector3.Zero;
+            Acceleration = Vector3.Zero;
+        }
+
+        void CheckCollusion()
+        {
+            if (!InDock)
+            {
+                if (CirclesIntersect(SceneRef.PlayerBaseRefAccess))
+                {
+                    Docked();
+                }
+            }
         }
     }
 }

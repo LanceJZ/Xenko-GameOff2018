@@ -35,7 +35,9 @@ namespace Xenko_GameOff2018
 
     public class SceneControl : SyncScript
     {
+        public Radar RadarAccess { get => TheRadar; }
         public Player PlayerRefAccess { get => PlayerRef; }
+        public PlayerBase PlayerBaseRefAccess { get => PlayerBaseRef; }
         public List<EnemyBase> EnemyBaseRefAccess { get => EnemyBaseRefs; }
         public List<Asteroid> AsteroidRefAccess { get => AsteroidRefs; }
         public GameState TheGameMode { get => GameMode; }
@@ -45,6 +47,8 @@ namespace Xenko_GameOff2018
         Prefab EnemyBasePF;
         Prefab AsteroidPF;
         Player PlayerRef;
+        PlayerBase PlayerBaseRef;
+        Radar TheRadar;
         List<EnemyBase> EnemyBaseRefs;
         List<Asteroid> AsteroidRefs;
 
@@ -55,7 +59,9 @@ namespace Xenko_GameOff2018
 
             PlayerPF = Content.Load<Prefab>("Prefabs/PlayerPF");
             PlayerRef = SetupEntity(PlayerPF).Get<Player>();
-            PlayerRef.Setup(this);
+
+            Prefab playerBasePF = Content.Load<Prefab>("Prefabs/PlayerBasePF");
+            PlayerBaseRef = SetupEntity(playerBasePF).Get<PlayerBase>();
 
             EnemyBasePF = Content.Load<Prefab>("Prefabs/EnemyBasePF");
 
@@ -70,11 +76,18 @@ namespace Xenko_GameOff2018
             {
                 SpawnAsteroid();
             }
+
+            PlayerRef.Setup(this);
+
+            Entity radarE = new Entity { new Radar() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(radarE);
+            TheRadar = radarE.Get<Radar>();
+            TheRadar.Setup(this);
         }
 
         public override void Update()
         {
-
+            CheckDroneBump();
         }
 
         public Entity SetupEntity(Prefab prefab)
@@ -97,6 +110,33 @@ namespace Xenko_GameOff2018
             Entity asteroidE = SetupEntity(AsteroidPF);
             asteroidE.Get<Asteroid>().Setup(this);
             AsteroidRefs.Add(asteroidE.Get<Asteroid>());
+        }
+
+        void CheckDroneBump()
+        {
+            foreach(EnemyBase theBase in EnemyBaseRefs)
+            {
+                if (theBase.DroneAccess == null)
+                    return;
+
+                foreach(EnemyDrone droneA in theBase.DroneAccess)
+                {
+                    foreach(EnemyDrone droneB in theBase.DroneAccess)
+                    {
+                        if (droneA != droneB)
+                        {
+                            if (droneA.Active && droneB.Active)
+                            {
+                                if(droneA.CirclesIntersect(droneB))
+                                {
+                                    droneA.Bumped(droneB.Position, droneB.Velocity);
+                                    droneB.Bumped(droneA.Position, droneA.Velocity);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

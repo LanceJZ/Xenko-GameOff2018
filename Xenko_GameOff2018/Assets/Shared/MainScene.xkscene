@@ -72,7 +72,9 @@ Hierarchy:
                         Intensity: 0.25
                     1e2e7f4805f448b09c1c2ff88cefc940: !Xenko_GameOff2018.SceneControl,Xenko_GameOff2018.Game
                         Id: 0bfcf1d8-fe86-45bd-9362-a4def8c5b99a
+                        RadarAccess: null
                         PlayerRefAccess: null
+                        PlayerBaseRefAccess: null
                         EnemyBaseRefAccess: null
                         AsteroidRefAccess: null
                     2d5b69f20f2167c61ac525506978418b: !Xenko_GameOff2018.StarControl,Xenko_GameOff2018.Game

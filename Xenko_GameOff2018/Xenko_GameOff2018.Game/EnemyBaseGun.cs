@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using Xenko.Core.Mathematics;
 using Xenko.Input;
 using Xenko.Engine;
+using Xenko.Games.Time;
+using Xenko.Graphics;
+using Xenko.Rendering;
+using Xenko.Audio;
 
 namespace Xenko_GameOff2018
 {
@@ -36,18 +40,21 @@ namespace Xenko_GameOff2018
         {
             base.Update();
 
-            WorldPos = Entity.Transform.Parent.Position + Position;
-
-            Rotation.Z = AngleFromVectors(WorldPos, PlayerRef.Position);
-
-            if (FireTimer.Expired && PlayerRef != null)
+            if (Active)
             {
-                if (Vector3.Distance(WorldPos, PlayerRef.Position) < 250)
-                {
-                    FireMissile();
-                }
+                WorldPos = Entity.Transform.Parent.Position + Position;
 
-                FireTimer.Reset(RandomMinMax(10, 30));
+                Rotation.Z = AngleFromVectors(WorldPos, PlayerRef.Position);
+
+                if (FireTimer.Expired && PlayerRef != null)
+                {
+                    if (Vector3.Distance(WorldPos, PlayerRef.Position) < 300)
+                    {
+                        FireMissile();
+                    }
+
+                    FireTimer.Reset(RandomMinMax(10, 30));
+                }
             }
         }
 

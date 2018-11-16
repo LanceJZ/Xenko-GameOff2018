@@ -1,0 +1,37 @@
+!PrefabAsset
+Id: c1e9691c-fb1b-4aec-a9e2-aaf2417394b5
+SerializedVersion: {Xenko: 3.1.0.1}
+Tags: []
+Hierarchy:
+    RootParts:
+        - ref!! eb4d7c61-5ba7-479e-86e5-dbb3c4f96e5b
+    Parts:
+        -   Entity:
+                Id: eb4d7c61-5ba7-479e-86e5-dbb3c4f96e5b
+                Name: PlayerBase
+                Components:
+                    9b8475ce4cea2bbb75a3a6f1519b5783: !TransformComponent
+                        Id: 4f6a441b-2cca-451b-b7fa-60aeec812035
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    fe16c1fce7de7317b7b17aae91a8e4e4: !ModelComponent
+                        Id: a5fffaaa-8d7d-4b40-96e0-19b2611e7e96
+                        Model: 97df69f5-44d1-45b6-80a9-200b8c229ef1:Models/PlayerBase
+                        Materials: {}
+                    6252ac42136a2b29a0588337ad4e2fc3: !Xenko_GameOff2018.PlayerBase,Xenko_GameOff2018.Game
+                        Id: a41b971c-4740-461a-9072-c58daa069b7e
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationVelocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Deceleration: 0.001
+                        MaxVelocity: 0.0

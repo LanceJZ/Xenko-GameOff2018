@@ -42,7 +42,7 @@ namespace Xenko_GameOff2018
         public Vector3 RotationVelocity = Vector3.Zero;
         public Vector3 RotationAcceleration = Vector3.Zero;
 
-        protected static Vector2 Edge = new Vector2(2000, 2000);
+        protected static Vector2 Edge = new Vector2(3360, 2690);
         static Random RandomNumbers;
 
         public override void Start()
@@ -146,13 +146,37 @@ namespace Xenko_GameOff2018
             this.Entity.Transform.Scale = Scale;
         }
 
-        public bool CirclesIntersect(Vector3 Target, float TargetRadius)
+        /// <summary>
+        /// Circle collusion detection. Target circle will be compared to this class's.
+        /// Will return true of they intersect.
+        /// </summary>
+        /// <param name="TargetPosition">Position of target.</param>
+        /// <param name="TargetRadius">Radius of target.</param>
+        /// <returns></returns>
+		public bool CirclesIntersect(Vector3 TargetPosition, float TargetRadius)
         {
-            float dx = Target.X - Position.X;
-            float dy = Target.Y - Position.Y;
-            float rad = Radius + TargetRadius;
+            float distanceX = TargetPosition.X - Position.X;
+            float distanceY = TargetPosition.Y - Position.Y;
+            float radius = Radius + TargetRadius;
 
-            if ((dx * dx) + (dy * dy) < rad * rad)
+            if ((distanceX * distanceX) + (distanceY * distanceY) < radius * radius)
+                return true;
+
+            return false;
+        }
+        /// <summary>
+        /// Circle collusion detection. Target circle will be compared to this class's.
+        /// Will return true of they intersect.
+        /// </summary>
+        /// <param name="Target">Target Positioned Object.</param>
+        /// <returns></returns>
+        public bool CirclesIntersect(PO Target)
+        {
+            float distanceX = Target.Position.X - Position.X;
+            float distanceY = Target.Position.Y - Position.Y;
+            float radius = Radius + Target.Radius;
+
+            if ((distanceX * distanceX) + (distanceY * distanceY) < radius * radius)
                 return true;
 
             return false;
@@ -248,26 +272,59 @@ namespace Xenko_GameOff2018
         /// <param name="speedMin">Minimum speed.</param>
         public Vector3 RandomVelocity(float speedMin, float speedMax)
         {
-            float rad = RandomRadian();
-            float amt = RandomMinMax(speedMin, speedMax);
-            return new Vector3((float)Math.Cos(rad) * amt, (float)Math.Sin(rad) * amt, 0);
-        }
-
+            float rotation = RandomRadian();
+            float magnitute = RandomMinMax(speedMin, speedMax);
+            return new Vector3((float)Math.Cos(rotation) * magnitute, (float)Math.Sin(rotation) * magnitute, 0);
+        }//TODO: These functions can use the same function.
         /// <summary>
         /// Returns a velocity of magnitude in a random direction.
         /// </summary>
         /// <param name="magnitude">Units per second.</param>
         public Vector3 RandomVelocity(float magnitude)
         {
-            float rad = RandomRadian();
-            return new Vector3((float)Math.Cos(rad) * magnitude, (float)Math.Sin(rad) * magnitude, 0);
+            float rotation = RandomRadian();
+            return new Vector3((float)Math.Cos(rotation) * magnitude, (float)Math.Sin(rotation) * magnitude, 0);
         }
-
+        /// <summary>
+        /// Returns a float of the angle in radians derived from two Vector3 passed into it, using only the X and Y.
+        /// </summary>
+        /// <param name="origin">Vector3 of origin</param>
+        /// <param name="target">Vector3 of target</param>
+        /// <returns>Float</returns>
         public float AngleFromVectors(Vector3 origin, Vector3 target)
         {
             return (float)(Math.Atan2(target.Y - origin.Y, target.X - origin.X));
         }
-
+        /// <summary>
+        /// Returns a float of the angle in radians to target, using only the X and Y.
+        /// </summary>
+        /// <param name="target">Vector3 of target</param>
+        /// <returns>Float</returns>
+        public float AngleFromVectors(Vector3 target)
+        {
+            return AngleFromVectors(Position, target);
+        }
+        /// <summary>
+        /// Returns Vector3 direction of travel from origin to target. Z is ignored.
+        /// </summary>
+        /// <param name="origin">Vector3 of origin</param>
+        /// <param name="target">Vector3 of target</param>
+        /// <param name="magnitude">float of speed of travel</param>
+        /// <returns>Vector3</returns>
+        public Vector3 VelocityFromVectors(Vector3 origin, Vector3 target, float magnitude)
+        {
+            return VelocityFromAngle(AngleFromVectors(origin, target), magnitude);
+        }
+        /// <summary>
+        /// Returns Vector3 direction of travel to target. Z is ignored.
+        /// </summary>
+        /// <param name="target">Vector3 of target</param>
+        /// <param name="magnitude">float of speed of travel</param>
+        /// <returns>Vector3</returns>
+        public Vector3 VelocityFromVectors(Vector3 target, float magnitude)
+        {
+            return VelocityFromVectors(Position, target, magnitude);
+        }
         /// <summary>
         /// Returns a velocity using rotation as direction, at magnitude.
         /// </summary>
@@ -278,11 +335,15 @@ namespace Xenko_GameOff2018
         {
             return new Vector3((float)Math.Cos(rotation) * magnitude, (float)Math.Sin(rotation) * magnitude, 0);
         }
-
+        /// <summary>
+        /// Return a velocity using a random rotation as direction, at magnitude.
+        /// </summary>
+        /// <param name="magnitude"></param>
+        /// <returns></returns>
         public Vector3 VelocityFromAngle(float magnitude)
         {
-            float ang = RandomRadian();
-            return new Vector3((float)Math.Cos(ang) * magnitude, (float)Math.Sin(ang) * magnitude, 0);
+            float rotaiton = RandomRadian();
+            return VelocityFromAngle(rotaiton, magnitude);
         }
 
         public float RandomHeight()

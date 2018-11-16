@@ -14,7 +14,7 @@ namespace Xenko_GameOff2018
 {
     public class EnemyBase : PO
     {
-        public List<EnemyDrone> EnemyDroneAccess { get => DroneRefs; }
+        public List<EnemyDrone> DroneAccess { get => DroneRefs; }
 
         SceneControl SceneRef;
         Player PlayerRef;
@@ -22,7 +22,9 @@ namespace Xenko_GameOff2018
         List<EnemyDrone> DroneRefs;
         EnemyBaseGun[] EnemyGuns = new EnemyBaseGun[8];
         Prefab DronePF;
-        int OreCount;
+        int OreCount = 0;
+        Timer LaunchTimer;
+        bool LaunchNewDrone;
 
         public override void Start()
         {
@@ -30,6 +32,10 @@ namespace Xenko_GameOff2018
 
             TheRadius = 50;
             DroneRefs = new List<EnemyDrone>();
+
+            Entity launchTimerE = new Entity { new Timer() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(launchTimerE);
+            LaunchTimer = launchTimerE.Get<Timer>();
 
             for (int i = 0; i < 8; i++)
             {
@@ -40,7 +46,7 @@ namespace Xenko_GameOff2018
 
             int spawn = RandomGenerator.Next(3);
             Vector2 outterBuffer = new Vector2(400, 350);
-            float innerBuffer = 200;
+            float innerBuffer = 400;
 
             switch (spawn)
             {
@@ -75,15 +81,34 @@ namespace Xenko_GameOff2018
             IsActive = true;
 
             DronePF = Content.Load<Prefab>("Prefabs/EnemyDronePF");
-
-            SpawnDrone();
         }
 
         public override void Update()
         {
             base.Update();
 
-            CheckCollusion();
+            if (Active)
+            {
+                CheckCollusion();
+
+                if (LaunchTimer.Expired)
+                {
+                    float lTimer = 35 - OreCount;
+                    LaunchTimer.Reset(RandomMinMax(lTimer / 3, lTimer));
+                    int activeDrones = 0;
+
+                    foreach (EnemyDrone drone in DroneRefs)
+                    {
+                        if (drone.Active)
+                            activeDrones++;
+                    }
+
+                    if (activeDrones > 1 + OreCount)
+                        return;
+
+                    SpawnDrone();
+                }
+            }
         }
 
         public void Setup(SceneControl scene)
@@ -123,7 +148,7 @@ namespace Xenko_GameOff2018
         {
             foreach (PlayerShot shot in PlayerRef.ShotsRef)
             {
-                if (CirclesIntersect(shot.Position, shot.Radius))
+                if (CirclesIntersect(shot))
                 {
                     CheckHit();
                 }
@@ -132,10 +157,27 @@ namespace Xenko_GameOff2018
 
         void SpawnDrone()
         {
-            Entity droneE = SceneRef.SetupEntity(DronePF);
-            EnemyDrone droneS = droneE.Get<EnemyDrone>();
-            droneS.Setup(SceneRef, this);
-            DroneRefs.Add(droneS);
+            bool found = false;
+            EnemyDrone thisDrone = null;
+
+            foreach (EnemyDrone drone in DroneRefs)
+            {
+                if (!drone.Active)
+                {
+                    thisDrone = drone;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                thisDrone = SceneRef.SetupEntity(DronePF).Get<EnemyDrone>();
+                DroneRefs.Add(thisDrone);
+                thisDrone.Setup(SceneRef, this);
+            }
+
+            thisDrone.Launch();
         }
     }
 }

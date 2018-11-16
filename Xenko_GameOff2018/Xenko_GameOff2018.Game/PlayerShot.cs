@@ -33,15 +33,18 @@ namespace Xenko_GameOff2018
         {
             base.Update();
 
-            if (HitEdge())
-                MoveToOppisiteEdge();
-
-            if (LifeTimer.Expired)
+            if (Active)
             {
-                Disable();
-            }
+                if (HitEdge())
+                    MoveToOppisiteEdge();
 
-            CheckCollision();
+                if (LifeTimer.Expired)
+                {
+                    Disable();
+                }
+
+                CheckCollision();
+            }
         }
 
         public void Fire(Vector3 position, Vector3 velocity, float rotation)
@@ -77,9 +80,12 @@ namespace Xenko_GameOff2018
         {
             foreach (Asteroid rock in AsteroidRefs)
             {
-                if (CirclesIntersect(rock.Position, rock.Radius))
+                if (rock.Active)
                 {
-                    Disable();
+                    if (CirclesIntersect(rock))
+                    {
+                        Disable();
+                    }
                 }
             }
         }

@@ -79,18 +79,39 @@ namespace Xenko_GameOff2018
         public void Setup(SceneControl scene)
         {
             SceneRef = scene;
+            PlayerRef = scene.PlayerRefAccess;
         }
 
         public Chunk MineAttempt()
         {
             if (RandomMinMax(0, MaxHardness) > Hardness)
             {
-                Entity chunkE = SceneRef.SetupEntity(ChunkPF);
-                Chunk chunkS = chunkE.Get<Chunk>();
-                chunkS.Position = (Position + ((Vector3.Normalize(Velocity) * 60)) * -1);
-                chunkS.Velocity = Velocity * 0.25f;
-                ChunkRefs.Add(chunkE.Get<Chunk>());
-                return chunkS;
+                bool found = false;
+                Chunk theChunk = null;
+
+                foreach (Chunk chunk in ChunkRefs)
+                {
+                    if (!chunk.Active && !chunk.IsInTransit)
+                    {
+                        theChunk = chunk;
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    Entity chunkE = SceneRef.SetupEntity(ChunkPF);
+                    theChunk = chunkE.Get<Chunk>();
+                    theChunk.Setup(PlayerRef);
+                    ChunkRefs.Add(chunkE.Get<Chunk>());
+                }
+
+                theChunk.Position = (Position + ((Vector3.Normalize(Velocity) * 60)) * -1);
+                theChunk.Velocity = Velocity * 0.25f;
+                theChunk.UpdatePR();
+
+                return theChunk;
             }
 
             return null;

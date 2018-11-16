@@ -12,8 +12,12 @@ namespace Xenko_GameOff2018
     public class Chunk : PO
     {
         public OreType ThisOreType { get => TypeofOre; }
+        public bool IsInTransit { get => InTransit; set => InTransit = value; }
 
         OreType TypeofOre;
+        Player PlayerRef;
+
+        bool InTransit;
 
         public override void Start()
         {
@@ -34,8 +38,18 @@ namespace Xenko_GameOff2018
         {
             base.Update();
 
-            if (HitEdge())
-                MoveToOppisiteEdge();
+            if (Active)
+            {
+                if (HitEdge())
+                    MoveToOppisiteEdge();
+
+                CheckCollusion();
+            }
+        }
+
+        public void Setup(Player player)
+        {
+            PlayerRef = player;
         }
 
         public void Enable()
@@ -46,6 +60,18 @@ namespace Xenko_GameOff2018
         public void Disable()
         {
             IsActive = false;
+        }
+
+        void CheckCollusion()
+        {
+            if (PlayerRef.Active)
+            {
+                if (CirclesIntersect(PlayerRef))
+                {
+                    PlayerRef.PickupOre(this);
+                    InTransit = true;
+                }
+            }
         }
     }
 }

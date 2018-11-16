@@ -36,3 +36,4 @@ Hierarchy:
                         Points: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
+                        IsInTransit: false

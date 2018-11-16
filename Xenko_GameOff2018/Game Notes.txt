@@ -13,3 +13,7 @@ The player ship has hit points. Base starts at 100 points. Damage is double that
 Enemy drones priority is to mine ore to build the super base. Once one mines a piece of ore, it will return it to the nearest base. When that base gets enough ore, it will upgrade to a super base.
 The player home base is in the center of the field.
 If Drone gets distroyed and it had cargo, that cargo gets ejected into space.
+
+Fix:
+Drones relounch after timer expires.
+Missiles from enemy bases will depend on ore.

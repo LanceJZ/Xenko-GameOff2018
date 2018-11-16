@@ -130,7 +130,7 @@ Hierarchy:
                         Points: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
-                        EnemyDroneAccess: null
+                        DroneAccess: null
         -   Entity:
                 Id: 9612a258-d8fb-4f47-a871-c362ee3507b8
                 Name: EnemyBaseTurret-01

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using Xenko.Core.Mathematics;
 using Xenko.Input;
 using Xenko.Engine;
+using Xenko.Games.Time;
+using Xenko.Graphics;
+using Xenko.Rendering;
+using Xenko.Audio;
 
 namespace Xenko_GameOff2018
 {
@@ -15,6 +19,7 @@ namespace Xenko_GameOff2018
         List<Asteroid> AsteroidRefs;
         Player PlayerRef;
         float Thrust = 10;
+        float TurnRate = 0.25f;
 
         public override void Start()
         {
@@ -41,7 +46,7 @@ namespace Xenko_GameOff2018
 
             if (PlayerRef != null)
             {
-                RotationVelocity.Z = AimAtTarget(PlayerRef.Position, Rotation.Z, MathUtil.PiOverFour * 0.5f);
+                RotationVelocity.Z = AimAtTarget(PlayerRef.Position, Rotation.Z, MathUtil.PiOverTwo * TurnRate);
             }
 
             Accelerate(Thrust);
@@ -85,7 +90,7 @@ namespace Xenko_GameOff2018
             {
                 if (rock.Active)
                 {
-                    if (CirclesIntersect(rock.Position, rock.Radius))
+                    if (CirclesIntersect(rock))
                     {
                         Disable();
                     }
@@ -94,9 +99,23 @@ namespace Xenko_GameOff2018
 
             if (PlayerRef != null)
             {
-                if (CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
+                if (CirclesIntersect(PlayerRef))
                 {
                     Disable();
+                    return;
+                }
+
+                foreach (PlayerShot shot in PlayerRef.ShotsRef)
+                {
+                    if (shot.Active)
+                    {
+                        if (CirclesIntersect(shot))
+                        {
+                            Disable();
+                            shot.Disable();
+                            return;
+                        }
+                    }
                 }
             }
         }

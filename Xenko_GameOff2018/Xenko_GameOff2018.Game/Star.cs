@@ -22,7 +22,7 @@ namespace Xenko_GameOff2018
 
             Position.X = RandomMinMax(-Edge.X + outterBuffer, Edge.X + outterBuffer);
             Position.Y = RandomMinMax(-Edge.Y + outterBuffer, Edge.Y + outterBuffer);
-            Position.Z = -55;
+            Position.Z = -75;
 
             float amount = RandomMinMax(-5, 5);
 
