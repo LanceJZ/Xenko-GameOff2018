@@ -32,7 +32,7 @@ Hierarchy:
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
                         Paused: false
                         GameOver: false
-                        Points: 0
+                        HitPoints: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
         -   Entity:
@@ -61,7 +61,7 @@ Hierarchy:
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
                         Paused: false
                         GameOver: false
-                        Points: 0
+                        HitPoints: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
         -   Entity:
@@ -90,7 +90,7 @@ Hierarchy:
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
                         Paused: false
                         GameOver: false
-                        Points: 0
+                        HitPoints: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
         -   Entity:
@@ -127,10 +127,11 @@ Hierarchy:
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
                         Paused: false
                         GameOver: false
-                        Points: 0
+                        HitPoints: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
                         DroneAccess: null
+                        BossAccess: null
         -   Entity:
                 Id: 9612a258-d8fb-4f47-a871-c362ee3507b8
                 Name: EnemyBaseTurret-01
@@ -157,7 +158,7 @@ Hierarchy:
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
                         Paused: false
                         GameOver: false
-                        Points: 0
+                        HitPoints: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
         -   Entity:
@@ -186,7 +187,7 @@ Hierarchy:
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
                         Paused: false
                         GameOver: false
-                        Points: 0
+                        HitPoints: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
         -   Entity:
@@ -215,7 +216,7 @@ Hierarchy:
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
                         Paused: false
                         GameOver: false
-                        Points: 0
+                        HitPoints: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
         -   Entity:
@@ -244,7 +245,7 @@ Hierarchy:
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
                         Paused: false
                         GameOver: false
-                        Points: 0
+                        HitPoints: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0
         -   Entity:
@@ -273,6 +274,6 @@ Hierarchy:
                         RotationAcceleration: {X: 0.0, Y: 0.0, Z: 0.0}
                         Paused: false
                         GameOver: false
-                        Points: 0
+                        HitPoints: 0
                         Deceleration: 0.0
                         MaxVelocity: 0.0

@@ -15,10 +15,10 @@ namespace Xenko_GameOff2018
         public bool Hit { get => IsHit; }
         public bool Active { get => IsActive; }
         public bool Moveable { get => IsMoveable; }
+        public float Radius { get => TheRadius; }
         public bool Paused { get => pause; set => pause = value; }
         public bool GameOver { get => gameOver; set => gameOver = value; }
-        public int Points { get => points; set => points = value; }
-        public float Radius { get => TheRadius; }
+        public int HitPoints { get => points; set => points = value; }
         public float Deceleration { get => deceleration; set => deceleration = value; }
         public float MaxVelocity { get => maxVelocity; set => maxVelocity = value; }
         public static Random RandomGenerator { get => RandomNumbers; set => RandomNumbers = value; }
@@ -27,6 +27,7 @@ namespace Xenko_GameOff2018
         protected bool IsActive;
         protected bool IsMoveable = true;
         protected float TheRadius;
+        protected float HeadingSpeed = MathUtil.Pi;
         bool pause;
         bool gameOver;
         int points;
@@ -66,7 +67,7 @@ namespace Xenko_GameOff2018
 
                     Velocity += Acceleration;
                     Position += Velocity * elapsed;
-                    Rotation = Rotate(Rotation + RotationVelocity * elapsed);
+                    Rotation += RotationVelocity * elapsed;
                     Acceleration = -Velocity * Deceleration;
 
                     UpdatePR();
@@ -74,57 +75,6 @@ namespace Xenko_GameOff2018
 
                 UpdateActive(Active);
             }
-        }
-
-        public Vector3 Rotate(Vector3 rotate)
-        {
-            Vector3 framerotate = rotate;
-
-            rotate.X = Rotate(framerotate.X);
-            rotate.Y = Rotate(framerotate.Y);
-            rotate.Z = Rotate(framerotate.Z);
-
-            return rotate;
-        }
-
-        float Rotate(float rotate)
-        {
-            float framerotate = MathUtil.Clamp(rotate, -MathUtil.TwoPi, MathUtil.TwoPi * 2);
-
-            if (framerotate < 0)
-            {
-                framerotate += MathUtil.TwoPi;
-                return framerotate;
-            }
-
-            if (framerotate > MathUtil.TwoPi)
-                framerotate -= MathUtil.TwoPi;
-
-            return framerotate;
-        }
-
-        /// <summary>
-        /// Returns a Vector3 direction of travel from angle and magnitude.
-        /// </summary>
-        /// <param name="angle"></param>
-        /// <param name="magnitude"></param>
-        /// <returns>Vector3</returns>
-        public Vector3 SetVelocity(float angle, float magnitude)
-        {
-            Vector3 Vector = Vector3.Zero;
-            Vector.Y = (float)(Math.Sin(angle) * magnitude);
-            Vector.X = (float)(Math.Cos(angle) * magnitude);
-            return Vector;
-        }
-
-        public void SetModel()
-        {
-            Model = this.Entity.Get<ModelComponent>();
-        }
-
-        public void SetModelChild()
-        {
-            Model = this.Entity.GetChild(0).Get<ModelComponent>();
         }
 
         public void UpdateActive(bool active)
@@ -146,6 +96,19 @@ namespace Xenko_GameOff2018
             this.Entity.Transform.Scale = Scale;
         }
 
+        /// <summary>
+        /// Returns a Vector3 direction of travel from angle and magnitude.
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <param name="magnitude"></param>
+        /// <returns>Vector3</returns>
+        public Vector3 SetVelocity(float angle, float magnitude)
+        {
+            Vector3 Vector = Vector3.Zero;
+            Vector.Y = (float)(Math.Sin(angle) * magnitude);
+            Vector.X = (float)(Math.Cos(angle) * magnitude);
+            return Vector;
+        }
         /// <summary>
         /// Circle collusion detection. Target circle will be compared to this class's.
         /// Will return true of they intersect.
@@ -181,61 +144,6 @@ namespace Xenko_GameOff2018
 
             return false;
         }
-
-        public bool HitEdge()
-        {
-            if (Position.X > Edge.X)
-            {
-                Position.X = -Edge.X;
-                return true;
-            }
-
-            if (Position.X < -Edge.X)
-            {
-                Position.X = Edge.X;
-                return true;
-            }
-
-            if (Position.Y > Edge.Y)
-            {
-                Position.Y = -Edge.Y;
-                return true;
-            }
-
-            if (Position.Y < -Edge.Y)
-            {
-                Position.Y = Edge.Y;
-                return true;
-            }
-
-            return false;
-        }
-
-        public void MoveToOppisiteEdge()
-        {
-            if (Position.X > Edge.X)
-                Position.X = -Edge.X;
-
-            if (Position.X < -Edge.X)
-                Position.X = Edge.X;
-
-            if (Position.Y > Edge.Y)
-                Position.Y = -Edge.Y;
-
-            if (Position.Y < -Edge.Y)
-                Position.Y = Edge.Y;
-        }
-
-        public bool Accelerate(float amount)
-        {
-            if (Math.Abs(Velocity.X) + Math.Abs(Velocity.Y) < maxVelocity)
-            {
-                Acceleration = SetVelocity(Rotation.Z, amount);
-                return true;
-            }
-
-            return false;
-        }
         /// <summary>
         /// Get a random float between min and max
         /// </summary>
@@ -254,7 +162,6 @@ namespace Xenko_GameOff2018
         {
             return RandomMinMax(0, MathUtil.TwoPi);
         }
-
         /// <summary>
         /// Returns the velocity by direction in radian.
         /// </summary>
@@ -264,7 +171,6 @@ namespace Xenko_GameOff2018
         {
             return new Vector3((float)Math.Cos(radian) * speed, (float)Math.Sin(radian) * speed, 0);
         }
-
         /// <summary>
         /// Returns a velocity in a random direction with a random speed.
         /// </summary>
@@ -395,6 +301,108 @@ namespace Xenko_GameOff2018
             }
 
             return turnVelocity;
+        }
+
+        protected bool HitEdge()
+        {
+            if (Position.X > Edge.X)
+            {
+                Position.X = -Edge.X;
+                return true;
+            }
+
+            if (Position.X < -Edge.X)
+            {
+                Position.X = Edge.X;
+                return true;
+            }
+
+            if (Position.Y > Edge.Y)
+            {
+                Position.Y = -Edge.Y;
+                return true;
+            }
+
+            if (Position.Y < -Edge.Y)
+            {
+                Position.Y = Edge.Y;
+                return true;
+            }
+
+            return false;
+        }
+
+        protected float Rotate(float rotate)
+        {
+            float framerotate = MathUtil.Clamp(rotate, -MathUtil.TwoPi, MathUtil.TwoPi * 2);
+
+            if (framerotate < 0)
+            {
+                framerotate += MathUtil.TwoPi;
+                return framerotate;
+            }
+
+            if (framerotate > MathUtil.TwoPi)
+                framerotate -= MathUtil.TwoPi;
+
+            return framerotate;
+        }
+
+        protected void SetModel()
+        {
+            Model = this.Entity.Get<ModelComponent>();
+        }
+
+        protected void SetModelChild()
+        {
+            Model = this.Entity.GetChild(0).Get<ModelComponent>();
+        }
+
+        protected void SetHeading(Vector3 waypoint, Vector3 stayback)
+        {
+            RotationVelocity.Z = AimAtTarget(waypoint + (stayback * -1),
+                Rotation.Z, HeadingSpeed);
+        }
+
+        protected void SetHeading(PO target, Vector3 stayback)
+        {
+            SetHeading(target.Position, stayback);
+        }
+
+        protected void SetHeading(Vector3 waypoint)
+        {
+            SetHeading(waypoint, Vector3.Zero);
+        }
+
+        protected void SetHeading(PO target)
+        {
+            SetHeading(target.Position, Vector3.Zero);
+        }
+
+        protected void MoveToOppisiteEdge()
+        {
+            if (Position.X > Edge.X)
+                Position.X = -Edge.X;
+
+            if (Position.X < -Edge.X)
+                Position.X = Edge.X;
+
+            if (Position.Y > Edge.Y)
+                Position.Y = -Edge.Y;
+
+            if (Position.Y < -Edge.Y)
+                Position.Y = Edge.Y;
+        }
+
+        protected bool Accelerate(float amount)
+        {
+            if (Math.Abs(Velocity.X) + Math.Abs(Velocity.Y) < maxVelocity)
+            {
+                Acceleration = SetVelocity(Rotation.Z, amount);
+                return true;
+            }
+
+            return false;
         }
     }
 }

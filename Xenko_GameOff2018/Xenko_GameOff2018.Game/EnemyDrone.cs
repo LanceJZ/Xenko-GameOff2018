@@ -50,11 +50,9 @@ namespace Xenko_GameOff2018
             SceneSystem.SceneInstance.RootScene.Entities.Add(mineTimerE);
             MineTimer = mineTimerE.Get<Timer>();
             MineTimer.Reset(2);
-
             Entity bumpTimerE = new Entity { new Timer() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(bumpTimerE);
             BumpTimer = bumpTimerE.Get<Timer>();
-
             InState = AIState.Search;
             TheRadius = 11;
             MaxVelocity = 0;
@@ -66,52 +64,52 @@ namespace Xenko_GameOff2018
         {
             base.Update();
 
-            if (Active)
+            if (!Active)
+                return;
+
+            CheckCollusion();
+
+            if (HitEdge())
+                MoveToOppisiteEdge();
+
+            if (WasBumped)
             {
-                CheckCollusion();
-
-                if (HitEdge())
-                    MoveToOppisiteEdge();
-
-                if (WasBumped)
-                {
-                    RecoverFromBump();
-                    return;
-                }
-
-                switch (InState)
-                {
-                    case AIState.Search:
-                        Search();
-                        break;
-                    case AIState.Mine:
-                        MineOre();
-                        break;
-                    case AIState.RetrieveOre:
-                        RetrieveOre();
-                        break;
-                    case AIState.GoToWaypoint:
-                        GotoWaypoint();
-                        break;
-                    case AIState.ReturnToBase:
-                        ReturnToBase();
-                        break;
-                }
-
-                Accelerate(Thrust);
+                RecoverFromBump();
+                return;
             }
+
+            switch (InState)
+            {
+                case AIState.Search:
+                    Search();
+                    break;
+                case AIState.Mine:
+                    MineOre();
+                    break;
+                case AIState.RetrieveOre:
+                    RetrieveOre();
+                    break;
+                case AIState.GoToWaypoint:
+                    GotoWaypoint();
+                    break;
+                case AIState.ReturnToBase:
+                    ReturnToBase();
+                    break;
+            }
+
+            Accelerate(Thrust);
         }
 
         public void RecoverFromBump()
         {
-            if (BumpTimer.Expired) //TODO: This is not always working.
+            if (BumpTimer.Expired)
             {
-                Rotation.X = 0;
-                Rotation.Y = 0;
-                RotationVelocity.X = 0;
-                RotationVelocity.Y = 0;
-                Deceleration = 0.125f;
+                Rotation = new Vector3(0, 0, Rotation.Z);
+                RotationVelocity = Vector3.Zero;
+                Velocity = Vector3.Zero;
+                Deceleration = 0.001f;
                 WasBumped = false;
+                StayClose();
             }
         }
 
@@ -143,21 +141,28 @@ namespace Xenko_GameOff2018
             Acceleration = Vector3.Zero;
             Position.X = FromBaseRef.Position.X;
             Position.Y = FromBaseRef.Position.Y;
+            Rotation = Vector3.Zero;
+            RotationVelocity = Vector3.Zero;
             UpdatePR();
+            InState = AIState.Search;
             NearAsteroid = null;
             ChunkRef = null;
             IsActive = true;
-            InState = AIState.Search;
             WasBumped = false;
+            HasOre = false;
+            Deceleration = 0.125f;
         }
 
         void GotoWaypoint()
         {
             SetHeading(Waypoint);
-            //RotationVelocity.Z = AimAtTarget(Waypoint, Rotation.Z, MathUtil.Pi);
-            MaxVelocity = 20;
 
-            if (Vector3.Distance(Waypoint, Position) < 40)
+            if (Vector3.Distance(NearAsteroid.Position, Position) < 150)
+                MaxVelocity = 3;
+            else
+                MaxVelocity = 50;
+
+            if (Vector3.Distance(Waypoint, Position) < 10)
                  InState = AIState.ReturnToBase;
         }
 
@@ -170,7 +175,6 @@ namespace Xenko_GameOff2018
                 return;
 
             SetHeading(FromBaseRef);
-            //RotationVelocity.Z = AimAtTarget(FromBaseRef.Position, Rotation.Z, MathUtil.Pi);
 
             if (Vector3.Distance(Position, FromBaseRef.Position) > 300)
                 MaxVelocity = 200;
@@ -183,6 +187,7 @@ namespace Xenko_GameOff2018
                 {
                     FromBaseRef.AddChunk(ChunkRef.ThisOreType);
                     ChunkRef = null;
+                    HasOre = false;
                 }
 
                 InState = AIState.Search;
@@ -191,13 +196,19 @@ namespace Xenko_GameOff2018
 
         void RetrieveOre()
         {
+            if (HasOre)
+            {
+                InState = AIState.GoToWaypoint;
+                return;
+            }
+
             Thrust = 15.666f;
+            Deceleration = 0.125f;
 
             if (ChunkRef != null && ChunkRef.Active)
             {
+                MaxVelocity = 10;
                 SetHeading(ChunkRef);
-                //RotationVelocity.Z = AimAtTarget(ChunkRef.Position, Rotation.Z, MathUtil.Pi);
-                MaxVelocity = 5;
             }
             else
             {
@@ -243,21 +254,20 @@ namespace Xenko_GameOff2018
             if (NearAsteroid == null)
             {
                 NearAsteroid = FindNearbyAsteroid();
-                Waypoint = NearAsteroid.Position;
+                Waypoint = NearAsteroid.Position + Vector3.Normalize(-NearAsteroid.Velocity) * 75;
             }
             else
             {
                 if (!WaypointReached)
                 {
                     SetHeading(Waypoint);
-                    //RotationVelocity.Z = AimAtTarget(Waypoint, Rotation.Z, MathUtil.Pi);
 
-                    MaxVelocity = 150;
+                    MaxVelocity = 70;
 
-                    if (Vector3.Distance(Waypoint, Position) < 150)
+                    if (Vector3.Distance(Waypoint, Position) < 20)
                     {
                         WaypointReached = true;
-                        MaxVelocity = 55;
+                        MaxVelocity = 50;
                     }
                 }
                 else
@@ -285,9 +295,6 @@ namespace Xenko_GameOff2018
         void AimAtAsteroid()
         {
             SetHeading(NearAsteroid, Vector3.Normalize(NearAsteroid.Velocity) * 75);
-            //RotationVelocity.Z = AimAtTarget((NearAsteroid.Position +
-            //    ((Vector3.Normalize(NearAsteroid.Velocity) * 75)) * -1),
-            //    Rotation.Z, MathUtil.Pi);
         }
 
         bool StayClose()
@@ -296,7 +303,6 @@ namespace Xenko_GameOff2018
             {
                 InState = AIState.Search;
                 NearAsteroid = FindNearbyAsteroid();
-                Waypoint = NearAsteroid.Position;
                 return false;
             }
 
@@ -360,27 +366,6 @@ namespace Xenko_GameOff2018
             }
 
             IsActive = false;
-        }
-
-        void SetHeading(Vector3 waypoint, Vector3 stayback)
-        {
-            RotationVelocity.Z = AimAtTarget(waypoint + (stayback * -1),
-                Rotation.Z, MathUtil.Pi);
-        }
-
-        void SetHeading(PO target, Vector3 stayback)
-        {
-            SetHeading(target.Position, stayback);
-        }
-
-        void SetHeading(Vector3 waypoint)
-        {
-            SetHeading(waypoint, Vector3.Zero);
-        }
-
-        void SetHeading(PO target)
-        {
-            SetHeading(target.Position, Vector3.Zero);
         }
 
         Asteroid FindNearbyAsteroid()

@@ -1,0 +1,23 @@
+!PrefabAsset
+Id: 6539c749-4d87-40d6-bb56-98c54b71619f
+SerializedVersion: {Xenko: 3.1.0.1}
+Tags: []
+Hierarchy:
+    RootParts:
+        - ref!! eeeb12e8-c29c-43d2-88af-516278820cc3
+    Parts:
+        -   Entity:
+                Id: eeeb12e8-c29c-43d2-88af-516278820cc3
+                Name: Cube
+                Components:
+                    773fa2d30369084ed83a541b91e0d309: !TransformComponent
+                        Id: ea7b491b-dd85-431f-a561-636a3352e444
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    aa2004be046aa5390c92a9609b10cf32: !ModelComponent
+                        Id: f041dc15-ab2b-43e0-a8ed-b0bdd2f78cb8
+                        Model: 7269d502-45b1-44e2-ac64-46a4903ff4d2:Models/Cube
+                        Materials:
+                            c410ad7a6033ffdcf21c939e4588946c~0: 7b09812c-6192-4ec2-ab6d-6a66b8b9562d:Materials/Orange

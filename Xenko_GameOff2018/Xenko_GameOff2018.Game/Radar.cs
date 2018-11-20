@@ -13,33 +13,42 @@ namespace Xenko_GameOff2018
     {
         Prefab WhiteCubePF;
         Prefab RedCubePF;
-        Prefab BlueCubePF;
+        Prefab OrangeCubePF;
         SceneControl SceneRef;
         Player PlayerRef;
         PlayerBase PlayerBaseRef;
         Entity PlayerDot;
         Vector3 HomePosition;
+        Vector3 PlayerPosition;
         List<Asteroid> AsteroidRefs;
         List<EnemyBase> EnemyBaseRefs;
-        List<Entity> AsteroidCubeRefs;
-        List<Entity> EnemyBaseCubeRefs;
+        List<Vector3> BasePositions;
+        List<EnemyBoss> BossRefs;
+        List<Entity> AsteroidCubes;
+        List<Entity> BaseCubes;
+        List<Entity> BossCubes;
         Entity PlayerBaseDot;
 
         public override void Start()
         {
-            AsteroidCubeRefs = new List<Entity>();
-            EnemyBaseCubeRefs = new List<Entity>();
+            AsteroidCubes = new List<Entity>();
+            BaseCubes = new List<Entity>();
+            BossCubes = new List<Entity>();
+            BasePositions = new List<Vector3>();
+            BossRefs = new List<EnemyBoss>();
 
             WhiteCubePF = Content.Load<Prefab>("Prefabs/WhiteCubePF");
             RedCubePF = Content.Load<Prefab>("Prefabs/RedCubePF");
-            BlueCubePF = Content.Load<Prefab>("Prefabs/BlueCubePF");
+            OrangeCubePF = Content.Load<Prefab>("Prefabs/OrangeCubePF");
+            Prefab blueCubePF = Content.Load<Prefab>("Prefabs/BlueCubePF");
+            Prefab lightBlueCubePF = Content.Load<Prefab>("Prefabs/LightBlueCubePF");
 
 
             //TestCubes();
             HomePosition = new Vector3(336 - (336f/5) - 60, 269 - (269f/5) - 60, 0);
-            PlayerDot = SceneRef.SetupEntity(WhiteCubePF);
-            PlayerBaseDot = SceneRef.SetupEntity(BlueCubePF);
-            PlayerDot.Transform.Scale = new Vector3(2, 2, 1);
+            PlayerDot = SceneRef.SetupEntity(lightBlueCubePF);
+            PlayerBaseDot = SceneRef.SetupEntity(blueCubePF);
+            PlayerDot.Transform.Scale = new Vector3(1.5f, 1.5f, 1);
 
             CreateAsteroidCubes();
             CreateEnemyBaseCubes();
@@ -47,12 +56,14 @@ namespace Xenko_GameOff2018
 
         public override void Update()
         {
+            PlayerPosition = PlayerRef.Position;
+            PlayerDot.Transform.Position = HomePosition + PlayerPosition;
+            PlayerBaseDot.Transform.Position = HomePosition + PlayerPosition;
+            PlayerBaseDot.Transform.Position -= ((PlayerPosition / 10) / 5);
+
             DisplayAsteroids();
             DisplayEnemyBases();
-
-            PlayerDot.Transform.Position = HomePosition + PlayerRef.Position;
-            PlayerBaseDot.Transform.Position = HomePosition + PlayerRef.Position;
-            PlayerBaseDot.Transform.Position -= ((PlayerRef.Position / 10) / 5);
+            DisplayEnemyBosses();
         }
 
         public void Setup(SceneControl scene)
@@ -66,21 +77,54 @@ namespace Xenko_GameOff2018
 
         public void CreateAsteroidCubes()
         {
+            AsteroidCubes.Clear();
+
             foreach (Asteroid rock in AsteroidRefs)
             {
-                Entity theRock = SceneRef.SetupEntity(WhiteCubePF);
-                //theRock.Transform.Scale = new Vector3(2, 2, 1);
-                AsteroidCubeRefs.Add(theRock);
+                AsteroidCubes.Add(SceneRef.SetupEntity(WhiteCubePF));
             }
         }
 
         public void CreateEnemyBaseCubes()
         {
+            BaseCubes.Clear();
+            BasePositions.Clear();
+
             foreach(EnemyBase enemy in EnemyBaseRefs)
             {
-                Entity theEnemy = SceneRef.SetupEntity(RedCubePF);
+                BaseCubes.Add(SceneRef.SetupEntity(RedCubePF));
+                BasePositions.Add(enemy.Position);
+            }
+        }
 
-                EnemyBaseCubeRefs.Add(theEnemy);
+        public void CreateEnemyBossCubes()
+        {
+            BossCubes.Clear();
+            BossRefs.Clear();
+
+            foreach (EnemyBase enemyBase in EnemyBaseRefs)
+            {
+                foreach (EnemyBoss boss in enemyBase.BossAccess)
+                {
+                    if (boss.Active)
+                    {
+                        BossCubes.Add(SceneRef.SetupEntity(OrangeCubePF));
+                        BossRefs.Add(boss);
+                    }
+                }
+            }
+        }
+
+        void DisplayEnemyBosses()
+        {
+            int bossNumber = 0;
+
+            foreach (Entity bossDot in BossCubes)
+            {
+                Vector3 bossPos = ((BossRefs[bossNumber].Position / 10) / 5 + HomePosition + PlayerPosition);
+                bossPos -= ((PlayerPosition / 10) / 5);
+                bossDot.Transform.Position = bossPos;
+                bossNumber++;
             }
         }
 
@@ -88,10 +132,10 @@ namespace Xenko_GameOff2018
         {
             int enemyNumber = 0;
 
-            foreach(Entity enemyDot in EnemyBaseCubeRefs)
+            foreach(Entity enemyDot in BaseCubes)
             {
-                Vector3 enemyPos = ((EnemyBaseRefs[enemyNumber].Position / 10) / 5 + HomePosition + PlayerRef.Position);
-                enemyPos -= ((PlayerRef.Position / 10) / 5);
+                Vector3 enemyPos = ((BasePositions[enemyNumber] / 10) / 5 + HomePosition + PlayerPosition);
+                enemyPos -= ((PlayerPosition / 10) / 5);
                 enemyDot.Transform.Position = enemyPos;
                 enemyNumber++;
             }
@@ -101,10 +145,10 @@ namespace Xenko_GameOff2018
         {
             int rockNumber = 0;
 
-            foreach(Entity rockDot in AsteroidCubeRefs)
+            foreach(Entity rockDot in AsteroidCubes)
             {
-                Vector3 rockPos = ((AsteroidRefs[rockNumber].Position / 10) / 5) + HomePosition + PlayerRef.Position;
-                rockPos -= ((PlayerRef.Position / 10) / 5);
+                Vector3 rockPos = ((AsteroidRefs[rockNumber].Position / 10) / 5) + HomePosition + PlayerPosition;
+                rockPos -= ((PlayerPosition / 10) / 5);
                 rockDot.Transform.Position = rockPos;
                 rockNumber++;
             }

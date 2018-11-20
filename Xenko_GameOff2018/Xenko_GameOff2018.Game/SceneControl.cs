@@ -114,23 +114,29 @@ namespace Xenko_GameOff2018
 
         void CheckDroneBump()
         {
-            foreach(EnemyBase theBase in EnemyBaseRefs)
+            foreach(EnemyBase theBaseA in EnemyBaseRefs)
             {
-                if (theBase.DroneAccess == null)
+                if (theBaseA.DroneAccess == null)
                     return;
 
-                foreach(EnemyDrone droneA in theBase.DroneAccess)
+                foreach(EnemyDrone droneA in theBaseA.DroneAccess)
                 {
-                    foreach(EnemyDrone droneB in theBase.DroneAccess)
+                    foreach (EnemyBase theBaseB in EnemyBaseRefs)
                     {
-                        if (droneA != droneB)
+                        if (theBaseB.DroneAccess == null)
+                            return;
+
+                        foreach (EnemyDrone droneB in theBaseB.DroneAccess)
                         {
-                            if (droneA.Active && droneB.Active)
+                            if (droneA != droneB)
                             {
-                                if(droneA.CirclesIntersect(droneB))
+                                if (droneA.Active && droneB.Active)
                                 {
-                                    droneA.Bumped(droneB.Position, droneB.Velocity);
-                                    droneB.Bumped(droneA.Position, droneA.Velocity);
+                                    if (droneA.CirclesIntersect(droneB))
+                                    {
+                                        droneA.Bumped(droneB.Position, droneB.Velocity);
+                                        droneB.Bumped(droneA.Position, droneA.Velocity);
+                                    }
                                 }
                             }
                         }

@@ -57,6 +57,8 @@ RootAssets:
     - 26e55c46-e585-4783-92e5-fc1f97380276:Prefabs/PlayerShotPF
     - 4151917b-0bc6-4d60-b9ba-1bd181fbb7d3:Models/StarModel
     - 423c826b-f8be-423e-9757-e86c9456d13b:Prefabs/EnemyBossPF
+    - 5502436a-b5c7-4698-9790-77afa46727a0:Prefabs/LightBlueCubePF
+    - 6539c749-4d87-40d6-bb56-98c54b71619f:Prefabs/OrangeCubePF
     - 65bd5b89-9fdc-4474-b4e8-8b8c95208ba8:Prefabs/StarPF
     - 6eb2e7c9-78a2-4d78-9d89-863d35292f6f:Prefabs/AsteroidPF
     - 7b5c1dcf-eaee-4ba1-abed-2edd16f5b698:Prefabs/MissilePF

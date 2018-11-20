@@ -14,14 +14,17 @@ namespace Xenko_GameOff2018
 {
     public class EnemyBase : PO
     {
-        public List<EnemyDrone> DroneAccess { get => DroneRefs; }
+        public List<EnemyDrone> DroneAccess { get => Drones; }
+        public List<EnemyBoss> BossAccess { get => Bosses; }
 
         SceneControl SceneRef;
         Player PlayerRef;
         List<Asteroid> AsteroidRefs;
-        List<EnemyDrone> DroneRefs;
+        List<EnemyDrone> Drones;
+        List<EnemyBoss> Bosses;
         EnemyBaseGun[] EnemyGuns = new EnemyBaseGun[8];
         Prefab DronePF;
+        Prefab BossPF;
         int OreCount = 0;
         Timer LaunchTimer;
         bool LaunchNewDrone;
@@ -30,12 +33,22 @@ namespace Xenko_GameOff2018
         {
             base.Start();
 
-            TheRadius = 50;
-            DroneRefs = new List<EnemyDrone>();
+            Drones = new List<EnemyDrone>();
+            Bosses = new List<EnemyBoss>();
+
+            DronePF = Content.Load<Prefab>("Prefabs/EnemyDronePF");
+            BossPF = Content.Load<Prefab>("Prefabs/EnemyBossPF");
 
             Entity launchTimerE = new Entity { new Timer() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(launchTimerE);
             LaunchTimer = launchTimerE.Get<Timer>();
+
+            Position.Z = 60;
+            IsActive = true;
+            TheRadius = 50;
+            int spawn = RandomGenerator.Next(3);
+            Vector2 outterBuffer = new Vector2(400, 350);
+            float innerBuffer = 400;
 
             for (int i = 0; i < 8; i++)
             {
@@ -43,10 +56,6 @@ namespace Xenko_GameOff2018
                 EnemyGuns[i] = Entity.FindChild(gun).Get<EnemyBaseGun>();
                 EnemyGuns[i].Setup(SceneRef);
             }
-
-            int spawn = RandomGenerator.Next(3);
-            Vector2 outterBuffer = new Vector2(400, 350);
-            float innerBuffer = 400;
 
             switch (spawn)
             {
@@ -76,11 +85,6 @@ namespace Xenko_GameOff2018
                     Position.X = RandomMinMax(-Edge.X + outterBuffer.X, Edge.X - outterBuffer.X);
                     break;
             }
-
-            Position.Z = 60;
-            IsActive = true;
-
-            DronePF = Content.Load<Prefab>("Prefabs/EnemyDronePF");
         }
 
         public override void Update()
@@ -97,10 +101,17 @@ namespace Xenko_GameOff2018
                     LaunchTimer.Reset(RandomMinMax(lTimer / 3, lTimer));
                     int activeDrones = 0;
 
-                    foreach (EnemyDrone drone in DroneRefs)
+                    foreach (EnemyDrone drone in Drones)
                     {
                         if (drone.Active)
                             activeDrones++;
+                    }
+
+                    if (OreCount > 1)
+                    {
+                        SpawnBoss();
+                        OreCount = 0;
+                        return;
                     }
 
                     if (activeDrones > 1 + OreCount)
@@ -155,12 +166,38 @@ namespace Xenko_GameOff2018
             }
         }
 
+        void SpawnBoss()
+        {
+            bool found = false;
+            EnemyBoss thisBoss = null;
+
+            foreach (EnemyBoss boss in Bosses)
+            {
+                if (!boss.Active)
+                {
+                    thisBoss = boss;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                thisBoss = SceneRef.SetupEntity(BossPF).Get<EnemyBoss>();
+                Bosses.Add(thisBoss);
+                thisBoss.Setup(SceneRef);
+            }
+
+            thisBoss.Launch(Position);
+            SceneRef.RadarAccess.CreateEnemyBossCubes();
+        }
+
         void SpawnDrone()
         {
             bool found = false;
             EnemyDrone thisDrone = null;
 
-            foreach (EnemyDrone drone in DroneRefs)
+            foreach (EnemyDrone drone in Drones)
             {
                 if (!drone.Active)
                 {
@@ -173,7 +210,7 @@ namespace Xenko_GameOff2018
             if (!found)
             {
                 thisDrone = SceneRef.SetupEntity(DronePF).Get<EnemyDrone>();
-                DroneRefs.Add(thisDrone);
+                Drones.Add(thisDrone);
                 thisDrone.Setup(SceneRef, this);
             }
 
