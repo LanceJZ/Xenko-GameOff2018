@@ -31,7 +31,6 @@ namespace Xenko_GameOff2018
             RotationVelocity = new Vector3(rX, rY, 0);
             IsActive = true;
             TypeofOre = (OreType)RandomGenerator.Next(0, 6);
-            SetModel();
         }
 
         public override void Update()
@@ -50,6 +49,7 @@ namespace Xenko_GameOff2018
         public void Setup(Player player)
         {
             PlayerRef = player;
+            RandomGenerator = SceneControl.RandomGenerator;
         }
 
         public void Enable()

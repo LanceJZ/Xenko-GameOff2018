@@ -4,8 +4,9 @@
     <TargetFrameworks>net461;monoandroid50</TargetFrameworks>
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'netcoreapp2.1'">linux</RuntimeIdentifier>
     <RootNamespace>Xenko_GameOff2018</RootNamespace>
-    <AssemblyVersion>1.342.20.0</AssemblyVersion>
-    <FileVersion>1120.324.11.2139</FileVersion>
+    <AssemblyVersion>1.364.22.0</AssemblyVersion>
+    <FileVersion>1122.326.11.0148</FileVersion>
+    <ApplicationIcon>GameOff2018.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xenko" Version="3.0.0.6">

@@ -36,7 +36,6 @@ namespace Xenko_GameOff2018
             Missiles = new List<Missile>();
 
             MissilePF = Content.Load<Prefab>("Prefabs/MissilePF");
-            SetModel();
 
             Entity chaseTimerE = new Entity { new Timer() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(chaseTimerE);
@@ -51,8 +50,7 @@ namespace Xenko_GameOff2018
             FireTimer = fireTimerE.Get<Timer>();
 
             TheRadius = 20;
-            Deceleration = 0.025f;
-            HeadingSpeed = MathUtil.PiOverTwo;
+            HeadingSpeed = MathUtil.PiOverFour / 3.5f;
         }
 
         public override void Update()
@@ -106,22 +104,25 @@ namespace Xenko_GameOff2018
         {
             SceneRef = scene;
             PlayerRef = scene.PlayerRefAccess;
+            RandomGenerator = SceneControl.RandomGenerator;
         }
 
         public void Launch(Vector3 position)
         {
             IsActive = true;
             Position = position;
+            Deceleration = 0.015f;
+            HitPoints = 100;
             UpdatePR();
         }
 
-        public void Bumped(Vector3 position, Vector3 velocity)
+        public void Bumped(PO other)
         {
             Deceleration = 0;
             Acceleration = Vector3.Zero;
             Velocity = (Velocity * 0.1f) * -1;
-            Velocity += velocity * 0.95f;
-            Velocity -= VelocityFromVectors(position, 15);
+            Velocity += other.Velocity * 0.95f;
+            Velocity -= VelocityFromVectors(other.Position, 15);
             RotationVelocity.Z = RandomMinMax(-MathUtil.PiOverFour, MathUtil.PiOverFour);
             RotationVelocity.X = RandomMinMax(-MathUtil.PiOverFour, MathUtil.PiOverFour);
             RotationVelocity.Y = RandomMinMax(-MathUtil.PiOverFour, MathUtil.PiOverFour);
@@ -136,19 +137,31 @@ namespace Xenko_GameOff2018
                 Rotation = new Vector3(0, 0, Rotation.Z);
                 RotationVelocity = Vector3.Zero;
                 Velocity = Vector3.Zero;
-                Deceleration = 0.001f;
+                Deceleration = 0.015f;
                 WasBumped = false;
             }
         }
 
         void CheckCollusion()
         {
+            foreach (PlayerShot shot in PlayerRef.ShotsAccess)
+            {
+                if (CirclesIntersect(shot))
+                {
+                    shot.Disable();
+                    HitPoints -= 10;
 
+                    if (HitPoints < 0)
+                    {
+                        Destroy();
+                    }
+                }
+            }
         }
 
         void CheckForPlayer()
         {
-            if (Vector3.Distance(Position, PlayerRef.Position) > 300)
+            if (Vector3.Distance(Position, PlayerRef.Position) > 150)
             {
                 PlayerInRange = false;
             }

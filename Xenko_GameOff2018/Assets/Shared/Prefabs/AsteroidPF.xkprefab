@@ -22,7 +22,6 @@ Hierarchy:
                         Materials: {}
                     f1014db04e282cb8e65c676ee17958cc: !Xenko_GameOff2018.Asteroid,Xenko_GameOff2018.Game
                         Id: 1057b755-e907-48ef-8b93-fe3d6fe8f8a6
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}

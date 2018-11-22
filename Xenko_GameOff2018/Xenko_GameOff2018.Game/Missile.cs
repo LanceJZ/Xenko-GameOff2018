@@ -29,7 +29,6 @@ namespace Xenko_GameOff2018
             TheRadius = 5;
             RotationVelocity = new Vector3(3.666f, 0, 0);
             Deceleration = 0.01f;
-            SetModel();
         }
 
         public override void Update()
@@ -77,6 +76,7 @@ namespace Xenko_GameOff2018
         {
             AsteroidRefs = scene.AsteroidRefAccess;
             PlayerRef = scene.PlayerRefAccess;
+            RandomGenerator = SceneControl.RandomGenerator;
         }
 
         public void Disable()
@@ -105,7 +105,7 @@ namespace Xenko_GameOff2018
                     return;
                 }
 
-                foreach (PlayerShot shot in PlayerRef.ShotsRef)
+                foreach (PlayerShot shot in PlayerRef.ShotsAccess)
                 {
                     if (shot.Active)
                     {

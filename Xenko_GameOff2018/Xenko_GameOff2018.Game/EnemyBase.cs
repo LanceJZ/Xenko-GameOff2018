@@ -46,44 +46,12 @@ namespace Xenko_GameOff2018
             Position.Z = 60;
             IsActive = true;
             TheRadius = 50;
-            int spawn = RandomGenerator.Next(3);
-            Vector2 outterBuffer = new Vector2(400, 350);
-            float innerBuffer = 400;
 
             for (int i = 0; i < 8; i++)
             {
                 string gun = "EnemyBaseTurret-" + 0 + (i + 1);
                 EnemyGuns[i] = Entity.FindChild(gun).Get<EnemyBaseGun>();
                 EnemyGuns[i].Setup(SceneRef);
-            }
-
-            switch (spawn)
-            {
-                case 0:
-                    Position.Y = RandomMinMax(innerBuffer, Edge.Y - outterBuffer.Y);
-                    break;
-                case 1:
-                    Position.X = RandomMinMax(innerBuffer, Edge.X - outterBuffer.X);
-                    break;
-                case 2:
-                    Position.Y = RandomMinMax(-innerBuffer, -Edge.Y + outterBuffer.Y);
-                    break;
-                case 3:
-                    Position.X = RandomMinMax(-innerBuffer, -Edge.X + outterBuffer.X);
-                    break;
-            }
-
-            switch(spawn)
-            {
-                case 1:
-                case 3:
-                    Position.Y = RandomMinMax(-innerBuffer, innerBuffer);
-                    break;
-
-                case 0:
-                case 2:
-                    Position.X = RandomMinMax(-Edge.X + outterBuffer.X, Edge.X - outterBuffer.X);
-                    break;
             }
         }
 
@@ -122,11 +90,13 @@ namespace Xenko_GameOff2018
             }
         }
 
-        public void Setup(SceneControl scene)
+        public void Setup(SceneControl scene, int sector)
         {
             SceneRef = scene;
             PlayerRef = scene.PlayerRefAccess;
             AsteroidRefs = scene.AsteroidRefAccess;
+            RandomGenerator = SceneControl.RandomGenerator;
+            Spawn(sector);
         }
 
         public void AddChunk(OreType type)
@@ -140,7 +110,7 @@ namespace Xenko_GameOff2018
             {
                 if (gun.Active)
                 {
-                    foreach (PlayerShot shot in PlayerRef.ShotsRef)
+                    foreach (PlayerShot shot in PlayerRef.ShotsAccess)
                     {
                         if (shot.Active)
                         {
@@ -155,9 +125,35 @@ namespace Xenko_GameOff2018
             }
         }
 
+        void Spawn(int sector)
+        {
+            Vector2 outterBuffer = new Vector2(400, 350);
+            Vector2 innerBuffer = new Vector2(450, 400);
+
+            switch (sector)
+            {
+                case 0:
+                    Position.X = RandomMinMax(-innerBuffer.X, Edge.X - outterBuffer.X);
+                    Position.Y = RandomMinMax(innerBuffer.Y, Edge.Y - outterBuffer.Y);
+                    break;
+                case 1:
+                    Position.X = RandomMinMax(innerBuffer.X, Edge.X - outterBuffer.X);
+                    Position.Y = RandomMinMax(-Edge.Y + outterBuffer.Y, innerBuffer.Y);
+                    break;
+                case 2:
+                    Position.X = RandomMinMax(-Edge.X + outterBuffer.X, innerBuffer.X);
+                    Position.Y = RandomMinMax(-Edge.Y + outterBuffer.Y, -innerBuffer.Y);
+                    break;
+                case 3:
+                    Position.X = RandomMinMax(-Edge.X - outterBuffer.X, -innerBuffer.X);
+                    Position.Y = RandomMinMax(-innerBuffer.Y, Edge.Y - outterBuffer.Y);
+                    break;
+            }
+        }
+
         void CheckCollusion()
         {
-            foreach (PlayerShot shot in PlayerRef.ShotsRef)
+            foreach (PlayerShot shot in PlayerRef.ShotsAccess)
             {
                 if (CirclesIntersect(shot))
                 {

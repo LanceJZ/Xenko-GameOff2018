@@ -64,16 +64,19 @@ namespace Xenko_GameOff2018
             Velocity = new Vector3(vX, vY, 0);
 
             IsActive = true;
-
         }
 
         public override void Update()
         {
             base.Update();
 
-            if (HitEdge())
-                MoveToOppisiteEdge();
+            if (Active)
+            {
+                if (HitEdge())
+                    MoveToOppisiteEdge();
 
+                CheckCollusion();
+            }
         }
 
         public void Setup(SceneControl scene)
@@ -115,6 +118,14 @@ namespace Xenko_GameOff2018
             }
 
             return null;
+        }
+
+        void CheckCollusion()
+        {
+            if (CirclesIntersect(PlayerRef))
+            {
+                PlayerRef.Bump(this);
+            }
         }
     }
 }

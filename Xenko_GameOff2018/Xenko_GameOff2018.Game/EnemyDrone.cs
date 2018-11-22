@@ -57,7 +57,6 @@ namespace Xenko_GameOff2018
             TheRadius = 11;
             MaxVelocity = 0;
             Deceleration = 0.125f;
-            SetModel();
         }
 
         public override void Update()
@@ -107,19 +106,19 @@ namespace Xenko_GameOff2018
                 Rotation = new Vector3(0, 0, Rotation.Z);
                 RotationVelocity = Vector3.Zero;
                 Velocity = Vector3.Zero;
-                Deceleration = 0.001f;
+                Deceleration = 0.125f;
                 WasBumped = false;
                 StayClose();
             }
         }
 
-        public void Bumped(Vector3 position, Vector3 velocity)
+        public void Bumped(PO other)
         {
             Deceleration = 0;
             Acceleration = Vector3.Zero;
             Velocity = (Velocity * 0.1f) * -1;
-            Velocity += velocity * 0.95f;
-            Velocity -= VelocityFromVectors(position, 15);
+            Velocity += other.Velocity * 0.95f;
+            Velocity -= VelocityFromVectors(other.Position, 15);
             RotationVelocity.Z = RandomMinMax(-MathUtil.PiOverFour, MathUtil.PiOverFour);
             RotationVelocity.X = RandomMinMax(-MathUtil.PiOverFour, MathUtil.PiOverFour);
             RotationVelocity.Y = RandomMinMax(-MathUtil.PiOverFour, MathUtil.PiOverFour);
@@ -133,6 +132,7 @@ namespace Xenko_GameOff2018
             EnemyBaseRefs = scene.EnemyBaseRefAccess;
             AsteroidRefs = scene.AsteroidRefAccess;
             FromBaseRef = fromBase;
+            RandomGenerator = SceneControl.RandomGenerator;
         }
 
         public void Launch()
@@ -155,6 +155,9 @@ namespace Xenko_GameOff2018
 
         void GotoWaypoint()
         {
+            Thrust = 15.666f;
+            Deceleration = 0.125f;
+
             SetHeading(Waypoint);
 
             if (Vector3.Distance(NearAsteroid.Position, Position) < 150)
@@ -196,14 +199,14 @@ namespace Xenko_GameOff2018
 
         void RetrieveOre()
         {
+            Thrust = 15.666f;
+            Deceleration = 0.125f;
+
             if (HasOre)
             {
                 InState = AIState.GoToWaypoint;
                 return;
             }
-
-            Thrust = 15.666f;
-            Deceleration = 0.125f;
 
             if (ChunkRef != null && ChunkRef.Active)
             {
@@ -299,6 +302,13 @@ namespace Xenko_GameOff2018
 
         bool StayClose()
         {
+            if (NearAsteroid == null)
+            {
+                InState = AIState.Search;
+                NearAsteroid = FindNearbyAsteroid();
+                return false;
+            }
+
             if (Vector3.Distance(NearAsteroid.Position, Position) > 200)
             {
                 InState = AIState.Search;
@@ -334,7 +344,7 @@ namespace Xenko_GameOff2018
                 }
             }
 
-            foreach (PlayerShot shot in PlayerRef.ShotsRef)
+            foreach (PlayerShot shot in PlayerRef.ShotsAccess)
             {
                 if (shot.Active)
                 {
@@ -349,7 +359,8 @@ namespace Xenko_GameOff2018
 
             if (CirclesIntersect(PlayerRef))
             {
-                Destroy();
+                Bumped(PlayerRef);
+                PlayerRef.Bump(this);
             }
         }
 

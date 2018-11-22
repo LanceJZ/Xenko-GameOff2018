@@ -22,7 +22,6 @@ Hierarchy:
                         Materials: {}
                     85bef93aaef5bf0808864a0b4a422987: !Xenko_GameOff2018.Missile,Xenko_GameOff2018.Game
                         Id: 6c62be99-054f-4a4e-b8dd-c3b79e980c9c
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}

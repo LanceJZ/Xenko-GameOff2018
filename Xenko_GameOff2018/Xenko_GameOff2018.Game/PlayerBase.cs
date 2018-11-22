@@ -23,6 +23,8 @@ namespace Xenko_GameOff2018
 
             TheRadius = 65;
             Position.Z = 70;
+            RandomGenerator = SceneControl.RandomGenerator;
+            IsActive = true;
         }
 
         public override void Update()

@@ -15,7 +15,7 @@ namespace Xenko_GameOff2018
 {
     public class Player : PO
     {
-        public List<PlayerShot> ShotsRef { get => Shots; }
+        public List<PlayerShot> ShotsAccess { get => Shots; }
 
         ModelComponent FlameRModel;
         ModelComponent FlameLModel;
@@ -75,8 +75,6 @@ namespace Xenko_GameOff2018
             FlameRModel.Enabled = false;
             FlameLModel = this.Entity.FindChild("PlayerFlameL").Get<ModelComponent>();
             FlameLModel.Enabled = false;
-
-            SetModel();
         }
 
         public override void Update()
@@ -104,6 +102,7 @@ namespace Xenko_GameOff2018
         {
             SceneRef = scene;
             AsteroidRefs = scene.AsteroidRefAccess;
+            RandomGenerator = SceneControl.RandomGenerator;
         }
 
         public void PickupOre(Chunk chunk)
@@ -113,6 +112,14 @@ namespace Xenko_GameOff2018
 
             ChunkRefs.Add(chunk);
             chunk.Disable();
+        }
+
+        public void Bump(PO other)
+        {
+            Acceleration = Vector3.Zero;
+            Velocity = (Velocity * 0.5f) * -1;
+            Velocity += other.Velocity * 0.95f;
+            Velocity -= VelocityFromVectors(other.Position, 75);
         }
 
         void GetInput()
@@ -151,6 +158,7 @@ namespace Xenko_GameOff2018
                     if (UnloadTimer.Expired)
                     {
                         Position.X = SceneRef.PlayerBaseRefAccess.Radius + Radius + 1;
+                        Position.Z = 0;
                         InDock = false;
                     }
                 }
@@ -310,6 +318,7 @@ namespace Xenko_GameOff2018
             RotationVelocity.Z = 0;
             Rotation.Z = 0;
             Position = Vector3.Zero;
+            Position.Z = 50;
             Velocity = Vector3.Zero;
             Acceleration = Vector3.Zero;
         }

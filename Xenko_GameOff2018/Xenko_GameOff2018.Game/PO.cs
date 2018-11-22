@@ -21,8 +21,8 @@ namespace Xenko_GameOff2018
         public int HitPoints { get => points; set => points = value; }
         public float Deceleration { get => deceleration; set => deceleration = value; }
         public float MaxVelocity { get => maxVelocity; set => maxVelocity = value; }
-        public static Random RandomGenerator { get => RandomNumbers; set => RandomNumbers = value; }
 
+        protected static Random RandomGenerator;
         protected bool IsHit;
         protected bool IsActive;
         protected bool IsMoveable = true;
@@ -34,7 +34,6 @@ namespace Xenko_GameOff2018
         float deceleration = 0.001f;
         float maxVelocity;
 
-        public ModelComponent Model;
         public Vector3 Position = Vector3.Zero;
         public Vector3 Velocity = Vector3.Zero;
         public Vector3 Acceleration = Vector3.Zero;
@@ -44,14 +43,9 @@ namespace Xenko_GameOff2018
         public Vector3 RotationAcceleration = Vector3.Zero;
 
         protected static Vector2 Edge = new Vector2(3360, 2690);
-        static Random RandomNumbers;
 
         public override void Start()
         {
-
-            if (RandomNumbers == null)
-                RandomNumbers = new Random(DateTime.UtcNow.Millisecond * 666);
-
             if (this.Entity.Transform.Position.Length() > 0 || this.Entity.Transform.Position.Length() < 0)
                 Position = this.Entity.Transform.Position;
         }
@@ -81,8 +75,16 @@ namespace Xenko_GameOff2018
         {
             IsActive = active;
 
-            if (Model != null)
-                Model.Enabled = IsActive;
+            if (Entity.Get<ModelComponent>() != null)
+                Entity.Get<ModelComponent>().Enabled = IsActive;
+
+            //if (Entity.GetChild(0).Get<ModelComponent>() != null)
+            //{ }
+
+            foreach (ModelComponent model in Entity.GetAll<ModelComponent>())
+            {
+                model.Enabled = active;
+            }
         }
 
         public void UpdatePR()
@@ -346,16 +348,6 @@ namespace Xenko_GameOff2018
                 framerotate -= MathUtil.TwoPi;
 
             return framerotate;
-        }
-
-        protected void SetModel()
-        {
-            Model = this.Entity.Get<ModelComponent>();
-        }
-
-        protected void SetModelChild()
-        {
-            Model = this.Entity.GetChild(0).Get<ModelComponent>();
         }
 
         protected void SetHeading(Vector3 waypoint, Vector3 stayback)

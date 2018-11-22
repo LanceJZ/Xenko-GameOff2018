@@ -17,4 +17,5 @@ If Drone gets destroyed and it had cargo, that cargo gets ejected into space.
 Impliment:
 Missiles from enemy bases will depend on ore.
 Enemy bases are spawned in a random area in one of four sectors. One base per sector.
-When an enemy base is destroyed
+When an enemy base is destroyed it should spawn in the same sector.
+Redu the four secor locations in base spawn.

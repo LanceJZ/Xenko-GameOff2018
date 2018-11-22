@@ -99,6 +99,12 @@ namespace Xenko_GameOff2018
 
         public void CreateEnemyBossCubes()
         {
+            //When I get more time make factory for this.
+            foreach (Entity boss in BossCubes)
+            {
+                SceneSystem.SceneInstance.RootScene.Entities.Remove(boss);
+            }
+
             BossCubes.Clear();
             BossRefs.Clear();
 

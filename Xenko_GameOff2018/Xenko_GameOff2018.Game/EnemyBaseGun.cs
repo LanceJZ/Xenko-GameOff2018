@@ -32,7 +32,6 @@ namespace Xenko_GameOff2018
 
             Missiles = new List<Missile>();
             TheRadius = 10;
-            SetModel();
             MissilePF = Content.Load<Prefab>("Prefabs/MissilePF");
         }
 
@@ -63,6 +62,7 @@ namespace Xenko_GameOff2018
             SceneRef = scene;
             PlayerRef = scene.PlayerRefAccess;
             IsActive = true;
+            RandomGenerator = SceneControl.RandomGenerator;
         }
 
         public void Enable()

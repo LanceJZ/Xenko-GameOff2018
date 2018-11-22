@@ -22,7 +22,6 @@ Hierarchy:
                         Materials: {}
                     9d7e2a3efd4873120c4aa0cafa51512a: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: c8687c11-c1e9-4202-ad63-aedc143a26f0
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -51,7 +50,6 @@ Hierarchy:
                         Materials: {}
                     1cbc75022978ee990244b62d58a19b24: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 84e91e71-90a6-4b33-a358-82c3144f4dd4
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -80,7 +78,6 @@ Hierarchy:
                         Materials: {}
                     e8fcf664bb6376279fdd659a3e841a1a: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 32b4c963-18d6-4649-bfa4-707f657dd6ae
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -117,7 +114,6 @@ Hierarchy:
                         Materials: {}
                     6a675ee29bef4945d2a23302fc51646b: !Xenko_GameOff2018.EnemyBase,Xenko_GameOff2018.Game
                         Id: bea9faaf-6723-4bad-8449-e2306b48ddb1
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -148,7 +144,6 @@ Hierarchy:
                         Materials: {}
                     76f4ed0e231d3126eeb0c50090b34abc: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 2b8d40fb-79d5-499e-933a-e326ea4ae806
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -177,7 +172,6 @@ Hierarchy:
                         Materials: {}
                     2774ddfce9b75b9907a036ea30050521: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 66fcb8b1-5020-41a0-ad1c-23dec6e460a2
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -206,7 +200,6 @@ Hierarchy:
                         Materials: {}
                     cef47ee89ba3e455ca0b80bec959ac76: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: ae0b0b64-6c1b-488f-aa87-1c17ef6fc922
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -235,7 +228,6 @@ Hierarchy:
                         Materials: {}
                     03c2e79e0802b5f72061965cc83d7d78: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 8a953225-3b39-4165-869b-f3e1a4799ce0
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -264,7 +256,6 @@ Hierarchy:
                         Materials: {}
                     fa903ab58b3e3e708613059d71badc64: !Xenko_GameOff2018.EnemyBaseGun,Xenko_GameOff2018.Game
                         Id: 5ad293a3-1875-4d2a-94a8-582eb717b453
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}

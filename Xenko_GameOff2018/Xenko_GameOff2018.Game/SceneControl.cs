@@ -41,6 +41,7 @@ namespace Xenko_GameOff2018
         public List<EnemyBase> EnemyBaseRefAccess { get => EnemyBaseRefs; }
         public List<Asteroid> AsteroidRefAccess { get => AsteroidRefs; }
         public GameState TheGameMode { get => GameMode; }
+        public static Random RandomGenerator { get => RandomNumbers; }
 
         GameState GameMode = GameState.Over;
         Prefab PlayerPF;
@@ -51,25 +52,20 @@ namespace Xenko_GameOff2018
         Radar TheRadar;
         List<EnemyBase> EnemyBaseRefs;
         List<Asteroid> AsteroidRefs;
+        static Random RandomNumbers;
 
         public override void Start()
         {
+            if (RandomNumbers == null)
+                RandomNumbers = new Random(DateTime.UtcNow.Millisecond * 666);
+
             EnemyBaseRefs = new List<EnemyBase>();
             AsteroidRefs = new List<Asteroid>();
-
             PlayerPF = Content.Load<Prefab>("Prefabs/PlayerPF");
             PlayerRef = SetupEntity(PlayerPF).Get<Player>();
-
             Prefab playerBasePF = Content.Load<Prefab>("Prefabs/PlayerBasePF");
             PlayerBaseRef = SetupEntity(playerBasePF).Get<PlayerBase>();
-
             EnemyBasePF = Content.Load<Prefab>("Prefabs/EnemyBasePF");
-
-            for (int i = 0; i < 4; i++)
-            {
-                SpawnBase();
-            }
-
             AsteroidPF = Content.Load<Prefab>("Prefabs/AsteroidPF");
 
             for (int i = 0; i < 4; i++)
@@ -79,6 +75,11 @@ namespace Xenko_GameOff2018
 
             PlayerRef.Setup(this);
 
+            for (int i = 0; i < 4; i++)
+            {
+                SpawnBase(i);
+            }
+
             Entity radarE = new Entity { new Radar() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(radarE);
             TheRadar = radarE.Get<Radar>();
@@ -87,7 +88,7 @@ namespace Xenko_GameOff2018
 
         public override void Update()
         {
-            CheckDroneBump();
+            CheckBumps();
         }
 
         public Entity SetupEntity(Prefab prefab)
@@ -98,10 +99,10 @@ namespace Xenko_GameOff2018
             return entity;
         }
 
-        void SpawnBase()
+        void SpawnBase(int sector)
         {
             Entity enemyBaseE = SetupEntity(EnemyBasePF);
-            enemyBaseE.Get<EnemyBase>().Setup(this);
+            enemyBaseE.Get<EnemyBase>().Setup(this, sector);
             EnemyBaseRefs.Add(enemyBaseE.Get<EnemyBase>());
         }
 
@@ -112,7 +113,7 @@ namespace Xenko_GameOff2018
             AsteroidRefs.Add(asteroidE.Get<Asteroid>());
         }
 
-        void CheckDroneBump()
+        void CheckBumps()
         {
             foreach(EnemyBase theBaseA in EnemyBaseRefs)
             {
@@ -134,9 +135,40 @@ namespace Xenko_GameOff2018
                                 {
                                     if (droneA.CirclesIntersect(droneB))
                                     {
-                                        droneA.Bumped(droneB.Position, droneB.Velocity);
-                                        droneB.Bumped(droneA.Position, droneA.Velocity);
+                                        droneA.Bumped(droneB);
+                                        droneB.Bumped(droneA);
                                     }
+                                }
+                            }
+
+                        }
+
+                        if (theBaseA.BossAccess == null || theBaseB.BossAccess == null)
+                            return;
+
+                        foreach (EnemyBoss bossA in theBaseA.BossAccess)
+                        {
+                            foreach (EnemyBoss bossB in theBaseB.BossAccess)
+                            {
+                                if (bossA != bossB)
+                                {
+                                    if (bossA.Active && bossB.Active)
+                                    {
+                                        if (bossA.CirclesIntersect(bossB))
+                                        {
+                                            bossA.Bumped(bossB);
+                                            bossB.Bumped(bossA);
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (droneA.Active && bossA.Active)
+                            {
+                                if (droneA.CirclesIntersect(bossA))
+                                {
+                                    droneA.Bumped(bossA);
+                                    bossA.Bumped(droneA);
                                 }
                             }
                         }

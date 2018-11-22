@@ -22,7 +22,6 @@ Hierarchy:
                         Materials: {}
                     6252ac42136a2b29a0588337ad4e2fc3: !Xenko_GameOff2018.PlayerBase,Xenko_GameOff2018.Game
                         Id: a41b971c-4740-461a-9072-c58daa069b7e
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}

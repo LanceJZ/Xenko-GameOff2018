@@ -25,8 +25,6 @@ namespace Xenko_GameOff2018
             base.Start();
 
             RotationVelocity = new Vector3(13.666f, 0, 0);
-
-            SetModel();
         }
 
         public override void Update()
@@ -69,6 +67,7 @@ namespace Xenko_GameOff2018
             AsteroidRefs = scene.AsteroidRefAccess;
             EnemyBaseRefs = scene.EnemyBaseRefAccess;
             PlayerRef = scene.PlayerRefAccess;
+            RandomGenerator = SceneControl.RandomGenerator;
         }
 
         public void Disable()

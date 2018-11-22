@@ -39,7 +39,6 @@ Hierarchy:
                         Materials: {}
                     220e628126f24bba9efb3851ec678adb: !Xenko_GameOff2018.Player,Xenko_GameOff2018.Game
                         Id: bdb16b45-ac61-49a8-85d8-d3b86ddc1d9f
-                        Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
                         Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -53,7 +52,7 @@ Hierarchy:
                         Deceleration: 0.0
                         MaxVelocity: 0.0
                         TheCamera: null
-                        ShotsRef: null
+                        ShotsAccess: null
         -   Entity:
                 Id: d984ff30-27ff-4444-bf37-4716125b725d
                 Name: PlayerFlameR
