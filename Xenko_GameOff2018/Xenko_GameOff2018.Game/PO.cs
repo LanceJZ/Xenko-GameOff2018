@@ -133,13 +133,16 @@ namespace Xenko_GameOff2018
         /// Circle collusion detection. Target circle will be compared to this class's.
         /// Will return true of they intersect.
         /// </summary>
-        /// <param name="Target">Target Positioned Object.</param>
+        /// <param name="target">Target Positioned Object.</param>
         /// <returns></returns>
-        public bool CirclesIntersect(PO Target)
+        public bool CirclesIntersect(PO target)
         {
-            float distanceX = Target.Position.X - Position.X;
-            float distanceY = Target.Position.Y - Position.Y;
-            float radius = Radius + Target.Radius;
+            if (target == null)
+                return false;
+
+            float distanceX = target.Position.X - Position.X;
+            float distanceY = target.Position.Y - Position.Y;
+            float radius = Radius + target.Radius;
 
             if ((distanceX * distanceX) + (distanceY * distanceY) < radius * radius)
                 return true;

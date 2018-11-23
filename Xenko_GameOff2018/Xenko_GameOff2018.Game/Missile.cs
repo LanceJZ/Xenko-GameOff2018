@@ -35,6 +35,9 @@ namespace Xenko_GameOff2018
         {
             base.Update();
 
+            if (!IsActive)
+                return;
+
             if (HitEdge())
                 MoveToOppisiteEdge();
 

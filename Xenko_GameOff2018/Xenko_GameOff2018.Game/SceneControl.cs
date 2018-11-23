@@ -61,19 +61,20 @@ namespace Xenko_GameOff2018
 
             EnemyBaseRefs = new List<EnemyBase>();
             AsteroidRefs = new List<Asteroid>();
+
             PlayerPF = Content.Load<Prefab>("Prefabs/PlayerPF");
-            PlayerRef = SetupEntity(PlayerPF).Get<Player>();
             Prefab playerBasePF = Content.Load<Prefab>("Prefabs/PlayerBasePF");
-            PlayerBaseRef = SetupEntity(playerBasePF).Get<PlayerBase>();
             EnemyBasePF = Content.Load<Prefab>("Prefabs/EnemyBasePF");
             AsteroidPF = Content.Load<Prefab>("Prefabs/AsteroidPF");
+
+            PlayerBaseRef = SetupEntity(playerBasePF).Get<PlayerBase>();
+            PlayerRef = SetupEntity(PlayerPF).Get<Player>();
+            PlayerRef.Setup(this);
 
             for (int i = 0; i < 4; i++)
             {
                 SpawnAsteroid();
             }
-
-            PlayerRef.Setup(this);
 
             for (int i = 0; i < 4; i++)
             {
@@ -84,11 +85,35 @@ namespace Xenko_GameOff2018
             SceneSystem.SceneInstance.RootScene.Entities.Add(radarE);
             TheRadar = radarE.Get<Radar>();
             TheRadar.Setup(this);
+            TheRadar.CreateEnemyBaseCubes();
         }
 
         public override void Update()
         {
             CheckBumps();
+        }
+
+        public void CheckEnemyBases()
+        {
+            int baseCount = 0;
+
+            foreach(EnemyBase enemyBase in EnemyBaseRefs)
+            {
+                if (enemyBase.Active)
+                    baseCount++;
+            }
+
+            if (baseCount == 0)
+            {
+                foreach (EnemyBase enemyBase in EnemyBaseRefs)
+                {
+                    enemyBase.Spawn();
+                }
+
+                PlayerRef.Reset();
+            }
+
+            TheRadar.CreateEnemyBaseCubes();
         }
 
         public Entity SetupEntity(Prefab prefab)

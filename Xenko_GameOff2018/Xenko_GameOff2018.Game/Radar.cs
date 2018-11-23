@@ -31,18 +31,8 @@ namespace Xenko_GameOff2018
 
         public override void Start()
         {
-            AsteroidCubes = new List<Entity>();
-            BaseCubes = new List<Entity>();
-            BossCubes = new List<Entity>();
-            BasePositions = new List<Vector3>();
-            BossRefs = new List<EnemyBoss>();
-
-            WhiteCubePF = Content.Load<Prefab>("Prefabs/WhiteCubePF");
-            RedCubePF = Content.Load<Prefab>("Prefabs/RedCubePF");
-            OrangeCubePF = Content.Load<Prefab>("Prefabs/OrangeCubePF");
             Prefab blueCubePF = Content.Load<Prefab>("Prefabs/BlueCubePF");
             Prefab lightBlueCubePF = Content.Load<Prefab>("Prefabs/LightBlueCubePF");
-
 
             //TestCubes();
             HomePosition = new Vector3(336 - (336f/5) - 60, 269 - (269f/5) - 60, 0);
@@ -51,12 +41,12 @@ namespace Xenko_GameOff2018
             PlayerDot.Transform.Scale = new Vector3(1.5f, 1.5f, 1);
 
             CreateAsteroidCubes();
-            CreateEnemyBaseCubes();
         }
 
         public override void Update()
         {
-            PlayerPosition = PlayerRef.Position;
+            PlayerPosition.X = PlayerRef.Position.X;
+            PlayerPosition.Y = PlayerRef.Position.Y;
             PlayerDot.Transform.Position = HomePosition + PlayerPosition;
             PlayerBaseDot.Transform.Position = HomePosition + PlayerPosition;
             PlayerBaseDot.Transform.Position -= ((PlayerPosition / 10) / 5);
@@ -68,6 +58,14 @@ namespace Xenko_GameOff2018
 
         public void Setup(SceneControl scene)
         {
+            WhiteCubePF = Content.Load<Prefab>("Prefabs/WhiteCubePF");
+            RedCubePF = Content.Load<Prefab>("Prefabs/RedCubePF");
+            OrangeCubePF = Content.Load<Prefab>("Prefabs/OrangeCubePF");
+            AsteroidCubes = new List<Entity>();
+            BaseCubes = new List<Entity>();
+            BossCubes = new List<Entity>();
+            BasePositions = new List<Vector3>();
+            BossRefs = new List<EnemyBoss>();
             SceneRef = scene;
             PlayerRef = scene.PlayerRefAccess;
             PlayerBaseRef = scene.PlayerBaseRefAccess;
@@ -87,13 +85,21 @@ namespace Xenko_GameOff2018
 
         public void CreateEnemyBaseCubes()
         {
+            foreach (Entity enemyBase in BaseCubes)
+            {
+                SceneSystem.SceneInstance.RootScene.Entities.Remove(enemyBase);
+            }
+
             BaseCubes.Clear();
             BasePositions.Clear();
 
-            foreach(EnemyBase enemy in EnemyBaseRefs)
+            foreach (EnemyBase enemyBase in EnemyBaseRefs)
             {
-                BaseCubes.Add(SceneRef.SetupEntity(RedCubePF));
-                BasePositions.Add(enemy.Position);
+                if (enemyBase.Active)
+                {
+                    BaseCubes.Add(SceneRef.SetupEntity(RedCubePF));
+                    BasePositions.Add(enemyBase.Position);
+                }
             }
         }
 

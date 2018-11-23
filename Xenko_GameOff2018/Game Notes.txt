@@ -5,7 +5,7 @@ As level of player goes up they can tell what ore the asteroid contains.
 Bases build ships that attack player.
 Super base build ships that attacks player's home base.
 When players home gets distroyed Game Over.
-Player uses ore to repair or build up home base.
+Player uses ore to repair or build up home base and to repair the player ship as well as upgrades.
 Player gets some exp from mining most from fighting.
 The base makes little ship drones that chase the player and fire at it. The base shoots misiles at the player, once every ten secons at level one.
 The player has shields that the player needs to turn on to use, and off to recharge. Discharge rate when on is 1 unit a second. Base sheilds are 100 points and can be upgraded as the player level goes up so that they drain slower. When a drone shoots the player that takes 4 shield points. If a drone hits the player that takes 6 points. If a base shoots the player that takes 10 points for a level one base.
@@ -15,7 +15,8 @@ The player home base is in the center of the field.
 If Drone gets destroyed and it had cargo, that cargo gets ejected into space.
 
 Impliment:
-Missiles from enemy bases will depend on ore.
-Enemy bases are spawned in a random area in one of four sectors. One base per sector.
-When an enemy base is destroyed it should spawn in the same sector.
-Redu the four secor locations in base spawn.
+
+
+After Jam features:
+For player reset, player ship autopilots to the base, avoiding asteroids.
+Make drones smarter, if there is a chunck near it will pick it up instead of mining.

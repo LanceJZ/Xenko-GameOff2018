@@ -37,13 +37,13 @@ namespace Xenko_GameOff2018
         {
             base.Update();
 
-            if (Active)
-            {
-                if (HitEdge())
-                    MoveToOppisiteEdge();
+            if (!IsActive)
+                return;
 
-                CheckCollusion();
-            }
+            if (HitEdge())
+                MoveToOppisiteEdge();
+
+            CheckCollusion();
         }
 
         public void Setup(Player player)
@@ -64,6 +64,9 @@ namespace Xenko_GameOff2018
 
         void CheckCollusion()
         {
+            if (PlayerRef == null)
+                return;
+
             if (PlayerRef.Active)
             {
                 if (CirclesIntersect(PlayerRef))

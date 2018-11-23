@@ -15,12 +15,15 @@ namespace Xenko_GameOff2018
 {
     public class EnemyBaseGun : PO
     {
+        public float FireRate { set => CurrentFireRate = value; }
+
         Player PlayerRef;
         SceneControl SceneRef;
         Prefab MissilePF;
         List<Missile> Missiles;
         Vector3 WorldPos;
         Timer FireTimer;
+        float CurrentFireRate;
 
         public override void Start()
         {
@@ -52,7 +55,7 @@ namespace Xenko_GameOff2018
                         FireMissile();
                     }
 
-                    FireTimer.Reset(RandomMinMax(10, 30));
+                    FireTimer.Reset(RandomMinMax(CurrentFireRate, CurrentFireRate * 3));
                 }
             }
         }
@@ -61,13 +64,13 @@ namespace Xenko_GameOff2018
         {
             SceneRef = scene;
             PlayerRef = scene.PlayerRefAccess;
-            IsActive = true;
             RandomGenerator = SceneControl.RandomGenerator;
         }
 
         public void Enable()
         {
             IsActive = true;
+            CurrentFireRate = 10;
         }
 
         public void Disable()

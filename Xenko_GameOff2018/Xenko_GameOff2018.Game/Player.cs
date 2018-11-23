@@ -122,6 +122,11 @@ namespace Xenko_GameOff2018
             Velocity -= VelocityFromVectors(other.Position, 75);
         }
 
+        public void Reset()
+        {
+            Docked();
+        }
+
         void GetInput()
         {
             float turnSpeed = 4.75f;

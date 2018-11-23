@@ -31,18 +31,18 @@ namespace Xenko_GameOff2018
         {
             base.Update();
 
-            if (Active)
+            if (!IsActive)
+                return;
+
+            if (HitEdge())
+                MoveToOppisiteEdge();
+
+            if (LifeTimer.Expired)
             {
-                if (HitEdge())
-                    MoveToOppisiteEdge();
-
-                if (LifeTimer.Expired)
-                {
-                    Disable();
-                }
-
-                CheckCollision();
+                Disable();
             }
+
+            CheckCollision();
         }
 
         public void Fire(Vector3 position, Vector3 velocity, float rotation)

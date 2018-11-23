@@ -92,12 +92,18 @@ namespace Xenko_GameOff2018
             }
 
             CheckForPlayer();
+            CheckCollusion();
+        }
+
+        public void Disable()
+        {
+            IsActive = false;
+            SceneRef.RadarAccess.CreateEnemyBossCubes();
         }
 
         public void Destroy()
         {
-            SceneRef.RadarAccess.CreateEnemyBossCubes();
-            IsActive = false;
+            Disable();
         }
 
         public void Setup(SceneControl scene)
@@ -134,10 +140,10 @@ namespace Xenko_GameOff2018
         {
             if (BumpTimer.Expired)
             {
+                Deceleration = 0.015f;
                 Rotation = new Vector3(0, 0, Rotation.Z);
                 RotationVelocity = Vector3.Zero;
                 Velocity = Vector3.Zero;
-                Deceleration = 0.015f;
                 WasBumped = false;
             }
         }
@@ -146,7 +152,10 @@ namespace Xenko_GameOff2018
         {
             foreach (PlayerShot shot in PlayerRef.ShotsAccess)
             {
-                if (CirclesIntersect(shot))
+                Vector3 shotMove = shot.Position;
+                shotMove.Z += 60;
+
+                if (CirclesIntersect(shotMove, shot.Radius))
                 {
                     shot.Disable();
                     HitPoints -= 10;

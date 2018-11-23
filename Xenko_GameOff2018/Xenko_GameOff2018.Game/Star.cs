@@ -18,12 +18,12 @@ namespace Xenko_GameOff2018
         {
             base.Start();
 
-            float outterBuffer = 100;
+            float outterBuffer = 200;
 
             Position.X = RandomMinMax(-Edge.X + outterBuffer, Edge.X + outterBuffer);
             Position.Y = RandomMinMax(-Edge.Y + outterBuffer, Edge.Y + outterBuffer);
-            Position.Z = -75;
-            Scale = new Vector3(0.5f, 0.5f, 0.5f);
+            Position.Z = -350;
+            //Scale = new Vector3(0.125f, 0.125f, 1);
 
             float amount = RandomMinMax(-5, 5);
 

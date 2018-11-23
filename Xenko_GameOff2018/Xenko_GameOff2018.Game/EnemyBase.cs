@@ -22,9 +22,10 @@ namespace Xenko_GameOff2018
         List<Asteroid> AsteroidRefs;
         List<EnemyDrone> Drones;
         List<EnemyBoss> Bosses;
-        EnemyBaseGun[] EnemyGuns = new EnemyBaseGun[8];
+        EnemyBaseGun[] Guns = new EnemyBaseGun[8];
         Prefab DronePF;
         Prefab BossPF;
+        int Sector;
         int OreCount = 0;
         Timer LaunchTimer;
         bool LaunchNewDrone;
@@ -46,13 +47,6 @@ namespace Xenko_GameOff2018
             Position.Z = 60;
             IsActive = true;
             TheRadius = 50;
-
-            for (int i = 0; i < 8; i++)
-            {
-                string gun = "EnemyBaseTurret-" + 0 + (i + 1);
-                EnemyGuns[i] = Entity.FindChild(gun).Get<EnemyBaseGun>();
-                EnemyGuns[i].Setup(SceneRef);
-            }
         }
 
         public override void Update()
@@ -75,10 +69,16 @@ namespace Xenko_GameOff2018
                             activeDrones++;
                     }
 
-                    if (OreCount > 1)
+                    if (OreCount > 5)
                     {
                         SpawnBoss();
                         OreCount = 0;
+
+                        foreach(EnemyBaseGun gun in Guns)
+                        {
+                            gun.FireRate = 10;
+                        }
+
                         return;
                     }
 
@@ -93,44 +93,49 @@ namespace Xenko_GameOff2018
         public void Setup(SceneControl scene, int sector)
         {
             SceneRef = scene;
+            Sector = sector;
             PlayerRef = scene.PlayerRefAccess;
             AsteroidRefs = scene.AsteroidRefAccess;
             RandomGenerator = SceneControl.RandomGenerator;
-            Spawn(sector);
+
+            for (int i = 0; i < 8; i++)
+            {
+                string gun = "EnemyBaseTurret-" + 0 + (i + 1);
+                Guns[i] = Entity.FindChild(gun).Get<EnemyBaseGun>();
+                Guns[i].Setup(SceneRef);
+            }
+
+            Spawn();
         }
 
         public void AddChunk(OreType type)
         {
             OreCount++;
-        }
 
-        public void CheckHit()
-        {
-            foreach(EnemyBaseGun gun in EnemyGuns)
+            foreach(EnemyBaseGun gun in Guns)
             {
-                if (gun.Active)
-                {
-                    foreach (PlayerShot shot in PlayerRef.ShotsAccess)
-                    {
-                        if (shot.Active)
-                        {
-                            if (shot.CirclesIntersect(gun.Position + Position, gun.Radius))
-                            {
-                                gun.Disable();
-                                shot.Disable();
-                            }
-                        }
-                    }
-                }
+                if (OreCount > 9)
+                    return;
+
+                gun.FireRate = 10 - OreCount;
             }
         }
 
-        void Spawn(int sector)
+        public void Disable()
         {
+            IsActive = false;
+        }
+
+        public void Spawn()
+        {
+            IsActive = true;
+            OreCount = 0;
+            HitPoints = 100;
+
             Vector2 outterBuffer = new Vector2(400, 350);
             Vector2 innerBuffer = new Vector2(450, 400);
 
-            switch (sector)
+            switch (Sector)
             {
                 case 0:
                     Position.X = RandomMinMax(-innerBuffer.X, Edge.X - outterBuffer.X);
@@ -149,15 +154,65 @@ namespace Xenko_GameOff2018
                     Position.Y = RandomMinMax(-innerBuffer.Y, Edge.Y - outterBuffer.Y);
                     break;
             }
+
+            foreach (EnemyBaseGun gun in Guns)
+            {
+                gun.Enable();
+            }
+        }
+
+        void Destroyed()
+        {
+            Disable();
+
+            foreach (EnemyDrone drone in Drones)
+            {
+                drone.Destroyed();
+            }
+
+            SceneRef.CheckEnemyBases();
+         }
+
+        void CheckHit(PlayerShot shot)
+        {
+            int gunCount = 0;
+
+            foreach(EnemyBaseGun gun in Guns)
+            {
+                if (gun.Active)
+                {
+                    gunCount++;
+
+                    if (shot.CirclesIntersect(gun.Position + Position, gun.Radius))
+                    {
+                        gun.Disable();
+                        shot.Disable();
+                    }
+                }
+            }
+
+            if (gunCount == 0)
+            {
+                shot.Disable();
+                HitPoints -= 10;
+
+                if (HitPoints < 0)
+                {
+                    Destroyed();
+                }
+            }
         }
 
         void CheckCollusion()
         {
             foreach (PlayerShot shot in PlayerRef.ShotsAccess)
             {
-                if (CirclesIntersect(shot))
+                if (shot.Active)
                 {
-                    CheckHit();
+                    if (CirclesIntersect(shot))
+                    {
+                        CheckHit(shot);
+                    }
                 }
             }
         }

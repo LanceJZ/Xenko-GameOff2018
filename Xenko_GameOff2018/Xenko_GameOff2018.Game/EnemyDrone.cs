@@ -153,6 +153,16 @@ namespace Xenko_GameOff2018
             Deceleration = 0.125f;
         }
 
+        public void Disable()
+        {
+            IsActive = false;
+        }
+
+        public void Destroyed()
+        {
+            Destroy();
+        }
+
         void GotoWaypoint()
         {
             Thrust = 15.666f;
