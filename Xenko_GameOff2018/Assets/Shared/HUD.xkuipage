@@ -1,0 +1,144 @@
+!UIPageAsset
+Id: cbb9110e-a41a-41de-ba09-814a41169e73
+SerializedVersion: {Xenko: 2.1.0.1}
+Tags: []
+Design:
+    Resolution: {X: 1000.0, Y: 800.0, Z: 1000.0}
+Hierarchy:
+    RootParts:
+        - !Grid ref!! b3fa203e-15fc-4f1b-b887-be1fe05aa444
+    Parts:
+        -   UIElement: !TextBlock
+                Id: 0ecf9554-3bc0-4050-82f9-187c6ccab69a
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 124.0
+                Height: 24.0
+                HorizontalAlignment: Right
+                Margin: {Right: -10.0}
+                Name: Exp
+                Text: 0
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: 0fd8e901-b3cf-4ea2-ab24-5fa297f85e83
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 63.0
+                Height: 24.0
+                Margin: {Left: 259.0, Right: 216.0}
+                Name: LevelText
+                Text: Level
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: 48eba675-8591-43a5-a503-02ed6eb0defd
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 95.5
+                Height: 16.0
+                HorizontalAlignment: Left
+                Margin: {Left: 76.5, Bottom: 8.0}
+                MaximumWidth: 3.40282347E+38
+                MaximumHeight: 3.40282347E+38
+                MaximumDepth: 3.40282347E+38
+                Name: Score
+                Text: 0000
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: 4e4f9ab1-2c4b-41ae-9d81-90ec0264c9d5
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 30.0
+                Height: 24.0
+                HorizontalAlignment: Left
+                Margin: {Left: 229.0}
+                Name: Ore
+                Text: 0
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: a0132b17-78c2-43e3-aca3-e616b71a07d0
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 37.0
+                Height: 24.0
+                HorizontalAlignment: Right
+                Margin: {Right: 124.0}
+                Name: ExpText
+                Text: Exp
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !Grid
+                Id: b3fa203e-15fc-4f1b-b887-be1fe05aa444
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Opacity: 0.39
+                Width: 536.0
+                Height: 24.0
+                HorizontalAlignment: Left
+                VerticalAlignment: Top
+                Margin: {}
+                MaximumWidth: 3.40282347E+38
+                MaximumHeight: 3.40282347E+38
+                MaximumDepth: 3.40282347E+38
+                Children:
+                    726ae43850b0798a824a9c1e9b21f6c1: !TextBlock ref!! f0e47c34-7620-4a52-84d8-2230661a4132
+                    22d98e62f4fdfcb9d11ed186626cf7e7: !TextBlock ref!! 48eba675-8591-43a5-a503-02ed6eb0defd
+                    3c42f934a1d961926e14739cbd36efda: !TextBlock ref!! cf23afbe-995f-4c33-9f5d-90bab56aff20
+                    0b49ac4cb93a6feda688cc32ba29942e: !TextBlock ref!! 4e4f9ab1-2c4b-41ae-9d81-90ec0264c9d5
+                    e99450c4ec1d12bed538efcd70e1de90: !TextBlock ref!! 0fd8e901-b3cf-4ea2-ab24-5fa297f85e83
+                    184d2bef1b527f7d898287da0c8fd359: !TextBlock ref!! c9173b2e-c698-4869-b400-d76cb503f709
+                    1a0bbd093d2ceaa1f127fa007cbf9202: !TextBlock ref!! a0132b17-78c2-43e3-aca3-e616b71a07d0
+                    be3b44cda23f48ae0edffa7e6d929eed: !TextBlock ref!! 0ecf9554-3bc0-4050-82f9-187c6ccab69a
+                RowDefinitions: {}
+                ColumnDefinitions: {}
+                LayerDefinitions: {}
+        -   UIElement: !TextBlock
+                Id: c9173b2e-c698-4869-b400-d76cb503f709
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 27.0
+                Height: 24.0
+                HorizontalAlignment: Right
+                Margin: {Right: 176.0}
+                Name: Level
+                Text: 1
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: cf23afbe-995f-4c33-9f5d-90bab56aff20
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 39.5
+                Height: 24.0
+                HorizontalAlignment: Left
+                Margin: {Left: 172.0}
+                Name: OreText
+                Text: Ore
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: f0e47c34-7620-4a52-84d8-2230661a4132
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 62.0
+                Height: 16.0
+                HorizontalAlignment: Left
+                Margin: {Bottom: 8.0}
+                MaximumWidth: 3.40282347E+38
+                MaximumHeight: 3.40282347E+38
+                MaximumDepth: 3.40282347E+38
+                Name: ScoreText
+                Text: Score
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}

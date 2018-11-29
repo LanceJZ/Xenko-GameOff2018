@@ -34,6 +34,8 @@ namespace Xenko_GameOff2018
         Chunk ChunkRef;
         List<EnemyBase> EnemyBaseRefs;
         List<Asteroid> AsteroidRefs;
+        HUD HUDRef;
+        SceneControl SceneRef;
         Asteroid NearAsteroid;
         Vector3 Waypoint = Vector3.Zero;
         bool WaypointReached;
@@ -128,6 +130,8 @@ namespace Xenko_GameOff2018
 
         public void Setup(SceneControl scene, EnemyBase fromBase)
         {
+            //HUDRef = scene.HUDAccess;
+            SceneRef = scene;
             PlayerRef = scene.PlayerRefAccess;
             EnemyBaseRefs = scene.EnemyBaseRefAccess;
             AsteroidRefs = scene.AsteroidRefAccess;
@@ -362,6 +366,7 @@ namespace Xenko_GameOff2018
                     {
                         Destroy();
                         shot.Disable();
+                        SceneRef.PlayerScore(10);
                         break;
                     }
                 }

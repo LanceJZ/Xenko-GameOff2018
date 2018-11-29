@@ -35,6 +35,7 @@ namespace Xenko_GameOff2018
 
     public class SceneControl : SyncScript
     {
+        //public HUD HUDAccess { get => TheHUD; }
         public Radar RadarAccess { get => TheRadar; }
         public Player PlayerRefAccess { get => PlayerRef; }
         public PlayerBase PlayerBaseRefAccess { get => PlayerBaseRef; }
@@ -44,15 +45,17 @@ namespace Xenko_GameOff2018
         public static Random RandomGenerator { get => RandomNumbers; }
 
         GameState GameMode = GameState.Over;
-        Prefab PlayerPF;
+        //Prefab PlayerPF;
         Prefab EnemyBasePF;
         Prefab AsteroidPF;
         Player PlayerRef;
         PlayerBase PlayerBaseRef;
         Radar TheRadar;
+        HUD TheHUD;
         List<EnemyBase> EnemyBaseRefs;
         List<Asteroid> AsteroidRefs;
         static Random RandomNumbers;
+        int Score = 0;
 
         public override void Start()
         {
@@ -62,13 +65,14 @@ namespace Xenko_GameOff2018
             EnemyBaseRefs = new List<EnemyBase>();
             AsteroidRefs = new List<Asteroid>();
 
-            PlayerPF = Content.Load<Prefab>("Prefabs/PlayerPF");
+            Prefab playerPF = Content.Load<Prefab>("Prefabs/PlayerPF");
             Prefab playerBasePF = Content.Load<Prefab>("Prefabs/PlayerBasePF");
             EnemyBasePF = Content.Load<Prefab>("Prefabs/EnemyBasePF");
             AsteroidPF = Content.Load<Prefab>("Prefabs/AsteroidPF");
+            Prefab hudPF = Content.Load<Prefab>("Prefabs/HudPF");
 
             PlayerBaseRef = SetupEntity(playerBasePF).Get<PlayerBase>();
-            PlayerRef = SetupEntity(PlayerPF).Get<Player>();
+            PlayerRef = SetupEntity(playerPF).Get<Player>();
             PlayerRef.Setup(this);
 
             for (int i = 0; i < 4; i++)
@@ -86,11 +90,15 @@ namespace Xenko_GameOff2018
             TheRadar = radarE.Get<Radar>();
             TheRadar.Setup(this);
             TheRadar.CreateEnemyBaseCubes();
+
+            TheHUD = SetupEntity(hudPF).Get<HUD>();
         }
 
         public override void Update()
         {
             CheckBumps();
+
+
         }
 
         public void CheckEnemyBases()
@@ -122,6 +130,12 @@ namespace Xenko_GameOff2018
             Entity entity = prefab.Instantiate().First();
             SceneSystem.SceneInstance.RootScene.Entities.Add(entity);
             return entity;
+        }
+
+        public void PlayerScore(int points)
+        {
+            Score += points;
+            TheHUD.Score = Score;
         }
 
         void SpawnBase(int sector)
