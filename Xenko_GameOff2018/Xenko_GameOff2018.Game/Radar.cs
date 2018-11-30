@@ -67,10 +67,10 @@ namespace Xenko_GameOff2018
             BasePositions = new List<Vector3>();
             BossRefs = new List<EnemyBoss>();
             SceneRef = scene;
-            PlayerRef = scene.PlayerRefAccess;
-            PlayerBaseRef = scene.PlayerBaseRefAccess;
-            AsteroidRefs = scene.AsteroidRefAccess;
-            EnemyBaseRefs = scene.EnemyBaseRefAccess;
+            PlayerRef = scene.PlayerAccess;
+            PlayerBaseRef = scene.PlayerBaseAccess;
+            AsteroidRefs = scene.AsteroidAccess;
+            EnemyBaseRefs = scene.EnemyBaseAccess;
         }
 
         public void CreateAsteroidCubes()

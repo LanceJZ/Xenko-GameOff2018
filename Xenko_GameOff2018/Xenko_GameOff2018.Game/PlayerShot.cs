@@ -64,9 +64,9 @@ namespace Xenko_GameOff2018
 
         public void Setup(SceneControl scene)
         {
-            AsteroidRefs = scene.AsteroidRefAccess;
-            EnemyBaseRefs = scene.EnemyBaseRefAccess;
-            PlayerRef = scene.PlayerRefAccess;
+            AsteroidRefs = scene.AsteroidAccess;
+            EnemyBaseRefs = scene.EnemyBaseAccess;
+            PlayerRef = scene.PlayerAccess;
             RandomGenerator = SceneControl.RandomGenerator;
         }
 

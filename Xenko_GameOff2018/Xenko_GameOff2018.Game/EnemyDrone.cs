@@ -132,9 +132,9 @@ namespace Xenko_GameOff2018
         {
             //HUDRef = scene.HUDAccess;
             SceneRef = scene;
-            PlayerRef = scene.PlayerRefAccess;
-            EnemyBaseRefs = scene.EnemyBaseRefAccess;
-            AsteroidRefs = scene.AsteroidRefAccess;
+            PlayerRef = scene.PlayerAccess;
+            EnemyBaseRefs = scene.EnemyBaseAccess;
+            AsteroidRefs = scene.AsteroidAccess;
             FromBaseRef = fromBase;
             RandomGenerator = SceneControl.RandomGenerator;
         }
@@ -366,7 +366,7 @@ namespace Xenko_GameOff2018
                     {
                         Destroy();
                         shot.Disable();
-                        SceneRef.PlayerScore(10);
+                        SceneRef.PlayerScore(1);
                         break;
                     }
                 }

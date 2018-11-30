@@ -109,7 +109,7 @@ namespace Xenko_GameOff2018
         public void Setup(SceneControl scene)
         {
             SceneRef = scene;
-            PlayerRef = scene.PlayerRefAccess;
+            PlayerRef = scene.PlayerAccess;
             RandomGenerator = SceneControl.RandomGenerator;
         }
 
@@ -162,6 +162,7 @@ namespace Xenko_GameOff2018
 
                     if (HitPoints < 0)
                     {
+                        SceneRef.PlayerScore(100);
                         Destroy();
                     }
                 }

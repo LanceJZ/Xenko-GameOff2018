@@ -94,8 +94,8 @@ namespace Xenko_GameOff2018
         {
             SceneRef = scene;
             Sector = sector;
-            PlayerRef = scene.PlayerRefAccess;
-            AsteroidRefs = scene.AsteroidRefAccess;
+            PlayerRef = scene.PlayerAccess;
+            AsteroidRefs = scene.AsteroidAccess;
             RandomGenerator = SceneControl.RandomGenerator;
 
             for (int i = 0; i < 8; i++)
@@ -185,6 +185,7 @@ namespace Xenko_GameOff2018
 
                     if (shot.CirclesIntersect(gun.Position + Position, gun.Radius))
                     {
+                        SceneRef.PlayerScore(20);
                         gun.Disable();
                         shot.Disable();
                     }
@@ -198,6 +199,7 @@ namespace Xenko_GameOff2018
 
                 if (HitPoints < 0)
                 {
+                    SceneRef.PlayerScore(250);
                     Destroyed();
                 }
             }

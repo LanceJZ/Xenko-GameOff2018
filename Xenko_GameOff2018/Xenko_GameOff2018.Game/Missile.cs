@@ -18,6 +18,7 @@ namespace Xenko_GameOff2018
         Timer LifeTimer;
         List<Asteroid> AsteroidRefs;
         Player PlayerRef;
+        SceneControl SceneRef;
         float Thrust = 10;
         float TurnRate = 0.25f;
 
@@ -77,8 +78,9 @@ namespace Xenko_GameOff2018
 
         public void Setup(SceneControl scene)
         {
-            AsteroidRefs = scene.AsteroidRefAccess;
-            PlayerRef = scene.PlayerRefAccess;
+            SceneRef = scene;
+            AsteroidRefs = scene.AsteroidAccess;
+            PlayerRef = scene.PlayerAccess;
             RandomGenerator = SceneControl.RandomGenerator;
         }
 
@@ -105,6 +107,7 @@ namespace Xenko_GameOff2018
                 if (CirclesIntersect(PlayerRef))
                 {
                     Disable();
+                    PlayerRef.HPAccess = -10;
                     return;
                 }
 
@@ -114,6 +117,7 @@ namespace Xenko_GameOff2018
                     {
                         if (CirclesIntersect(shot))
                         {
+                            SceneRef.PlayerScore(10);
                             Disable();
                             shot.Disable();
                             return;

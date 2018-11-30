@@ -53,6 +53,7 @@ Hierarchy:
                         MaxVelocity: 0.0
                         TheCamera: null
                         ShotsAccess: null
+                        HPAccess: 100
         -   Entity:
                 Id: d984ff30-27ff-4444-bf37-4716125b725d
                 Name: PlayerFlameR

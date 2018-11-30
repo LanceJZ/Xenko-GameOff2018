@@ -35,17 +35,16 @@ namespace Xenko_GameOff2018
 
     public class SceneControl : SyncScript
     {
-        //public HUD HUDAccess { get => TheHUD; }
+        public HUD HUDAccess { get => TheHUD; }
         public Radar RadarAccess { get => TheRadar; }
-        public Player PlayerRefAccess { get => PlayerRef; }
-        public PlayerBase PlayerBaseRefAccess { get => PlayerBaseRef; }
-        public List<EnemyBase> EnemyBaseRefAccess { get => EnemyBaseRefs; }
-        public List<Asteroid> AsteroidRefAccess { get => AsteroidRefs; }
+        public Player PlayerAccess { get => PlayerRef; }
+        public PlayerBase PlayerBaseAccess { get => PlayerBaseRef; }
+        public List<EnemyBase> EnemyBaseAccess { get => EnemyBaseRefs; }
+        public List<Asteroid> AsteroidAccess { get => AsteroidRefs; }
         public GameState TheGameMode { get => GameMode; }
         public static Random RandomGenerator { get => RandomNumbers; }
 
         GameState GameMode = GameState.Over;
-        //Prefab PlayerPF;
         Prefab EnemyBasePF;
         Prefab AsteroidPF;
         Player PlayerRef;
@@ -71,9 +70,10 @@ namespace Xenko_GameOff2018
             AsteroidPF = Content.Load<Prefab>("Prefabs/AsteroidPF");
             Prefab hudPF = Content.Load<Prefab>("Prefabs/HudPF");
 
-            PlayerBaseRef = SetupEntity(playerBasePF).Get<PlayerBase>();
             PlayerRef = SetupEntity(playerPF).Get<Player>();
             PlayerRef.Setup(this);
+            PlayerBaseRef = SetupEntity(playerBasePF).Get<PlayerBase>();
+            PlayerBaseRef.Setup(this);
 
             for (int i = 0; i < 4; i++)
             {
@@ -135,6 +135,12 @@ namespace Xenko_GameOff2018
         public void PlayerScore(int points)
         {
             Score += points;
+            TheHUD.Score = Score;
+        }
+
+        public void ResetGame()
+        {
+            Score = 0;
             TheHUD.Score = Score;
         }
 

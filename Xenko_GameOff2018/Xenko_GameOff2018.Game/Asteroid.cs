@@ -82,7 +82,7 @@ namespace Xenko_GameOff2018
         public void Setup(SceneControl scene)
         {
             SceneRef = scene;
-            PlayerRef = scene.PlayerRefAccess;
+            PlayerRef = scene.PlayerAccess;
         }
 
         public Chunk MineAttempt()

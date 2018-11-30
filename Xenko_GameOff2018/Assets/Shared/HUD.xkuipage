@@ -12,10 +12,10 @@ Hierarchy:
                 Id: 0ecf9554-3bc0-4050-82f9-187c6ccab69a
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
-                Width: 124.0
+                Width: 45.0
                 Height: 24.0
                 HorizontalAlignment: Right
-                Margin: {Right: -10.0}
+                Margin: {Right: 151.0}
                 Name: Exp
                 Text: 0
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
@@ -27,9 +27,22 @@ Hierarchy:
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
                 Width: 63.0
                 Height: 24.0
-                Margin: {Left: 259.0, Right: 216.0}
+                Margin: {Left: 272.0, Right: 265.0}
                 Name: LevelText
                 Text: Level
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: 423945d7-c3dc-4765-ad7e-a4e21210200e
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 107.0
+                Height: 24.0
+                HorizontalAlignment: Right
+                Margin: {Right: 40.0}
+                Name: BaseOreText
+                Text: Base Ore
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
                 TextSize: 20.0
                 TextColor: {R: 240, G: 240, B: 240, A: 255}
@@ -37,10 +50,10 @@ Hierarchy:
                 Id: 48eba675-8591-43a5-a503-02ed6eb0defd
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
-                Width: 95.5
+                Width: 71.5
                 Height: 16.0
                 HorizontalAlignment: Left
-                Margin: {Left: 76.5, Bottom: 8.0}
+                Margin: {Left: 62.0, Bottom: 8.0}
                 MaximumWidth: 3.40282347E+38
                 MaximumHeight: 3.40282347E+38
                 MaximumDepth: 3.40282347E+38
@@ -53,12 +66,38 @@ Hierarchy:
                 Id: 4e4f9ab1-2c4b-41ae-9d81-90ec0264c9d5
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
-                Width: 30.0
+                Width: 27.0
                 Height: 24.0
                 HorizontalAlignment: Left
-                Margin: {Left: 229.0}
+                Margin: {Left: 245.0}
                 Name: Ore
                 Text: 0
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: 58c16cf7-2bfe-40ea-8a58-c442ebc4589a
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 40.0
+                Height: 24.0
+                HorizontalAlignment: Right
+                Margin: {}
+                Name: BaseOre
+                Text: 0
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: 8c083248-97ec-4318-9c3d-d6a4ca8c9705
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 29.0
+                Height: 24.0
+                HorizontalAlignment: Left
+                Margin: {Left: 133.5}
+                Name: HPText
+                Text: HP
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
                 TextSize: 20.0
                 TextColor: {R: 240, G: 240, B: 240, A: 255}
@@ -66,10 +105,10 @@ Hierarchy:
                 Id: a0132b17-78c2-43e3-aca3-e616b71a07d0
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
-                Width: 37.0
+                Width: 42.0
                 Height: 24.0
                 HorizontalAlignment: Right
-                Margin: {Right: 124.0}
+                Margin: {Right: 196.0}
                 Name: ExpText
                 Text: Exp
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
@@ -80,11 +119,10 @@ Hierarchy:
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
                 Opacity: 0.39
-                Width: 536.0
+                Width: 600.0
                 Height: 24.0
-                HorizontalAlignment: Left
                 VerticalAlignment: Top
-                Margin: {}
+                Margin: {Right: 400.0}
                 MaximumWidth: 3.40282347E+38
                 MaximumHeight: 3.40282347E+38
                 MaximumDepth: 3.40282347E+38
@@ -97,6 +135,10 @@ Hierarchy:
                     184d2bef1b527f7d898287da0c8fd359: !TextBlock ref!! c9173b2e-c698-4869-b400-d76cb503f709
                     1a0bbd093d2ceaa1f127fa007cbf9202: !TextBlock ref!! a0132b17-78c2-43e3-aca3-e616b71a07d0
                     be3b44cda23f48ae0edffa7e6d929eed: !TextBlock ref!! 0ecf9554-3bc0-4050-82f9-187c6ccab69a
+                    d8504c8927d473aa06210186cb0822f4: !TextBlock ref!! 423945d7-c3dc-4765-ad7e-a4e21210200e
+                    5bbeffc70ba456075181d73715b23e77: !TextBlock ref!! 58c16cf7-2bfe-40ea-8a58-c442ebc4589a
+                    52a11c32987a92ef6a9ec60bf7086f18: !TextBlock ref!! 8c083248-97ec-4318-9c3d-d6a4ca8c9705
+                    cbbb9fd9d5b8bc3fcfd8f5135dea2a31: !TextBlock ref!! ea590684-d137-4fa6-8cb7-948ffc731beb
                 RowDefinitions: {}
                 ColumnDefinitions: {}
                 LayerDefinitions: {}
@@ -107,7 +149,7 @@ Hierarchy:
                 Width: 27.0
                 Height: 24.0
                 HorizontalAlignment: Right
-                Margin: {Right: 176.0}
+                Margin: {Right: 238.0}
                 Name: Level
                 Text: 1
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
@@ -117,12 +159,25 @@ Hierarchy:
                 Id: cf23afbe-995f-4c33-9f5d-90bab56aff20
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
-                Width: 39.5
+                Width: 42.5
                 Height: 24.0
                 HorizontalAlignment: Left
-                Margin: {Left: 172.0}
+                Margin: {Left: 202.5}
                 Name: OreText
                 Text: Ore
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: ea590684-d137-4fa6-8cb7-948ffc731beb
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 40.0
+                Height: 24.0
+                HorizontalAlignment: Left
+                Margin: {Left: 162.5}
+                Name: HP
+                Text: 100
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
                 TextSize: 20.0
                 TextColor: {R: 240, G: 240, B: 240, A: 255}

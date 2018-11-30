@@ -16,6 +16,25 @@ namespace Xenko_GameOff2018
     public class Player : PO
     {
         public List<PlayerShot> ShotsAccess { get => Shots; }
+        public int MaxHPAcess { get => MaxHP; }
+        public int HPAccess
+        {
+            get => HP;
+
+            set
+            {
+                if (HP + value < MaxHP && HP + value > 0)
+                {
+                    HP += value;
+                    SceneRef.HUDAccess.HP = HP;
+                }
+
+                if (HP + value <= 0)
+                {
+                    Destroyed();
+                }
+            }
+        }
 
         ModelComponent FlameRModel;
         ModelComponent FlameLModel;
@@ -31,6 +50,10 @@ namespace Xenko_GameOff2018
         List<PlayerShot> Shots;
 
         float ThrustAmount = 3.666f;
+        int ExP = 0;
+        int Level = 1;
+        int HP = 100;
+        int MaxHP = 100;
         bool ThrustOn;
         bool InDock;
 
@@ -101,7 +124,7 @@ namespace Xenko_GameOff2018
         public void Setup(SceneControl scene)
         {
             SceneRef = scene;
-            AsteroidRefs = scene.AsteroidRefAccess;
+            AsteroidRefs = scene.AsteroidAccess;
             RandomGenerator = SceneControl.RandomGenerator;
         }
 
@@ -111,6 +134,7 @@ namespace Xenko_GameOff2018
                 return;
 
             ChunkRefs.Add(chunk);
+            SceneRef.HUDAccess.Ore = ChunkRefs.Count;
             chunk.Disable();
         }
 
@@ -125,6 +149,15 @@ namespace Xenko_GameOff2018
         public void Reset()
         {
             Docked();
+        }
+
+        public void Destroyed()
+        {
+            HP = 100;
+            SceneRef.HUDAccess.HP = HP;
+            SceneRef.PlayerBaseAccess.Reset();
+            SceneRef.ResetGame();
+            Reset();
         }
 
         void GetInput()
@@ -162,7 +195,7 @@ namespace Xenko_GameOff2018
                 {
                     if (UnloadTimer.Expired)
                     {
-                        Position.X = SceneRef.PlayerBaseRefAccess.Radius + Radius + 1;
+                        Position.X = SceneRef.PlayerBaseAccess.Radius + Radius + 1;
                         Position.Z = 0;
                         InDock = false;
                     }
@@ -312,7 +345,7 @@ namespace Xenko_GameOff2018
 
             foreach (Chunk chunk in ChunkRefs)
             {
-                SceneRef.PlayerBaseRefAccess.UnloadOre(chunk.ThisOreType);
+                SceneRef.PlayerBaseAccess.UnloadOre(chunk.ThisOreType);
                 chunk.IsInTransit = false;
             }
 
@@ -326,15 +359,18 @@ namespace Xenko_GameOff2018
             Position.Z = 50;
             Velocity = Vector3.Zero;
             Acceleration = Vector3.Zero;
+            SceneRef.HUDAccess.Ore = 0;
         }
 
         void CheckCollusion()
         {
             if (!InDock)
             {
-                if (CirclesIntersect(SceneRef.PlayerBaseRefAccess))
+                if (CirclesIntersect(SceneRef.PlayerBaseAccess))
                 {
                     Docked();
+                    HP += SceneRef.PlayerBaseAccess.HealPlayer;
+                    SceneRef.HUDAccess.HP = HP;
                 }
             }
         }
