@@ -1,0 +1,8 @@
+!Sound
+Id: ed47061d-d341-4165-8d4a-1e237df25ba2
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/Thrust.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

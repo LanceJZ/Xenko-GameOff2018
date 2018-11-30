@@ -25,6 +25,10 @@ namespace Xenko_GameOff2018
         EnemyBaseGun[] Guns = new EnemyBaseGun[8];
         Prefab DronePF;
         Prefab BossPF;
+
+        SoundInstance HitSI;
+        SoundInstance ExplodeSI;
+
         int Sector;
         int OreCount = 0;
         Timer LaunchTimer;
@@ -39,6 +43,9 @@ namespace Xenko_GameOff2018
 
             DronePF = Content.Load<Prefab>("Prefabs/EnemyDronePF");
             BossPF = Content.Load<Prefab>("Prefabs/EnemyBossPF");
+
+            HitSI = Content.Load<Sound>("Sounds/BossHitSound").CreateInstance();
+            ExplodeSI = Content.Load<Sound>("Sounds/BossExplodeSound").CreateInstance();
 
             Entity launchTimerE = new Entity { new Timer() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(launchTimerE);
@@ -185,6 +192,10 @@ namespace Xenko_GameOff2018
 
                     if (shot.CirclesIntersect(gun.Position + Position, gun.Radius))
                     {
+                        ExplodeSI.Volume = 0.25f;
+                        ExplodeSI.Stop();
+                        ExplodeSI.Play();
+
                         SceneRef.PlayerScore(20);
                         gun.Disable();
                         shot.Disable();
@@ -194,11 +205,18 @@ namespace Xenko_GameOff2018
 
             if (gunCount == 0)
             {
+                HitSI.Stop();
+                HitSI.Play();
+
                 shot.Disable();
                 HitPoints -= 10;
 
                 if (HitPoints < 0)
                 {
+                    ExplodeSI.Volume = 1;
+                    ExplodeSI.Stop();
+                    ExplodeSI.Play();
+
                     SceneRef.PlayerScore(250);
                     Destroyed();
                 }

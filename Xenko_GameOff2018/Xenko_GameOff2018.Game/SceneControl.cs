@@ -54,6 +54,9 @@ namespace Xenko_GameOff2018
         List<EnemyBase> EnemyBaseRefs;
         List<Asteroid> AsteroidRefs;
         static Random RandomNumbers;
+
+        SoundInstance BumpSI;
+
         int Score = 0;
 
         public override void Start()
@@ -69,6 +72,8 @@ namespace Xenko_GameOff2018
             EnemyBasePF = Content.Load<Prefab>("Prefabs/EnemyBasePF");
             AsteroidPF = Content.Load<Prefab>("Prefabs/AsteroidPF");
             Prefab hudPF = Content.Load<Prefab>("Prefabs/HudPF");
+
+            BumpSI = Content.Load<Sound>("Sounds/BumpSound").CreateInstance();
 
             PlayerRef = SetupEntity(playerPF).Get<Player>();
             PlayerRef.Setup(this);
@@ -144,6 +149,12 @@ namespace Xenko_GameOff2018
             TheHUD.Score = Score;
         }
 
+        public void BumpSound()
+        {
+            BumpSI.Stop();
+            BumpSI.Play();
+        }
+
         void SpawnBase(int sector)
         {
             Entity enemyBaseE = SetupEntity(EnemyBasePF);
@@ -180,6 +191,9 @@ namespace Xenko_GameOff2018
                                 {
                                     if (droneA.CirclesIntersect(droneB))
                                     {
+                                        BumpSI.Stop();
+                                        BumpSI.Play();
+
                                         droneA.Bumped(droneB);
                                         droneB.Bumped(droneA);
                                     }
@@ -201,6 +215,8 @@ namespace Xenko_GameOff2018
                                     {
                                         if (bossA.CirclesIntersect(bossB))
                                         {
+                                            BumpSI.Stop();
+                                            BumpSI.Play();
                                             bossA.Bumped(bossB);
                                             bossB.Bumped(bossA);
                                         }
@@ -212,6 +228,8 @@ namespace Xenko_GameOff2018
                             {
                                 if (droneA.CirclesIntersect(bossA))
                                 {
+                                    BumpSI.Stop();
+                                    BumpSI.Play();
                                     droneA.Bumped(bossA);
                                     bossA.Bumped(droneA);
                                 }

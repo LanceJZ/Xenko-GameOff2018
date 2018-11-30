@@ -19,6 +19,10 @@ namespace Xenko_GameOff2018
         List<Asteroid> AsteroidRefs;
         Player PlayerRef;
         SceneControl SceneRef;
+
+        SoundInstance HitSI;
+        SoundInstance FireSI;
+
         float Thrust = 10;
         float TurnRate = 0.25f;
 
@@ -59,6 +63,8 @@ namespace Xenko_GameOff2018
 
         public void Fire(Vector3 position, float rotation)
         {
+            FireSI.Stop();
+            FireSI.Play();
             IsActive = true;
             Position = position;
             Position.Z = 0;
@@ -82,10 +88,15 @@ namespace Xenko_GameOff2018
             AsteroidRefs = scene.AsteroidAccess;
             PlayerRef = scene.PlayerAccess;
             RandomGenerator = SceneControl.RandomGenerator;
+
+            HitSI = Content.Load<Sound>("Sounds/MissileHitSound").CreateInstance();
+            FireSI = Content.Load<Sound>("Sounds/MissileFiredSound").CreateInstance();
         }
 
         public void Disable()
         {
+            HitSI.Stop();
+            HitSI.Play();
             IsActive = false;
         }
 
@@ -107,6 +118,7 @@ namespace Xenko_GameOff2018
                 if (CirclesIntersect(PlayerRef))
                 {
                     Disable();
+                    PlayerRef.Damaged();
                     PlayerRef.HPAccess = -10;
                     return;
                 }

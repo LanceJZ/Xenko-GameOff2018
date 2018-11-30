@@ -1,0 +1,8 @@
+!Sound
+Id: 2a6ef2f3-7045-410f-ad2b-e0135526ef37
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/PlayerDead.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

@@ -19,11 +19,13 @@ namespace Xenko_GameOff2018
         List<EnemyBase> EnemyBaseRefs;
         Player PlayerRef;
         Timer LifeTimer;
+        SoundInstance HitSI;
 
         public override void Start()
         {
             base.Start();
 
+            HitSI = Content.Load<Sound>("Sounds/ShotHitSound").CreateInstance();
             RotationVelocity = new Vector3(13.666f, 0, 0);
         }
 
@@ -72,6 +74,8 @@ namespace Xenko_GameOff2018
 
         public void Disable()
         {
+            HitSI.Stop();
+            HitSI.Play();
             IsActive = false;
         }
 

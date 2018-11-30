@@ -1,0 +1,8 @@
+!Sound
+Id: 341ab41e-7144-4069-adab-234b30c08844
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/PlayerShotHit.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

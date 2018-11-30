@@ -1,0 +1,8 @@
+!Sound
+Id: 8c7c67fe-06de-476a-a555-313399503944
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/PirateBump.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

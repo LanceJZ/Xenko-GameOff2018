@@ -1,0 +1,8 @@
+!Sound
+Id: 6899404e-af24-4e9d-94f4-982492fdd4d0
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/PirateMissile.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

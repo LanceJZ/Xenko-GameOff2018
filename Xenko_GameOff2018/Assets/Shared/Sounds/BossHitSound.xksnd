@@ -1,0 +1,8 @@
+!Sound
+Id: b8de688b-34e8-4cb3-a29c-a29316217212
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/PirateHit.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

@@ -1,0 +1,8 @@
+!Sound
+Id: 0676da27-e3ff-4561-96c1-939ca9a82e1c
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/PickupChunk.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

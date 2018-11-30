@@ -1,0 +1,8 @@
+!Sound
+Id: 11976757-b208-42fc-a6d5-6b114c2fadbd
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/PlayerHit.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

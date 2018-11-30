@@ -1,0 +1,8 @@
+!Sound
+Id: 821ca028-fb01-4165-a3c1-7644b04a98cd
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/MissileHit.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

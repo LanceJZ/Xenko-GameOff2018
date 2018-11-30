@@ -1,0 +1,8 @@
+!Sound
+Id: 823e9f2d-5168-4baa-960b-f04c575892a7
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/UnDock.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

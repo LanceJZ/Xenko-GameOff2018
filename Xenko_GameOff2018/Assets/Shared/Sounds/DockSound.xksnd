@@ -1,0 +1,8 @@
+!Sound
+Id: f6dd5817-eb9d-473f-87ef-912f1bbb20e4
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/Dock.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

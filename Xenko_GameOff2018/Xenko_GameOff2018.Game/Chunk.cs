@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using Xenko.Core.Mathematics;
 using Xenko.Input;
 using Xenko.Engine;
+using Xenko.Games.Time;
+using Xenko.Graphics;
+using Xenko.Rendering;
+using Xenko.Audio;
 
 namespace Xenko_GameOff2018
 {
@@ -17,11 +21,15 @@ namespace Xenko_GameOff2018
         OreType TypeofOre;
         Player PlayerRef;
 
+        SoundInstance PickUpSI;
+
         bool InTransit;
 
         public override void Start()
         {
             base.Start();
+
+            PickUpSI = Content.Load<Sound>("Sounds/BossHitSound").CreateInstance();
 
             float rAmount = RandomMinMax(0.1f, 1);
             float rX = RandomMinMax(-rAmount, rAmount);
@@ -71,6 +79,9 @@ namespace Xenko_GameOff2018
             {
                 if (CirclesIntersect(PlayerRef))
                 {
+                    PickUpSI.Stop();
+                    PickUpSI.Play();
+
                     PlayerRef.PickupOre(this);
                     InTransit = true;
                 }

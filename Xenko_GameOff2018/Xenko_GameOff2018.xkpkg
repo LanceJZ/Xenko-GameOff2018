@@ -52,21 +52,36 @@ ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
 RootAssets:
+    - 0676da27-e3ff-4561-96c1-939ca9a82e1c:Sounds/PickupChunkSound
     - 1188e65c-86cd-47ae-a6bd-11c8bac3273d:Prefabs/RedCubePF
+    - 11976757-b208-42fc-a6d5-6b114c2fadbd:Sounds/PlayerHitSound
     - 135c830a-fc68-4101-915c-6a7d4745a93a:Prefabs/EnemyBasePF
     - 26e55c46-e585-4783-92e5-fc1f97380276:Prefabs/PlayerShotPF
+    - 2a6ef2f3-7045-410f-ad2b-e0135526ef37:Sounds/PlayerDeadSound
+    - 341ab41e-7144-4069-adab-234b30c08844:Sounds/PlayerShotHitSound
     - 4151917b-0bc6-4d60-b9ba-1bd181fbb7d3:Models/StarModel
     - 423c826b-f8be-423e-9757-e86c9456d13b:Prefabs/EnemyBossPF
+    - 45b51c75-6f79-4d2e-b43e-d02e01524e5f:Sounds/PlayerShotSound
     - 5502436a-b5c7-4698-9790-77afa46727a0:Prefabs/LightBlueCubePF
     - 6539c749-4d87-40d6-bb56-98c54b71619f:Prefabs/OrangeCubePF
     - 65bd5b89-9fdc-4474-b4e8-8b8c95208ba8:Prefabs/StarPF
+    - 6899404e-af24-4e9d-94f4-982492fdd4d0:Sounds/MissileFiredSound
     - 6eb2e7c9-78a2-4d78-9d89-863d35292f6f:Prefabs/AsteroidPF
     - 7b5c1dcf-eaee-4ba1-abed-2edd16f5b698:Prefabs/MissilePF
+    - 821ca028-fb01-4165-a3c1-7644b04a98cd:Sounds/MissileHitSound
+    - 823e9f2d-5168-4baa-960b-f04c575892a7:Sounds/UnDockSound
+    - 8c7c67fe-06de-476a-a555-313399503944:Sounds/BumpSound
     - 996e640a-db5e-4bd6-8d79-617d9ba4c467:Prefabs/EnemyDronePF
     - 9dfa9a76-803d-4b3c-a000-7f595f794020:Prefabs/WhiteCubePF
     - a26f3aee-e3d5-40ba-8e35-44e2592b54fb:Prefabs/PlayerPF
     - a64094c6-9f74-4385-b84b-f1d50e3a610e:Models/PlayerModel
     - b4a7b6ba-53dc-4cfe-acfd-b6b30b38827c:Prefabs/ChunkBasePF
     - b55f93e8-da34-454f-9400-55eaa2426c70:Prefabs/BlueCubePF
+    - b84acf3d-797c-48b8-9787-1b1c51540781:Sounds/ShotHitSound
+    - b8de688b-34e8-4cb3-a29c-a29316217212:Sounds/BossHitSound
     - c1e9691c-fb1b-4aec-a9e2-aaf2417394b5:Prefabs/PlayerBasePF
-    - d3af581c-cfd7-49d0-a5dc-d1e17a084fd9:Prefabs/HUDPF
+    - cddad26f-8c7d-4606-a7ac-218aab5bf1c9:Sounds/BossExplodeSound
+    - d3af581c-cfd7-49d0-a5dc-d1e17a084fd9:Prefabs/HudPF
+    - ed47061d-d341-4165-8d4a-1e237df25ba2:Sounds/ThrustSound
+    - f6dd5817-eb9d-473f-87ef-912f1bbb20e4:Sounds/DockSound
+    - fc24f9a9-f39f-47dd-ad35-76767d51fb4d:Sounds/MiningSound

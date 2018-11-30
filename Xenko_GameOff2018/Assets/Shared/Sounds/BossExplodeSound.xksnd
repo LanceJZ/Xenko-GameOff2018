@@ -1,0 +1,8 @@
+!Sound
+Id: cddad26f-8c7d-4606-a7ac-218aab5bf1c9
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/PirateExplode.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

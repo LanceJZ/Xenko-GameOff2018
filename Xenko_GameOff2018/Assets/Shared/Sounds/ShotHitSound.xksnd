@@ -1,0 +1,8 @@
+!Sound
+Id: b84acf3d-797c-48b8-9787-1b1c51540781
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/ShotHit.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

@@ -1,0 +1,8 @@
+!Sound
+Id: fc24f9a9-f39f-47dd-ad35-76767d51fb4d
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/Mining.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

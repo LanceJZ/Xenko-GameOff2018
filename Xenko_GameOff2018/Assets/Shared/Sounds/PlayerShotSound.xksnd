@@ -1,0 +1,8 @@
+!Sound
+Id: 45b51c75-6f79-4d2e-b43e-d02e01524e5f
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Sounds/PlayerShot.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

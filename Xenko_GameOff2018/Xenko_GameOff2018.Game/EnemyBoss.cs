@@ -25,6 +25,10 @@ namespace Xenko_GameOff2018
         Timer ChaseTimer;
         Timer BumpTimer;
         Timer FireTimer;
+
+        SoundInstance DestroyedSI;
+        SoundInstance HitSI;
+
         bool PlayerInRange;
         bool WasBumped;
         float Thrust = 5.666f;
@@ -36,6 +40,9 @@ namespace Xenko_GameOff2018
             Missiles = new List<Missile>();
 
             MissilePF = Content.Load<Prefab>("Prefabs/MissilePF");
+
+            DestroyedSI = Content.Load<Sound>("Sounds/BossExplodeSound").CreateInstance();
+            HitSI = Content.Load<Sound>("Sounds/BossHitSound").CreateInstance();
 
             Entity chaseTimerE = new Entity { new Timer() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(chaseTimerE);
@@ -103,6 +110,8 @@ namespace Xenko_GameOff2018
 
         public void Destroy()
         {
+            DestroyedSI.Stop();
+            DestroyedSI.Play();
             Disable();
         }
 
@@ -157,6 +166,8 @@ namespace Xenko_GameOff2018
 
                 if (CirclesIntersect(shotMove, shot.Radius))
                 {
+                    HitSI.Stop();
+                    HitSI.Play();
                     shot.Disable();
                     HitPoints -= 10;
 
@@ -205,8 +216,6 @@ namespace Xenko_GameOff2018
 
             thisMissile.Fire(Position + VelocityFromRadian(Radius - 5, Rotation.Z), Rotation.Z);
 
-            //FireSI.Stop();
-            //FireSI.Play();
         }
     }
 }
