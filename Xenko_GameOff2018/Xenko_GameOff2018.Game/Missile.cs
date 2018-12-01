@@ -129,8 +129,9 @@ namespace Xenko_GameOff2018
                     {
                         if (CirclesIntersect(shot))
                         {
-                            SceneRef.PlayerScore(10);
+                            PlayerRef.ExpGain(25);
                             Disable();
+                            shot.HitSound();
                             shot.Disable();
                             return;
                         }

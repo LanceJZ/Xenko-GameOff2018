@@ -61,6 +61,8 @@ namespace Xenko_GameOff2018
 
         public override void Start()
         {
+            Game.Window.Title = "Dynastar";
+
             if (RandomNumbers == null)
                 RandomNumbers = new Random(DateTime.UtcNow.Millisecond * 666);
 
@@ -135,18 +137,6 @@ namespace Xenko_GameOff2018
             Entity entity = prefab.Instantiate().First();
             SceneSystem.SceneInstance.RootScene.Entities.Add(entity);
             return entity;
-        }
-
-        public void PlayerScore(int points)
-        {
-            Score += points;
-            TheHUD.Score = Score;
-        }
-
-        public void ResetGame()
-        {
-            Score = 0;
-            TheHUD.Score = Score;
         }
 
         public void BumpSound()

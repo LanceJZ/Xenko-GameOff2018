@@ -12,10 +12,10 @@ Hierarchy:
                 Id: 0ecf9554-3bc0-4050-82f9-187c6ccab69a
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
-                Width: 45.0
+                Width: 123.5
                 Height: 24.0
-                HorizontalAlignment: Right
-                Margin: {Right: 151.0}
+                HorizontalAlignment: Left
+                Margin: {Left: 42.0}
                 Name: Exp
                 Text: 0
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
@@ -47,29 +47,13 @@ Hierarchy:
                 TextSize: 20.0
                 TextColor: {R: 240, G: 240, B: 240, A: 255}
         -   UIElement: !TextBlock
-                Id: 48eba675-8591-43a5-a503-02ed6eb0defd
-                DependencyProperties: {}
-                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
-                Width: 71.5
-                Height: 16.0
-                HorizontalAlignment: Left
-                Margin: {Left: 62.0, Bottom: 8.0}
-                MaximumWidth: 3.40282347E+38
-                MaximumHeight: 3.40282347E+38
-                MaximumDepth: 3.40282347E+38
-                Name: Score
-                Text: 0000
-                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
-                TextSize: 20.0
-                TextColor: {R: 240, G: 240, B: 240, A: 255}
-        -   UIElement: !TextBlock
                 Id: 4e4f9ab1-2c4b-41ae-9d81-90ec0264c9d5
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
                 Width: 27.0
                 Height: 24.0
-                HorizontalAlignment: Left
-                Margin: {Left: 245.0}
+                HorizontalAlignment: Right
+                Margin: {Right: 147.0}
                 Name: Ore
                 Text: 0
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
@@ -95,7 +79,7 @@ Hierarchy:
                 Width: 29.0
                 Height: 24.0
                 HorizontalAlignment: Left
-                Margin: {Left: 133.5}
+                Margin: {Left: 179.5}
                 Name: HPText
                 Text: HP
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
@@ -107,8 +91,8 @@ Hierarchy:
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
                 Width: 42.0
                 Height: 24.0
-                HorizontalAlignment: Right
-                Margin: {Right: 196.0}
+                HorizontalAlignment: Left
+                Margin: {}
                 Name: ExpText
                 Text: Exp
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
@@ -127,8 +111,6 @@ Hierarchy:
                 MaximumHeight: 3.40282347E+38
                 MaximumDepth: 3.40282347E+38
                 Children:
-                    726ae43850b0798a824a9c1e9b21f6c1: !TextBlock ref!! f0e47c34-7620-4a52-84d8-2230661a4132
-                    22d98e62f4fdfcb9d11ed186626cf7e7: !TextBlock ref!! 48eba675-8591-43a5-a503-02ed6eb0defd
                     3c42f934a1d961926e14739cbd36efda: !TextBlock ref!! cf23afbe-995f-4c33-9f5d-90bab56aff20
                     0b49ac4cb93a6feda688cc32ba29942e: !TextBlock ref!! 4e4f9ab1-2c4b-41ae-9d81-90ec0264c9d5
                     e99450c4ec1d12bed538efcd70e1de90: !TextBlock ref!! 0fd8e901-b3cf-4ea2-ab24-5fa297f85e83
@@ -161,8 +143,8 @@ Hierarchy:
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
                 Width: 42.5
                 Height: 24.0
-                HorizontalAlignment: Left
-                Margin: {Left: 202.5}
+                HorizontalAlignment: Right
+                Margin: {Right: 174.0}
                 Name: OreText
                 Text: Ore
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
@@ -175,25 +157,9 @@ Hierarchy:
                 Width: 40.0
                 Height: 24.0
                 HorizontalAlignment: Left
-                Margin: {Left: 162.5}
+                Margin: {Left: 208.5}
                 Name: HP
                 Text: 100
-                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
-                TextSize: 20.0
-                TextColor: {R: 240, G: 240, B: 240, A: 255}
-        -   UIElement: !TextBlock
-                Id: f0e47c34-7620-4a52-84d8-2230661a4132
-                DependencyProperties: {}
-                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
-                Width: 62.0
-                Height: 16.0
-                HorizontalAlignment: Left
-                Margin: {Bottom: 8.0}
-                MaximumWidth: 3.40282347E+38
-                MaximumHeight: 3.40282347E+38
-                MaximumDepth: 3.40282347E+38
-                Name: ScoreText
-                Text: Score
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:XenkoDefaultFont
                 TextSize: 20.0
                 TextColor: {R: 240, G: 240, B: 240, A: 255}

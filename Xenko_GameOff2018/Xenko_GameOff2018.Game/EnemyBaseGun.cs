@@ -55,7 +55,10 @@ namespace Xenko_GameOff2018
                         FireMissile();
                     }
 
-                    FireTimer.Reset(RandomMinMax(CurrentFireRate, CurrentFireRate * 3));
+                    if (PlayerRef.LevelAccess < 9)
+                        CurrentFireRate = 10 - PlayerRef.LevelAccess;
+
+                    FireTimer.Reset(RandomMinMax(CurrentFireRate, CurrentFireRate + PlayerRef.LevelAccess));
                 }
             }
         }
@@ -70,7 +73,6 @@ namespace Xenko_GameOff2018
         public void Enable()
         {
             IsActive = true;
-            CurrentFireRate = 10;
         }
 
         public void Disable()

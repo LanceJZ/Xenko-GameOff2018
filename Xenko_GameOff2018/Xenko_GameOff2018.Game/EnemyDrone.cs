@@ -365,8 +365,9 @@ namespace Xenko_GameOff2018
                     if (CirclesIntersect(shot))
                     {
                         Destroy();
+                        shot.HitSound();
                         shot.Disable();
-                        SceneRef.PlayerScore(1);
+                        PlayerRef.ExpGain(1);
                         break;
                     }
                 }

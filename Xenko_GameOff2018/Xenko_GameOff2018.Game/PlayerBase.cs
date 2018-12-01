@@ -21,9 +21,9 @@ namespace Xenko_GameOff2018
             {
                 if (OreCount > 0)
                 {
-                    if (PlayerRef.HPAccess < PlayerRef.MaxHPAcess)
+                    if (PlayerRef.HPAccess < PlayerRef.MaxHPAccess)
                     {
-                        int repairPointsNeeded = PlayerRef.MaxHPAcess - PlayerRef.HPAccess;
+                        int repairPointsNeeded = PlayerRef.MaxHPAccess - PlayerRef.HPAccess;
                         int repairOre = OreCount * 10;
                         int possableRepairs = repairPointsNeeded - repairOre;
 

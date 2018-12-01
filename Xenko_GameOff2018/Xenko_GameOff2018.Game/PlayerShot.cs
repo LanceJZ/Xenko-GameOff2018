@@ -15,11 +15,15 @@ namespace Xenko_GameOff2018
 {
     public class PlayerShot : PO
     {
+        public int DamageAccess { get => Damage; }
+
         List<Asteroid> AsteroidRefs;
         List<EnemyBase> EnemyBaseRefs;
         Player PlayerRef;
         Timer LifeTimer;
         SoundInstance HitSI;
+
+        int Damage;
 
         public override void Start()
         {
@@ -47,8 +51,9 @@ namespace Xenko_GameOff2018
             CheckCollision();
         }
 
-        public void Fire(Vector3 position, Vector3 velocity, float rotation)
+        public void Fire(Vector3 position, Vector3 velocity, float rotation, int damage)
         {
+            Damage = damage;
             IsActive = true;
             Position = position;
             Velocity = velocity;
@@ -72,10 +77,14 @@ namespace Xenko_GameOff2018
             RandomGenerator = SceneControl.RandomGenerator;
         }
 
-        public void Disable()
+        public void HitSound()
         {
             HitSI.Stop();
             HitSI.Play();
+        }
+
+        public void Disable()
+        {
             IsActive = false;
         }
 
@@ -87,6 +96,7 @@ namespace Xenko_GameOff2018
                 {
                     if (CirclesIntersect(rock))
                     {
+                        HitSound();
                         Disable();
                     }
                 }

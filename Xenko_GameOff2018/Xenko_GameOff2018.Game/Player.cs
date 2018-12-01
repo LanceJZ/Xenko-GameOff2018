@@ -16,7 +16,8 @@ namespace Xenko_GameOff2018
     public class Player : PO
     {
         public List<PlayerShot> ShotsAccess { get => Shots; }
-        public int MaxHPAcess { get => MaxHP; }
+        public int LevelAccess { get => Level; }
+        public int MaxHPAccess { get => MaxHP; }
         public int HPAccess
         {
             get => HP;
@@ -155,9 +156,22 @@ namespace Xenko_GameOff2018
             if (ChunkRefs.Count > 4)
                 return;
 
+            chunk.PickupSound();
             ChunkRefs.Add(chunk);
             SceneRef.HUDAccess.Ore = ChunkRefs.Count;
             chunk.Disable();
+        }
+
+        public void ExpGain(int points)
+        {
+            ExP += points;
+            SceneRef.HUDAccess.Exp = ExP;
+
+            if (ExP > Level * 500)
+            {
+                Level++;
+                SceneRef.HUDAccess.Level = Level;
+            }
         }
 
         public void Bump(PO other)
@@ -178,11 +192,12 @@ namespace Xenko_GameOff2018
         {
             DestroyedSI.Play();
             HP = 100;
+            ExP = 0;
+            Level = 1;
             ChunkRefs.Clear();
             SceneRef.HUDAccess.Ore = 0;
             SceneRef.HUDAccess.HP = HP;
             SceneRef.PlayerBaseAccess.Reset();
-            SceneRef.ResetGame();
             Reset();
         }
 
@@ -337,26 +352,29 @@ namespace Xenko_GameOff2018
             FireSI.Stop();
             FireSI.Play();
 
+            int damage = 30;
+
+            if (Level < 20)
+                damage = (int)(Level * 1.5f);
+
             theShot.Fire(Position + VelocityFromRadian(Radius - 20, Rotation.Z),
-                VelocityFromRadian(speed, Rotation.Z) + Velocity * 0.25f, Rotation.Z);
+                VelocityFromRadian(speed, Rotation.Z) + Velocity * 0.25f, Rotation.Z, damage);
             theShot.UpdatePR();
         }
 
         void Thrust()
         {
+            ThrustOn = true;
+            ThrustSI.Volume = 1;
+
             if (!InDock)
             {
-                if (Accelerate(ThrustAmount))
+                if (!Accelerate(ThrustAmount))
                 {
-                    ThrustOn = true;
-                }
-                else
-                {
-                    ThrustOff();
+                    ThrustSI.Volume = 0.25f;
                 }
             }
 
-            ThrustSI.Volume = 1;
             BlinkRFlame();
             BlinkLFlame();
         }
@@ -367,6 +385,16 @@ namespace Xenko_GameOff2018
             {
                 ThrustSI.Play();
                 ThrustSI.IsLooping = true;
+            }
+        }
+
+        void ThrustOff()
+        {
+            if (ThrustOn)
+            {
+                ThrustSoundOff();
+                FlamesOff();
+                ThrustOn = false;
             }
         }
 
@@ -401,16 +429,6 @@ namespace Xenko_GameOff2018
             }
         }
 
-        void ThrustOff()
-        {
-            if (ThrustOn)
-            {
-                ThrustSoundOff();
-                FlamesOff();
-                ThrustOn = false;
-            }
-        }
-
         void FlamesOff()
         {
             FlameRModel.Enabled = false;
@@ -425,6 +443,7 @@ namespace Xenko_GameOff2018
 
             foreach (Chunk chunk in ChunkRefs)
             {
+                ExpGain(20);
                 SceneRef.PlayerBaseAccess.UnloadOre(chunk.ThisOreType);
                 chunk.IsInTransit = false;
             }

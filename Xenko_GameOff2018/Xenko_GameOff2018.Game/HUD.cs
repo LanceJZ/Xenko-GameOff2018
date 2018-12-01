@@ -13,14 +13,12 @@ namespace Xenko_GameOff2018
 {
     public class HUD : SyncScript
     {
-        public int Score { set => ScoreTB.Text = value.ToString(); }
         public int Ore { set => OreTB.Text = value.ToString(); }
         public int Level { set => LevelTB.Text = value.ToString(); }
         public int Exp { set => ExpTB.Text = value.ToString(); }
         public int BaseOre { set => BaseOreTB.Text = value.ToString(); }
         public int HP { set => HPTB.Text = value.ToString(); }
 
-        TextBlock ScoreTB;
         TextBlock OreTB;
         TextBlock LevelTB;
         TextBlock ExpTB;
@@ -31,7 +29,6 @@ namespace Xenko_GameOff2018
         {
             UIPage page = Entity.Get<UIComponent>().Page;
             UIElement rootElement = page.RootElement;
-            ScoreTB = rootElement.FindVisualChildOfType<TextBlock>("Score");
             OreTB = rootElement.FindVisualChildOfType<TextBlock>("Ore");
             LevelTB = rootElement.FindVisualChildOfType<TextBlock>("Level");
             ExpTB = rootElement.FindVisualChildOfType<TextBlock>("Exp");

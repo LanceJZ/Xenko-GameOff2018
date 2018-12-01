@@ -196,7 +196,7 @@ namespace Xenko_GameOff2018
                         ExplodeSI.Stop();
                         ExplodeSI.Play();
 
-                        SceneRef.PlayerScore(20);
+                        PlayerRef.ExpGain(20);
                         gun.Disable();
                         shot.Disable();
                     }
@@ -208,8 +208,8 @@ namespace Xenko_GameOff2018
                 HitSI.Stop();
                 HitSI.Play();
 
+                HitPoints -= shot.DamageAccess;
                 shot.Disable();
-                HitPoints -= 10;
 
                 if (HitPoints < 0)
                 {
@@ -217,7 +217,7 @@ namespace Xenko_GameOff2018
                     ExplodeSI.Stop();
                     ExplodeSI.Play();
 
-                    SceneRef.PlayerScore(250);
+                    PlayerRef.ExpGain(275);
                     Destroyed();
                 }
             }

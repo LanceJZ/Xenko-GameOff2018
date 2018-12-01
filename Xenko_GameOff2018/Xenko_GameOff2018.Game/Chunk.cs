@@ -60,6 +60,12 @@ namespace Xenko_GameOff2018
             RandomGenerator = SceneControl.RandomGenerator;
         }
 
+        public void PickupSound()
+        {
+            PickUpSI.Stop();
+            PickUpSI.Play();
+        }
+
         public void Enable()
         {
             IsActive = true;
@@ -79,9 +85,7 @@ namespace Xenko_GameOff2018
             {
                 if (CirclesIntersect(PlayerRef))
                 {
-                    PickUpSI.Stop();
-                    PickUpSI.Play();
-
+                    PlayerRef.ExpGain(10);
                     PlayerRef.PickupOre(this);
                     InTransit = true;
                 }

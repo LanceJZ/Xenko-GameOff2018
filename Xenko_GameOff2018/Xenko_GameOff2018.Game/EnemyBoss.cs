@@ -161,6 +161,9 @@ namespace Xenko_GameOff2018
         {
             foreach (PlayerShot shot in PlayerRef.ShotsAccess)
             {
+                if (!shot.Active)
+                    return;
+
                 Vector3 shotMove = shot.Position;
                 shotMove.Z += 60;
 
@@ -168,12 +171,13 @@ namespace Xenko_GameOff2018
                 {
                     HitSI.Stop();
                     HitSI.Play();
+
+                    HitPoints -= shot.DamageAccess;
                     shot.Disable();
-                    HitPoints -= 10;
 
                     if (HitPoints < 0)
                     {
-                        SceneRef.PlayerScore(100);
+                        PlayerRef.ExpGain(100);
                         Destroy();
                     }
                 }
